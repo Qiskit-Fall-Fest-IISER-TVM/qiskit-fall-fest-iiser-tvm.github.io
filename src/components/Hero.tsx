@@ -5,49 +5,78 @@ import heroBg from "../assets/venue-bg.png";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center pt-20 overflow-hidden">
-      {/* Background Image & Overlay */}
+    <section className="relative min-h-[100dvh] flex items-center justify-center pt-20 overflow-hidden bg-black">
+
+      {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-fixed">
-        <img 
-          src={heroBg} 
-          alt="Quantum Circuit Background" 
-          className="w-full h-full object-cover opacity-65 dark:opacity-75"
+        <img
+          src={heroBg}
+          alt="IISER Thiruvananthapuram campus"
+          className="w-full h-full object-cover opacity-75"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/55 to-background dark:from-background/30 dark:via-background/65 dark:to-background"></div>
+
+        {/* Dark cinematic overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black" />
       </div>
 
-      {/* Animated Circuit Overlay (CSS/SVG) */}
+      {/* Animated Circuit Grid */}
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="w-full h-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
-            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-primary/30" />
+            <pattern
+              id="grid"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <path
+                d="M 40 0 L 0 0 0 40"
+                fill="none"
+                stroke="white"
+                strokeWidth="0.5"
+              />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-          {/* Animated nodes could go here */}
+
+          <rect
+            width="100%"
+            height="100%"
+            fill="url(#grid)"
+          />
         </svg>
       </div>
 
+      {/* Hero Content */}
       <div className="container relative z-10 mx-auto px-4 md:px-6 flex flex-col items-center text-center">
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-secondary/30 bg-secondary/10 text-secondary font-mono text-xs md:text-sm mb-8"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-300/30 bg-cyan-400/10 text-cyan-200 font-mono text-xs md:text-sm mb-8 backdrop-blur-sm"
         >
-          <span className="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+          <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
+
           Fall 2026 • IISER Thiruvananthapuram
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-foreground max-w-5xl mb-6"
+          transition={{
+            duration: 0.8,
+            delay: 0.2,
+            ease: "easeOut",
+          }}
+          className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white max-w-5xl mb-6"
         >
-          IBM Qiskit <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+          IBM Qiskit
+          <br />
+
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
             Fall Fest 2026
           </span>
         </motion.h1>
@@ -55,28 +84,51 @@ export function Hero() {
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="text-lg md:text-2xl text-muted-foreground max-w-2xl mb-10 font-light leading-relaxed"
+          transition={{
+            duration: 0.8,
+            delay: 0.4,
+            ease: "easeOut",
+          }}
+          className="text-lg md:text-2xl text-white/80 max-w-2xl mb-10 font-light leading-relaxed"
         >
-          Explore the frontier of quantum computation. A prestigious hackathon and learning event for the next generation of quantum researchers.
+          Explore the frontier of quantum computation. A prestigious
+          hackathon and learning event for the next generation of quantum
+          researchers.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+          transition={{
+            duration: 0.8,
+            delay: 0.6,
+            ease: "easeOut",
+          }}
           className="flex flex-col sm:flex-row items-center gap-4"
         >
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-8 h-14 text-lg shadow-[0_0_20px_rgba(15,98,254,0.4)] hover:shadow-[0_0_40px_rgba(15,98,254,0.6)] transition-all">
+
+          <Button
+            asChild
+            size="lg"
+            className="bg-blue-600 hover:bg-blue-500 text-white border-0 rounded-full px-8 h-14 text-lg shadow-[0_0_20px_rgba(37,99,235,0.5)] hover:shadow-[0_0_40px_rgba(37,99,235,0.7)] transition-all"
+          >
             <a href="#register">
-              Register Now <ChevronRight className="ml-2 w-5 h-5" />
+              Register Now
+              <ChevronRight className="ml-2 w-5 h-5" />
             </a>
           </Button>
-          <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-14 text-lg border-border hover:bg-muted">
+
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="rounded-full px-8 h-14 text-lg bg-white/5 text-white border-white/30 hover:bg-white/15 hover:text-white backdrop-blur-sm"
+          >
             <a href="#about">
               Discover More
             </a>
           </Button>
+
         </motion.div>
       </div>
 
@@ -84,12 +136,19 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
+        transition={{
+          delay: 1.5,
+          duration: 1,
+        }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs font-mono text-muted-foreground tracking-widest uppercase">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-muted-foreground to-transparent"></div>
+        <span className="text-xs font-mono text-white/70 tracking-widest uppercase">
+          Scroll
+        </span>
+
+        <div className="w-[1px] h-12 bg-gradient-to-b from-white/70 to-transparent" />
       </motion.div>
+
     </section>
   );
 }
