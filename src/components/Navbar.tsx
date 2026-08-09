@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useTheme } from "./ThemeProvider";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import iiserLogo from "@assets/Logo_1782481254440.png";
 
 export function Navbar() {
-  const { theme, setTheme } = useTheme();
   const location = useLocation();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -22,10 +20,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "Speakers", to: "/speakers" },
@@ -38,11 +32,13 @@ export function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/40 backdrop-blur-md border-b border-border/30 py-3"
-          : "bg-transparent py-5"
+          ? "bg-white/45 backdrop-blur-md border-b border-black/10 py-3"
+          : "bg-white/10 backdrop-blur-sm py-5"
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
+
+        {/* Logo */}
 
         <Link to="/" className="flex items-center gap-3">
           <img
@@ -52,12 +48,16 @@ export function Navbar() {
           />
 
           <div>
-            <h1 className="font-bold text-lg">Qiskit</h1>
-            <p className="text-xs text-muted-foreground">
+            <h1 className="font-bold text-lg text-black">
+              Qiskit
+            </h1>
+
+            <p className="text-xs text-black/70">
               Fall Fest '26
             </p>
           </div>
         </Link>
+
 
         {/* Desktop Navigation */}
 
@@ -70,24 +70,15 @@ export function Navbar() {
               className={`transition-colors text-sm font-medium ${
                 location.pathname === link.to
                   ? "text-primary"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-black/70 hover:text-black"
               }`}
             >
               {link.name}
             </Link>
           ))}
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="rounded-full"
-          >
-            <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
-
         </div>
+
 
         {/* Mobile Controls */}
 
@@ -96,16 +87,8 @@ export function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={toggleTheme}
-          >
-            <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
-
-          <Button
-            variant="ghost"
-            size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-black hover:bg-black/5"
           >
             {mobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -118,17 +101,22 @@ export function Navbar() {
 
       </div>
 
+
       {/* Mobile Menu */}
 
       {mobileMenuOpen && (
-        <div className="md:hidden bg-background border-t border-border">
+        <div className="md:hidden bg-white/90 backdrop-blur-md border-t border-black/10">
 
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.to}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-6 py-4 border-b border-border hover:bg-muted transition-colors"
+              className={`block px-6 py-4 border-b border-black/10 transition-colors ${
+                location.pathname === link.to
+                  ? "text-primary"
+                  : "text-black/80 hover:bg-black/5"
+              }`}
             >
               {link.name}
             </Link>
