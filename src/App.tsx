@@ -13,33 +13,22 @@ import TeamPage from "./pages/TeamPage";
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="qiskit-theme">
-      <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/30 selection:text-primary">
+    <div className="min-h-screen text-black font-sans">
+      <Navbar />
 
-        <Navbar />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/schedule" element={<SchedulePage />} />
+          <Route path="/speakers" element={<SpeakersPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </main>
 
-        <main>
-          <Routes>
-
-            <Route path="/" element={<Home />} />
-
-            <Route path="/schedule" element={<SchedulePage />} />
-
-            <Route path="/speakers" element={<SpeakersPage />} />
-
-            <Route path="/team" element={<TeamPage />} />
-
-            <Route path="/register" element={<RegisterPage />} />
-
-          </Routes>
-        </main>
-
-        <Footer />
-
-        <Toaster />
-
-      </div>
-    </ThemeProvider>
+      <Footer />
+      <Toaster />
+    </div>
   );
 }
 
