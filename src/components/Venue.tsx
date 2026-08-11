@@ -20,7 +20,7 @@ export function Venue() {
         />
 
         {/* Dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/70 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/55 to-black/60" />
 
       </div>
 
