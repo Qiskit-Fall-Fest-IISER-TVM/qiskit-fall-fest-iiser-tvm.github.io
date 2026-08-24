@@ -47,11 +47,6 @@ export function Footer() {
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <p>© 2026 IISER Thiruvananthapuram. All rights reserved.</p>
-          <div className="flex items-center gap-2">
-            <span>Powered by</span>
-            <SiQiskit className="text-secondary text-lg" />
-            <span className="font-semibold text-foreground">Qiskit</span>
-          </div>
         </div>
       </div>
     </footer>
