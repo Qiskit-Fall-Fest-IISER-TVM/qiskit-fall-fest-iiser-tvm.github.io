@@ -13,10 +13,10 @@ export function Footer() {
                 alt="IISER TVM"
                 className="h-12 w-auto object-contain dark:brightness-0 dark:invert"
               />
-              <div className="h-8 w-px bg-border"></div>
+              <div className="h-12 w-px bg-border"></div>
               <div className="flex items-center gap-2">
                 <SiQiskit className="text-2xl text-secondary" />
-                <span className="text-lg font-semibold text-foreground tracking-tight">IBM Qiskit</span>
+                <span className="text-lg font-semibold text-foreground tracking-tight"></span>
               </div>
             </div>
             <p className="text-muted-foreground max-w-sm">
