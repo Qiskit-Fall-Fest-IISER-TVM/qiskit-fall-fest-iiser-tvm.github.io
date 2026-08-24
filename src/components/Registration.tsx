@@ -18,7 +18,7 @@ export function Registration() {
         >
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Secure Your Spot</h2>
           <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            Spaces are highly limited. Registration is open to students and researchers passionate about quantum technology.
+            Registration is open to students and researchers passionate about quantum technology.
           </p>
           
           <form className="max-w-md mx-auto space-y-4" onSubmit={(e) => e.preventDefault()}>
@@ -34,7 +34,7 @@ export function Registration() {
               </Button>
             </div>
             <p className="text-xs text-muted-foreground mt-4">
-              By applying, you agree to the IBM Qiskit Code of Conduct.
+              By applying, you agree to the Code of Conduct.
             </p>
           </form>
         </motion.div>
