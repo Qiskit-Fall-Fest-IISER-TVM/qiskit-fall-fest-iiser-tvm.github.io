@@ -7,8 +7,7 @@ export default function SpeakersPage() {
         </h1>
 
         <p className="text-xl text-muted-foreground">
-          Meet the scientists and researchers who are
-          shaping the future of quantum computing.
+          Coming Soon....
         </p>
       </div>
     </div>
