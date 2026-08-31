@@ -15,7 +15,7 @@ export function Footer() {
               />
               <div className="h-12 w-px bg-border"></div>
               <div className="flex items-center gap-2">
-                <SiQiskit className="text-3xl text-secondary" />
+                <SiQiskit className="text-4xl text-secondary" />
                 <span className="text-lg font-semibold text-foreground tracking-tight"></span>
               </div>
             </div>
