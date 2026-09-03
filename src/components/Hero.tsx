@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
-import heroBg from "../assets/campus_1.jpg";
+import heroBg from "../assets/campus_1_.jpg";
 
 export function Hero() {
   return (
