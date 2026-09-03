@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
-import heroBg from "../assets/campus_1.png";
+import heroBg from "../assets/campus_1.jpg";
 
 export function Hero() {
   return (
@@ -12,7 +12,7 @@ export function Hero() {
         <img
           src={heroBg}
           alt="IISER Thiruvananthapuram campus"
-          className="w-full h-full object-cover opacity-90"
+          className="w-full h-full object-cover opacity-86"
         />
 
         {/* Lighter cinematic overlay */}
