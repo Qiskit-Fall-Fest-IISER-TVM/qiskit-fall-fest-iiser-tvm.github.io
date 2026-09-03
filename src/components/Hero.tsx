@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ArrowDown } from "lucide-react";
+
 import heroBg from "../assets/campus_1_.jpg";
+import ibmLogo from "../assets/IBM_Quantum_logotype_rev_RGB.png";
 
 export function Hero() {
   return (
@@ -13,7 +15,7 @@ export function Hero() {
 
       <div className="absolute inset-0 z-0 overflow-hidden">
 
-        {/* Campus Image - Slow Cinematic Zoom */}
+        {/* Campus Image - slow cinematic zoom */}
         <motion.img
           src={heroBg}
           alt="IISER Thiruvananthapuram campus"
@@ -22,7 +24,7 @@ export function Hero() {
             y: "-1.5%",
           }}
           animate={{
-            scale: 1.10,
+            scale: 1.1,
             y: "3%",
           }}
           transition={{
@@ -39,10 +41,10 @@ export function Hero() {
           "
         />
 
-        {/* Light cinematic overlay */}
+        {/* Light overall darkening */}
         <div className="absolute inset-0 bg-black/10" />
 
-        {/* Vertical cinematic gradient */}
+        {/* Cinematic vertical gradient */}
         <div
           className="
             absolute
@@ -54,95 +56,86 @@ export function Hero() {
           "
         />
 
-        {/* Subtle radial vignette */}
+        {/* Subtle vignette */}
         <div
           className="
             absolute
             inset-0
-            bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.32)_100%)]
+            bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.30)_100%)]
           "
         />
 
-        {/* Very subtle cyan atmospheric glow */}
+        {/* Very subtle atmospheric glow */}
         <div
           className="
             absolute
             left-1/2
-            top-[45%]
+            top-[42%]
             -translate-x-1/2
             -translate-y-1/2
-            w-[700px]
-            h-[500px]
+            w-[750px]
+            h-[520px]
             rounded-full
-            bg-cyan-400/[0.05]
-            blur-[140px]
+            bg-cyan-400/[0.04]
+            blur-[150px]
             pointer-events-none
           "
         />
-
       </div>
 
-
       {/* =========================================================
-          SUBTLE AMBIENT DETAILS
+          VERY SUBTLE AMBIENT DETAILS
       ========================================================== */}
 
       <div className="absolute inset-0 z-[1] pointer-events-none">
 
-        {/* Ambient point 1 */}
         <motion.div
           animate={{
-            y: [0, -12, 0],
-            opacity: [0.03, 0.14, 0.03],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-[28%] left-[12%]"
-        >
-          <div className="w-1.5 h-1.5 rounded-full bg-cyan-300" />
-        </motion.div>
-
-
-        {/* Ambient point 2 */}
-        <motion.div
-          animate={{
-            y: [0, 15, 0],
-            opacity: [0.02, 0.11, 0.02],
+            y: [0, -10, 0],
+            opacity: [0.02, 0.1, 0.02],
           }}
           transition={{
             duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 1,
           }}
-          className="absolute top-[38%] right-[14%]"
+          className="absolute top-[28%] left-[12%]"
         >
-          <div className="w-1 h-1 rounded-full bg-blue-300" />
+          <div className="w-1 h-1 rounded-full bg-cyan-200" />
         </motion.div>
 
-
-        {/* Ambient point 3 */}
         <motion.div
           animate={{
-            y: [0, -10, 0],
-            opacity: [0.02, 0.09, 0.02],
+            y: [0, 12, 0],
+            opacity: [0.02, 0.08, 0.02],
           }}
           transition={{
             duration: 7,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 2,
+            delay: 1.5,
           }}
-          className="absolute bottom-[30%] right-[22%]"
+          className="absolute top-[36%] right-[15%]"
         >
-          <div className="w-1 h-1 rounded-full bg-cyan-200" />
+          <div className="w-1 h-1 rounded-full bg-blue-200" />
         </motion.div>
 
+        <motion.div
+          animate={{
+            y: [0, -8, 0],
+            opacity: [0.01, 0.07, 0.01],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+          className="absolute bottom-[28%] right-[22%]"
+        >
+          <div className="w-1 h-1 rounded-full bg-cyan-100" />
+        </motion.div>
       </div>
-
 
       {/* =========================================================
           HERO CONTENT
@@ -166,12 +159,20 @@ export function Hero() {
       >
 
         {/* =====================================================
-            DATE / LOCATION
+            DATE / LOCATION BADGE
         ====================================================== */}
 
         <motion.div
-          initial={{ opacity: 0, y: 20, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+            scale: 0.96,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
           transition={{
             duration: 0.7,
             ease: "easeOut",
@@ -186,9 +187,10 @@ export function Hero() {
             border
             border-white/20
             bg-black/20
-            text-white/80
+            text-white/85
             font-mono
-            text-xs
+            text-[10px]
+            sm:text-xs
             md:text-sm
             tracking-wide
             mb-8
@@ -197,24 +199,63 @@ export function Hero() {
         >
           <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
 
-          9–12 OCTOBER 2026
+          <span>9–12 OCTOBER 2026</span>
 
           <span className="text-white/30">•</span>
 
-          IISER THIRUVANANTHAPURAM
+          <span>IISER THIRUVANANTHAPURAM</span>
         </motion.div>
 
+        {/* =====================================================
+            IBM QUANTUM LOGO
+        ====================================================== */}
+
+        <motion.img
+          src={ibmLogo}
+          alt="IBM Quantum"
+          initial={{
+            opacity: 0,
+            y: 25,
+            scale: 0.96,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.8,
+            delay: 0.12,
+            ease: "easeOut",
+          }}
+          className="
+            w-36
+            sm:w-40
+            md:w-48
+            lg:w-56
+            h-auto
+            object-contain
+            mb-5
+            drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)]
+          "
+        />
 
         {/* =====================================================
-            MAIN TITLE
+            QISKIT FALL FEST
         ====================================================== */}
 
         <motion.h1
-          initial={{ opacity: 0, y: 35 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{
+            opacity: 0,
+            y: 35,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
           transition={{
             duration: 0.9,
-            delay: 0.15,
+            delay: 0.24,
             ease: "easeOut",
           }}
           className="
@@ -223,17 +264,13 @@ export function Hero() {
             lg:text-8xl
             font-bold
             tracking-tight
-            text-white
-            max-w-5xl
-            mb-4
+            max-w-6xl
+            mb-2
           "
           style={{
-            textShadow: "0 4px 35px rgba(0,0,0,0.5)",
+            textShadow: "0 4px 35px rgba(0,0,0,0.55)",
           }}
         >
-          IBM Qiskit
-          <br />
-
           <span
             className="
               text-transparent
@@ -244,81 +281,96 @@ export function Hero() {
               to-white
             "
           >
-            Fall Fest 2026
+            Qiskit Fall Fest 2026
           </span>
         </motion.h1>
-
 
         {/* =====================================================
             IISER TVM
         ====================================================== */}
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        <motion.h2
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
           transition={{
-            duration: 0.8,
-            delay: 0.32,
+            duration: 0.9,
+            delay: 0.38,
             ease: "easeOut",
           }}
           className="
-            mb-6
-            text-3xl
-            md:text-5xl
-            font-semibold
+            text-4xl
+            md:text-6xl
+            lg:text-7xl
+            font-bold
             tracking-tight
             text-white
+            mb-6
           "
           style={{
-            fontFamily:
-              '"Inter", "Helvetica Neue", Arial, sans-serif',
-            textShadow: "0 3px 20px rgba(0,0,0,0.45)",
+            textShadow: "0 4px 30px rgba(0,0,0,0.5)",
           }}
         >
           IISER TVM
-        </motion.div>
-
+        </motion.h2>
 
         {/* =====================================================
             PUNCHLINE
         ====================================================== */}
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
           transition={{
             duration: 0.9,
-            delay: 0.45,
+            delay: 0.5,
             ease: "easeOut",
           }}
           className="
-            text-xl
+            text-2xl
             md:text-3xl
+            lg:text-4xl
             text-white/85
-            max-w-3xl
+            max-w-4xl
             mb-10
             leading-relaxed
           "
           style={{
             fontFamily:
               '"Dancing Script", "Segoe Script", "Brush Script MT", cursive',
-            textShadow: "0 3px 18px rgba(0,0,0,0.5)",
+            textShadow: "0 3px 20px rgba(0,0,0,0.55)",
           }}
         >
           Where the quantum frontier meets the Western Ghats...
         </motion.p>
-
 
         {/* =====================================================
             ACTION BUTTONS
         ====================================================== */}
 
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
           transition={{
             duration: 0.8,
-            delay: 0.6,
+            delay: 0.62,
             ease: "easeOut",
           }}
           className="
@@ -330,7 +382,7 @@ export function Hero() {
           "
         >
 
-          {/* Register Button */}
+          {/* Register */}
           <Button
             asChild
             size="lg"
@@ -347,6 +399,7 @@ export function Hero() {
               shadow-[0_0_20px_rgba(37,99,235,0.45)]
               hover:shadow-[0_0_40px_rgba(37,99,235,0.65)]
               transition-all
+              duration-300
             "
           >
             <a href="#register">
@@ -365,8 +418,7 @@ export function Hero() {
             </a>
           </Button>
 
-
-          {/* Discover Button */}
+          {/* Discover */}
           <Button
             asChild
             variant="outline"
@@ -383,6 +435,7 @@ export function Hero() {
               hover:text-white
               backdrop-blur-sm
               transition-all
+              duration-300
             "
           >
             <a href="#about">
@@ -391,17 +444,19 @@ export function Hero() {
           </Button>
 
         </motion.div>
-
       </div>
-
 
       {/* =========================================================
           SCROLL INDICATOR
       ========================================================== */}
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
         transition={{
           delay: 1.5,
           duration: 1,
@@ -418,7 +473,6 @@ export function Hero() {
           z-10
         "
       >
-
         <span
           className="
             text-[10px]
@@ -433,7 +487,9 @@ export function Hero() {
         </span>
 
         <motion.div
-          animate={{ y: [0, 6, 0] }}
+          animate={{
+            y: [0, 6, 0],
+          }}
           transition={{
             duration: 1.8,
             repeat: Infinity,
@@ -441,7 +497,6 @@ export function Hero() {
           }}
           className="flex flex-col items-center"
         >
-
           <div
             className="
               w-px
@@ -453,11 +508,8 @@ export function Hero() {
           />
 
           <ArrowDown className="w-4 h-4 text-white/60" />
-
         </motion.div>
-
       </motion.div>
-
 
       {/* =========================================================
           BOTTOM FADE
