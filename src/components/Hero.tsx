@@ -35,7 +35,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-black/90" />
 
         {/* Radial vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.38)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.32)_100%)]" />
 
         {/* Subtle cyan atmospheric glow */}
         <div
@@ -48,7 +48,7 @@ export function Hero() {
             w-[700px]
             h-[500px]
             rounded-full
-            bg-cyan-400/[0.07]
+            bg-cyan-400/[0.05]
             blur-[140px]
             pointer-events-none
           "
@@ -62,52 +62,11 @@ export function Hero() {
 
       <div className="absolute inset-0 z-[1] pointer-events-none">
 
-        {/* Top-left corner line */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.8 }}
-          className="
-            absolute
-            top-32
-            left-6
-            md:left-12
-            w-24
-            md:w-40
-            h-px
-            bg-white/20
-            origin-left
-          "
-        />
-
-        {/* Top-right corner line */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 0.8 }}
-          className="
-            absolute
-            top-32
-            right-6
-            md:right-12
-            w-24
-            md:w-40
-            h-px
-            bg-white/20
-            origin-right
-          "
-        />
-
-        {/* Small corner markers */}
-        <div className="absolute top-32 left-6 md:left-12 w-2 h-2 border-l border-t border-cyan-300/50" />
-        <div className="absolute top-32 right-6 md:right-12 w-2 h-2 border-r border-t border-cyan-300/50" />
-
-
-        {/* Floating nodes */}
+        {/* Very subtle floating nodes */}
         <motion.div
           animate={{
             y: [0, -12, 0],
-            opacity: [0.25, 0.7, 0.25],
+            opacity: [0.08, 0.25, 0.08],
           }}
           transition={{
             duration: 5,
@@ -116,13 +75,13 @@ export function Hero() {
           }}
           className="absolute top-[28%] left-[12%]"
         >
-          <div className="w-2 h-2 rounded-full bg-cyan-300 shadow-[0_0_15px_rgba(103,232,249,0.8)]" />
+          <div className="w-1.5 h-1.5 rounded-full bg-cyan-300" />
         </motion.div>
 
         <motion.div
           animate={{
             y: [0, 15, 0],
-            opacity: [0.2, 0.6, 0.2],
+            opacity: [0.06, 0.2, 0.06],
           }}
           transition={{
             duration: 6,
@@ -132,13 +91,13 @@ export function Hero() {
           }}
           className="absolute top-[38%] right-[14%]"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-blue-300 shadow-[0_0_12px_rgba(147,197,253,0.8)]" />
+          <div className="w-1 h-1 rounded-full bg-blue-300" />
         </motion.div>
 
         <motion.div
           animate={{
             y: [0, -10, 0],
-            opacity: [0.15, 0.5, 0.15],
+            opacity: [0.05, 0.18, 0.05],
           }}
           transition={{
             duration: 7,
@@ -204,7 +163,7 @@ export function Hero() {
         >
           <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
 
-          FALL 2026
+          OCTOBER 2026
 
           <span className="text-white/30">•</span>
 
@@ -273,7 +232,7 @@ export function Hero() {
         {/* Event Metadata */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 0, y: 0 }}
           transition={{
             duration: 0.7,
             delay: 0.5,
@@ -293,11 +252,11 @@ export function Hero() {
         >
           <span>QUANTUM COMPUTING</span>
 
-          <span className="w-1 h-1 rounded-full bg-cyan-300/60" />
+          <span className="w-1 h-1 rounded-full bg-cyan-300/40" />
 
           <span>IISER TVM</span>
 
-          <span className="w-1 h-1 rounded-full bg-cyan-300/60" />
+          <span className="w-1 h-1 rounded-full bg-cyan-300/40" />
 
           <span>2026</span>
         </motion.div>
@@ -380,7 +339,7 @@ export function Hero() {
 
 
       {/* =========================================================
-          BOTTOM SCROLL INDICATOR
+          SCROLL INDICATOR
       ========================================================== */}
 
       <motion.div
