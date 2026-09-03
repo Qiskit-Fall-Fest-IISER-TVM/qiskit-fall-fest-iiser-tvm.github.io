@@ -1,52 +1,22 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
-import heroBg from "../assets/venue-bg.png";
+import heroBg from "../assets/campus_1.png";
 
 export function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex items-center justify-center pt-20 overflow-hidden bg-black">
 
       {/* Background Image */}
-      <div className="absolute inset-0 z-0 bg-fixed">
+      <div className="absolute inset-0 z-0">
         <img
           src={heroBg}
           alt="IISER Thiruvananthapuram campus"
-          className="w-full h-full object-cover opacity-75"
+          className="w-full h-full object-cover opacity-90"
         />
 
-        {/* Dark cinematic overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black" />
-      </div>
-
-      {/* Animated Circuit Grid */}
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-        <svg
-          className="w-full h-full"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <pattern
-              id="grid"
-              width="40"
-              height="40"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 40 0 L 0 0 0 40"
-                fill="none"
-                stroke="white"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-
-          <rect
-            width="100%"
-            height="100%"
-            fill="url(#grid)"
-          />
-        </svg>
+        {/* Lighter cinematic overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/30 to-black/80" />
       </div>
 
       {/* Hero Content */}
