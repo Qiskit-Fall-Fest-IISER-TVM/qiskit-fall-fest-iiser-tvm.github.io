@@ -13,17 +13,21 @@ export function Hero() {
 
       <div className="absolute inset-0 z-0 overflow-hidden">
 
-        {/* Campus Image */}
+        {/* Campus Image - Slow Cinematic Zoom */}
         <motion.img
           src={heroBg}
           alt="IISER Thiruvananthapuram campus"
-          initial={{ scale: 1 }}
-          animate={{ scale: 1.035 }}
+          initial={{
+            scale: 1,
+            y: "-1.5%",
+          }}
+          animate={{
+            scale: 1.10,
+            y: "3%",
+          }}
           transition={{
-            duration: 24,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
+            duration: 16,
+            ease: [0.22, 1, 0.36, 1],
           }}
           className="
             absolute
@@ -162,7 +166,7 @@ export function Hero() {
       >
 
         {/* =====================================================
-            DATE / LOCATION BADGE
+            DATE / LOCATION
         ====================================================== */}
 
         <motion.div
@@ -221,7 +225,7 @@ export function Hero() {
             tracking-tight
             text-white
             max-w-5xl
-            mb-5
+            mb-4
           "
           style={{
             textShadow: "0 4px 35px rgba(0,0,0,0.5)",
@@ -246,7 +250,7 @@ export function Hero() {
 
 
         {/* =====================================================
-            IISER TVM SIGNATURE
+            IISER TVM
         ====================================================== */}
 
         <motion.div
@@ -258,14 +262,18 @@ export function Hero() {
             ease: "easeOut",
           }}
           className="
-            mb-5
-            text-xl
-            md:text-2xl
-            font-serif
-            italic
-            tracking-[0.18em]
-            text-white/85
+            mb-6
+            text-3xl
+            md:text-5xl
+            font-semibold
+            tracking-tight
+            text-white
           "
+          style={{
+            fontFamily:
+              '"Inter", "Helvetica Neue", Arial, sans-serif',
+            textShadow: "0 3px 20px rgba(0,0,0,0.45)",
+          }}
         >
           IISER TVM
         </motion.div>
@@ -279,20 +287,23 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
-            duration: 0.8,
-            delay: 0.42,
+            duration: 0.9,
+            delay: 0.45,
             ease: "easeOut",
           }}
           className="
-            text-lg
-            md:text-2xl
-            text-white/75
+            text-xl
+            md:text-3xl
+            text-white/85
             max-w-3xl
-            mb-9
-            font-serif
-            italic
+            mb-10
             leading-relaxed
           "
+          style={{
+            fontFamily:
+              '"Dancing Script", "Segoe Script", "Brush Script MT", cursive',
+            textShadow: "0 3px 18px rgba(0,0,0,0.5)",
+          }}
         >
           Where the quantum frontier meets the Western Ghats...
         </motion.p>
@@ -307,7 +318,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
-            delay: 0.55,
+            delay: 0.6,
             ease: "easeOut",
           }}
           className="
@@ -339,7 +350,6 @@ export function Hero() {
             "
           >
             <a href="#register">
-
               Register Now
 
               <ChevronRight
@@ -352,7 +362,6 @@ export function Hero() {
                   group-hover:translate-x-1
                 "
               />
-
             </a>
           </Button>
 
