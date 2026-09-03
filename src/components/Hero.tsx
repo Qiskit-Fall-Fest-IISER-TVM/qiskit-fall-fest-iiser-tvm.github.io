@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight, ArrowDown } from "lucide-react";
 
 import heroBg from "../assets/campus_1_.jpg";
-import ibmLogo from "../assets/IBM_Quantum_logotype_rev_RGB.png";
+import ibmLogo from "../assets/ibm_logo.png";
 
 export function Hero() {
   return (
@@ -15,7 +15,7 @@ export function Hero() {
 
       <div className="absolute inset-0 z-0 overflow-hidden">
 
-        {/* Campus Image - slow cinematic zoom */}
+        {/* Campus Image - Slow Cinematic Zoom */}
         <motion.img
           src={heroBg}
           alt="IISER Thiruvananthapuram campus"
@@ -24,7 +24,7 @@ export function Hero() {
             y: "-1.5%",
           }}
           animate={{
-            scale: 1.1,
+            scale: 1.10,
             y: "3%",
           }}
           transition={{
@@ -41,10 +41,10 @@ export function Hero() {
           "
         />
 
-        {/* Light overall darkening */}
+        {/* Light Overall Darkening */}
         <div className="absolute inset-0 bg-black/10" />
 
-        {/* Cinematic vertical gradient */}
+        {/* Cinematic Vertical Gradient */}
         <div
           className="
             absolute
@@ -56,7 +56,7 @@ export function Hero() {
           "
         />
 
-        {/* Subtle vignette */}
+        {/* Subtle Vignette */}
         <div
           className="
             absolute
@@ -65,7 +65,7 @@ export function Hero() {
           "
         />
 
-        {/* Very subtle atmospheric glow */}
+        {/* Subtle Cyan Atmospheric Glow */}
         <div
           className="
             absolute
@@ -83,12 +83,14 @@ export function Hero() {
         />
       </div>
 
+
       {/* =========================================================
           VERY SUBTLE AMBIENT DETAILS
       ========================================================== */}
 
       <div className="absolute inset-0 z-[1] pointer-events-none">
 
+        {/* Ambient Point 1 */}
         <motion.div
           animate={{
             y: [0, -10, 0],
@@ -104,6 +106,8 @@ export function Hero() {
           <div className="w-1 h-1 rounded-full bg-cyan-200" />
         </motion.div>
 
+
+        {/* Ambient Point 2 */}
         <motion.div
           animate={{
             y: [0, 12, 0],
@@ -120,6 +124,8 @@ export function Hero() {
           <div className="w-1 h-1 rounded-full bg-blue-200" />
         </motion.div>
 
+
+        {/* Ambient Point 3 */}
         <motion.div
           animate={{
             y: [0, -8, 0],
@@ -135,7 +141,9 @@ export function Hero() {
         >
           <div className="w-1 h-1 rounded-full bg-cyan-100" />
         </motion.div>
+
       </div>
+
 
       {/* =========================================================
           HERO CONTENT
@@ -159,7 +167,7 @@ export function Hero() {
       >
 
         {/* =====================================================
-            DATE / LOCATION BADGE
+            DATE / LOCATION
         ====================================================== */}
 
         <motion.div
@@ -206,6 +214,7 @@ export function Hero() {
           <span>IISER THIRUVANANTHAPURAM</span>
         </motion.div>
 
+
         {/* =====================================================
             IBM QUANTUM LOGO
         ====================================================== */}
@@ -216,7 +225,7 @@ export function Hero() {
           initial={{
             opacity: 0,
             y: 25,
-            scale: 0.96,
+            scale: 0.94,
           }}
           animate={{
             opacity: 1,
@@ -224,24 +233,26 @@ export function Hero() {
             scale: 1,
           }}
           transition={{
-            duration: 0.8,
+            duration: 0.9,
             delay: 0.12,
             ease: "easeOut",
           }}
           className="
-            w-36
-            sm:w-40
-            md:w-48
-            lg:w-56
+            w-56
+            sm:w-64
+            md:w-80
+            lg:w-[24rem]
+            xl:w-[28rem]
             h-auto
             object-contain
-            mb-5
-            drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)]
+            mb-7
+            drop-shadow-[0_5px_25px_rgba(0,0,0,0.5)]
           "
         />
 
+
         {/* =====================================================
-            QISKIT FALL FEST
+            QISKIT FALL FEST 2026
         ====================================================== */}
 
         <motion.h1
@@ -285,6 +296,7 @@ export function Hero() {
           </span>
         </motion.h1>
 
+
         {/* =====================================================
             IISER TVM
         ====================================================== */}
@@ -318,6 +330,7 @@ export function Hero() {
         >
           IISER TVM
         </motion.h2>
+
 
         {/* =====================================================
             PUNCHLINE
@@ -355,6 +368,7 @@ export function Hero() {
           Where the quantum frontier meets the Western Ghats...
         </motion.p>
 
+
         {/* =====================================================
             ACTION BUTTONS
         ====================================================== */}
@@ -382,7 +396,7 @@ export function Hero() {
           "
         >
 
-          {/* Register */}
+          {/* Register Button */}
           <Button
             asChild
             size="lg"
@@ -403,6 +417,7 @@ export function Hero() {
             "
           >
             <a href="#register">
+
               Register Now
 
               <ChevronRight
@@ -415,10 +430,12 @@ export function Hero() {
                   group-hover:translate-x-1
                 "
               />
+
             </a>
           </Button>
 
-          {/* Discover */}
+
+          {/* Discover Button */}
           <Button
             asChild
             variant="outline"
@@ -444,7 +461,9 @@ export function Hero() {
           </Button>
 
         </motion.div>
+
       </div>
+
 
       {/* =========================================================
           SCROLL INDICATOR
@@ -473,6 +492,7 @@ export function Hero() {
           z-10
         "
       >
+
         <span
           className="
             text-[10px]
@@ -486,6 +506,7 @@ export function Hero() {
           Scroll
         </span>
 
+
         <motion.div
           animate={{
             y: [0, 6, 0],
@@ -497,6 +518,7 @@ export function Hero() {
           }}
           className="flex flex-col items-center"
         >
+
           <div
             className="
               w-px
@@ -508,8 +530,11 @@ export function Hero() {
           />
 
           <ArrowDown className="w-4 h-4 text-white/60" />
+
         </motion.div>
+
       </motion.div>
+
 
       {/* =========================================================
           BOTTOM FADE
