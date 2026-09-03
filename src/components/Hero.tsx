@@ -34,10 +34,10 @@ export function Hero() {
         {/* Cinematic vertical gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-black/90" />
 
-        {/* Radial vignette */}
+        {/* Subtle radial vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.32)_100%)]" />
 
-        {/* Subtle cyan atmospheric glow */}
+        {/* Very subtle cyan atmospheric glow */}
         <div
           className="
             absolute
@@ -66,7 +66,7 @@ export function Hero() {
         <motion.div
           animate={{
             y: [0, -12, 0],
-            opacity: [0.06, 0.22, 0.06],
+            opacity: [0.04, 0.16, 0.04],
           }}
           transition={{
             duration: 5,
@@ -82,7 +82,7 @@ export function Hero() {
         <motion.div
           animate={{
             y: [0, 15, 0],
-            opacity: [0.05, 0.18, 0.05],
+            opacity: [0.03, 0.13, 0.03],
           }}
           transition={{
             duration: 6,
@@ -99,7 +99,7 @@ export function Hero() {
         <motion.div
           animate={{
             y: [0, -10, 0],
-            opacity: [0.04, 0.16, 0.04],
+            opacity: [0.03, 0.11, 0.03],
           }}
           transition={{
             duration: 7,
@@ -131,8 +131,8 @@ export function Hero() {
           flex-col
           items-center
           text-center
-          -translate-y-8
-          md:-translate-y-12
+          -translate-y-20
+          md:-translate-y-28
         "
       >
 
@@ -205,9 +205,9 @@ export function Hero() {
         </motion.h1>
 
 
-        {/* Main Punchline */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+        {/* Punchline */}
+        <motion.p
+          initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
@@ -216,77 +216,16 @@ export function Hero() {
           }}
           className="
             text-xl
-            md:text-3xl
-            text-white
-            font-medium
+            md:text-2xl
+            text-white/90
             max-w-3xl
-            mb-3
-          "
-        >
-          Where quantum computing meets the greenery of the Western Ghats.
-        </motion.h2>
-
-
-        {/* Supporting Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.45,
-            ease: "easeOut",
-          }}
-          className="
-            text-base
-            md:text-xl
-            text-white/75
-            max-w-2xl
-            mb-7
+            mb-9
             font-light
             leading-relaxed
           "
         >
-          Four days of learning, building, and exploring the future of
-          quantum technology.
+          Where the quantum frontier meets the Western Ghats.
         </motion.p>
-
-
-        {/* Event Metadata */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.7,
-            delay: 0.55,
-          }}
-          className="
-            flex
-            items-center
-            justify-center
-            gap-4
-            md:gap-6
-            mb-9
-            text-[10px]
-            md:text-xs
-            font-mono
-            text-white/55
-            tracking-wider
-          "
-        >
-          <span>4 DAYS</span>
-
-          <span className="w-1 h-1 rounded-full bg-cyan-300/40" />
-
-          <span>HACKATHON</span>
-
-          <span className="w-1 h-1 rounded-full bg-cyan-300/40" />
-
-          <span>WORKSHOPS</span>
-
-          <span className="w-1 h-1 rounded-full bg-cyan-300/40" />
-
-          <span>TALKS</span>
-        </motion.div>
 
 
         {/* Action Buttons */}
@@ -295,7 +234,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
-            delay: 0.65,
+            delay: 0.5,
             ease: "easeOut",
           }}
           className="flex flex-col sm:flex-row items-center gap-4"
@@ -388,7 +327,6 @@ export function Hero() {
           z-10
         "
       >
-
         <span
           className="
             text-[10px]
@@ -415,7 +353,6 @@ export function Hero() {
 
           <ArrowDown className="w-4 h-4 text-white/60" />
         </motion.div>
-
       </motion.div>
 
 
