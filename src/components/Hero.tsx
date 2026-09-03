@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronRight, ArrowDown } from "lucide-react";
 
 import heroBg from "../assets/campus_1_.jpg";
-import ibmLogo from "../assets/IBM_Quantum_logotype_rev_RGB.png";
+import ibmLogo from "../assets/ibm_logo.png";
 
 export function Hero() {
   return (
