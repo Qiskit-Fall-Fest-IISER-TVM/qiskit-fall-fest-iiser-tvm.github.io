@@ -5,7 +5,7 @@ import heroBg from "../assets/campus_1.jpg";
 
 export function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center pt-20 overflow-hidden bg-black">
+    <section className="relative min-h-[120dvh] flex items-center justify-center pt-20 overflow-hidden bg-black">
 
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
