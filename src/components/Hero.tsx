@@ -57,16 +57,16 @@ export function Hero() {
 
 
       {/* =========================================================
-          SUBTLE DECORATIVE ELEMENTS
+          SUBTLE QUANTUM DETAILS
       ========================================================== */}
 
       <div className="absolute inset-0 z-[1] pointer-events-none">
 
-        {/* Very subtle floating nodes */}
+        {/* Floating point 1 */}
         <motion.div
           animate={{
             y: [0, -12, 0],
-            opacity: [0.08, 0.25, 0.08],
+            opacity: [0.06, 0.22, 0.06],
           }}
           transition={{
             duration: 5,
@@ -78,10 +78,11 @@ export function Hero() {
           <div className="w-1.5 h-1.5 rounded-full bg-cyan-300" />
         </motion.div>
 
+        {/* Floating point 2 */}
         <motion.div
           animate={{
             y: [0, 15, 0],
-            opacity: [0.06, 0.2, 0.06],
+            opacity: [0.05, 0.18, 0.05],
           }}
           transition={{
             duration: 6,
@@ -94,10 +95,11 @@ export function Hero() {
           <div className="w-1 h-1 rounded-full bg-blue-300" />
         </motion.div>
 
+        {/* Floating point 3 */}
         <motion.div
           animate={{
             y: [0, -10, 0],
-            opacity: [0.05, 0.18, 0.05],
+            opacity: [0.04, 0.16, 0.04],
           }}
           transition={{
             duration: 7,
@@ -163,7 +165,7 @@ export function Hero() {
         >
           <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
 
-          OCTOBER 2026
+          9–12 OCTOBER 2026
 
           <span className="text-white/30">•</span>
 
@@ -203,9 +205,9 @@ export function Hero() {
         </motion.h1>
 
 
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 25 }}
+        {/* Main Punchline */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
@@ -213,29 +215,49 @@ export function Hero() {
             ease: "easeOut",
           }}
           className="
-            text-lg
-            md:text-2xl
-            text-white/85
+            text-xl
+            md:text-3xl
+            text-white
+            font-medium
+            max-w-3xl
+            mb-3
+          "
+        >
+          Where quantum computing meets the greenery of the Western Ghats.
+        </motion.h2>
+
+
+        {/* Supporting Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.8,
+            delay: 0.45,
+            ease: "easeOut",
+          }}
+          className="
+            text-base
+            md:text-xl
+            text-white/75
             max-w-2xl
-            mb-8
+            mb-7
             font-light
             leading-relaxed
           "
         >
-          Explore the frontier of quantum computation.
-          <br className="hidden md:block" />
-          Learn, build, and compete with the next generation of
-          quantum researchers.
+          Four days of learning, building, and exploring the future of
+          quantum technology.
         </motion.p>
 
 
         {/* Event Metadata */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 0, y: 0 }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.7,
-            delay: 0.5,
+            delay: 0.55,
           }}
           className="
             flex
@@ -244,21 +266,26 @@ export function Hero() {
             gap-4
             md:gap-6
             mb-9
-            text-xs
-            md:text-sm
+            text-[10px]
+            md:text-xs
             font-mono
-            text-white/60
+            text-white/55
+            tracking-wider
           "
         >
-          <span>QUANTUM COMPUTING</span>
+          <span>4 DAYS</span>
 
           <span className="w-1 h-1 rounded-full bg-cyan-300/40" />
 
-          <span>IISER TVM</span>
+          <span>HACKATHON</span>
 
           <span className="w-1 h-1 rounded-full bg-cyan-300/40" />
 
-          <span>2026</span>
+          <span>WORKSHOPS</span>
+
+          <span className="w-1 h-1 rounded-full bg-cyan-300/40" />
+
+          <span>TALKS</span>
         </motion.div>
 
 
