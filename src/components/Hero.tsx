@@ -25,17 +25,39 @@ export function Hero() {
             repeatType: "reverse",
             ease: "easeInOut",
           }}
-          className="absolute inset-0 w-full h-full object-cover opacity-90"
+          className="
+            absolute
+            inset-0
+            w-full
+            h-full
+            object-cover
+            opacity-90
+          "
         />
 
-        {/* Soft overall darkening */}
+        {/* Light cinematic overlay */}
         <div className="absolute inset-0 bg-black/10" />
 
-        {/* Cinematic vertical gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-black/20 to-black/90" />
+        {/* Vertical cinematic gradient */}
+        <div
+          className="
+            absolute
+            inset-0
+            bg-gradient-to-b
+            from-black/5
+            via-black/20
+            to-black/90
+          "
+        />
 
         {/* Subtle radial vignette */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.32)_100%)]" />
+        <div
+          className="
+            absolute
+            inset-0
+            bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.32)_100%)]
+          "
+        />
 
         {/* Very subtle cyan atmospheric glow */}
         <div
@@ -53,20 +75,21 @@ export function Hero() {
             pointer-events-none
           "
         />
+
       </div>
 
 
       {/* =========================================================
-          SUBTLE QUANTUM DETAILS
+          SUBTLE AMBIENT DETAILS
       ========================================================== */}
 
       <div className="absolute inset-0 z-[1] pointer-events-none">
 
-        {/* Floating point 1 */}
+        {/* Ambient point 1 */}
         <motion.div
           animate={{
             y: [0, -12, 0],
-            opacity: [0.04, 0.16, 0.04],
+            opacity: [0.03, 0.14, 0.03],
           }}
           transition={{
             duration: 5,
@@ -78,11 +101,12 @@ export function Hero() {
           <div className="w-1.5 h-1.5 rounded-full bg-cyan-300" />
         </motion.div>
 
-        {/* Floating point 2 */}
+
+        {/* Ambient point 2 */}
         <motion.div
           animate={{
             y: [0, 15, 0],
-            opacity: [0.03, 0.13, 0.03],
+            opacity: [0.02, 0.11, 0.02],
           }}
           transition={{
             duration: 6,
@@ -95,11 +119,12 @@ export function Hero() {
           <div className="w-1 h-1 rounded-full bg-blue-300" />
         </motion.div>
 
-        {/* Floating point 3 */}
+
+        {/* Ambient point 3 */}
         <motion.div
           animate={{
             y: [0, -10, 0],
-            opacity: [0.03, 0.11, 0.03],
+            opacity: [0.02, 0.09, 0.02],
           }}
           transition={{
             duration: 7,
@@ -136,7 +161,10 @@ export function Hero() {
         "
       >
 
-        {/* Event Badge */}
+        {/* =====================================================
+            DATE / LOCATION BADGE
+        ====================================================== */}
+
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -173,7 +201,10 @@ export function Hero() {
         </motion.div>
 
 
-        {/* Main Heading */}
+        {/* =====================================================
+            MAIN TITLE
+        ====================================================== */}
+
         <motion.h1
           initial={{ opacity: 0, y: 35 }}
           animate={{ opacity: 1, y: 0 }}
@@ -190,7 +221,7 @@ export function Hero() {
             tracking-tight
             text-white
             max-w-5xl
-            mb-6
+            mb-5
           "
           style={{
             textShadow: "0 4px 35px rgba(0,0,0,0.5)",
@@ -199,48 +230,96 @@ export function Hero() {
           IBM Qiskit
           <br />
 
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-300 to-white">
+          <span
+            className="
+              text-transparent
+              bg-clip-text
+              bg-gradient-to-r
+              from-blue-300
+              via-cyan-300
+              to-white
+            "
+          >
             Fall Fest 2026
           </span>
         </motion.h1>
 
 
-        {/* Punchline */}
-        <motion.p
-          initial={{ opacity: 0, y: 25 }}
+        {/* =====================================================
+            IISER TVM SIGNATURE
+        ====================================================== */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
-            delay: 0.35,
+            delay: 0.32,
             ease: "easeOut",
           }}
           className="
+            mb-5
             text-xl
             md:text-2xl
-            text-white/90
+            font-serif
+            italic
+            tracking-[0.18em]
+            text-white/85
+          "
+        >
+          IISER TVM
+        </motion.div>
+
+
+        {/* =====================================================
+            PUNCHLINE
+        ====================================================== */}
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.8,
+            delay: 0.42,
+            ease: "easeOut",
+          }}
+          className="
+            text-lg
+            md:text-2xl
+            text-white/75
             max-w-3xl
             mb-9
-            font-light
+            font-serif
+            italic
             leading-relaxed
           "
         >
-          Where the quantum frontier meets the Western Ghats.
+          Where the quantum frontier meets the Western Ghats...
         </motion.p>
 
 
-        {/* Action Buttons */}
+        {/* =====================================================
+            ACTION BUTTONS
+        ====================================================== */}
+
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: 0.8,
-            delay: 0.5,
+            delay: 0.55,
             ease: "easeOut",
           }}
-          className="flex flex-col sm:flex-row items-center gap-4"
+          className="
+            flex
+            flex-col
+            sm:flex-row
+            items-center
+            gap-4
+          "
         >
 
-          {/* Register */}
+          {/* Register Button */}
           <Button
             asChild
             size="lg"
@@ -260,6 +339,7 @@ export function Hero() {
             "
           >
             <a href="#register">
+
               Register Now
 
               <ChevronRight
@@ -272,11 +352,12 @@ export function Hero() {
                   group-hover:translate-x-1
                 "
               />
+
             </a>
           </Button>
 
 
-          {/* Discover */}
+          {/* Discover Button */}
           <Button
             asChild
             variant="outline"
@@ -301,6 +382,7 @@ export function Hero() {
           </Button>
 
         </motion.div>
+
       </div>
 
 
@@ -327,6 +409,7 @@ export function Hero() {
           z-10
         "
       >
+
         <span
           className="
             text-[10px]
@@ -349,10 +432,21 @@ export function Hero() {
           }}
           className="flex flex-col items-center"
         >
-          <div className="w-px h-8 bg-gradient-to-b from-white/70 to-transparent" />
+
+          <div
+            className="
+              w-px
+              h-8
+              bg-gradient-to-b
+              from-white/70
+              to-transparent
+            "
+          />
 
           <ArrowDown className="w-4 h-4 text-white/60" />
+
         </motion.div>
+
       </motion.div>
 
 
