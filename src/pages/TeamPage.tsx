@@ -4,7 +4,7 @@ import teamBg from "@/assets/Hero_1_without_title.png";
 
 // Uncomment these after adding the faculty photos
 import shajiPhoto from "@/assets/shaji.jpg";
-import madhuPhoto from "@/assets/team/madhu.jpg";
+import madhuPhoto from "@/assets/madhu.jpg";
 
 const facultyAdvisors = [
   {
