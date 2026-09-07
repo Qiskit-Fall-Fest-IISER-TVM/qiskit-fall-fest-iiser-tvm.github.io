@@ -2,7 +2,7 @@ import { GraduationCap, Globe } from "lucide-react";
 import { StudentCard } from "@/components/StudentCard";
 import teamBg from "@/assets/Hero_1_without_title.png";
 
-import shajiPhoto from "@/assets/shaji.jpg";
+import shajiPhoto from "@/assets/anil.jpg";
 import madhuPhoto from "@/assets/madhu.jpg";
 
 const facultyAdvisors = [
