@@ -3,14 +3,14 @@ import { StudentCard } from "@/components/StudentCard";
 import teamBg from "@/assets/Hero_1_without_title.png";
 
 // Uncomment these after adding the faculty photos
-// import shajiPhoto from "@/assets/team/shaji.jpg";
-// import madhuPhoto from "@/assets/team/madhu.jpg";
+import shajiPhoto from "@/assets/shaji.jpg";
+import madhuPhoto from "@/assets/team/madhu.jpg";
 
 const facultyAdvisors = [
   {
     name: "Prof. Anil Shaji",
     role: "Professor",
-    // image: shajiPhoto,
+    image: shajiPhoto,
     scholar:
       "https://scholar.google.com/citations?user=Pp5t7VsAAAAJ&hl=en",
     website: "https://www.iisertvm.ac.in/faculty/shaji",
@@ -18,7 +18,7 @@ const facultyAdvisors = [
   {
     name: "Prof. Madhu Thalakulam",
     role: "Associate Professor",
-    // image: madhuPhoto,
+    image: madhuPhoto,
     scholar:
       "https://scholar.google.com/citations?user=3--YLbIAAAAJ&hl=en",
     website: "https://www.iisertvm.ac.in/faculty/madhu",
