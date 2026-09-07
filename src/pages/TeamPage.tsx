@@ -2,7 +2,6 @@ import { GraduationCap, Globe } from "lucide-react";
 import { StudentCard } from "@/components/StudentCard";
 import teamBg from "@/assets/Hero_1_without_title.png";
 
-// Uncomment these after adding the faculty photos
 import shajiPhoto from "@/assets/shaji.jpg";
 import madhuPhoto from "@/assets/madhu.jpg";
 
@@ -99,7 +98,6 @@ export default function TeamPage() {
           </div>
         </section>
 
-
         {/* Faculty Advisors */}
         <section className="pb-24">
           <div className="container mx-auto px-6">
@@ -120,11 +118,13 @@ export default function TeamPage() {
                   className="flex flex-col items-center text-center"
                 >
 
-                  {/* Faculty photo placeholder */}
-                  <div className="w-56 h-56 rounded-full bg-muted/80 border-4 border-primary shadow-xl flex items-center justify-center text-6xl font-bold backdrop-blur-sm">
-                    {advisor.name
-                      .replace("Prof. ", "")
-                      .charAt(0)}
+                  {/* Faculty Photo */}
+                  <div className="w-56 h-56 rounded-full overflow-hidden border-4 border-primary shadow-xl">
+                    <img
+                      src={advisor.image}
+                      alt={advisor.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <h3 className="mt-8 text-3xl font-semibold">
@@ -167,12 +167,10 @@ export default function TeamPage() {
           </div>
         </section>
 
-
         {/* Divider */}
         <div className="container mx-auto px-6">
           <div className="border-t border-border/50" />
         </div>
-
 
         {/* Student Organizing Committee */}
         <section className="py-24">
@@ -200,12 +198,10 @@ export default function TeamPage() {
           </div>
         </section>
 
-
         {/* Divider */}
         <div className="container mx-auto px-6">
           <div className="border-t border-border/50" />
         </div>
-
 
         {/* Volunteers */}
         <section className="py-24">
