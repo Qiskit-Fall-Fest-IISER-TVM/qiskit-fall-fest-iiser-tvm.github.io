@@ -119,18 +119,12 @@ export default function TeamPage() {
                 >
 
                   {/* Faculty Photo */}
-                  <div className="w-56 h-56 rounded-full overflow-hidden border-4 border-primary shadow-xl bg-muted">
-
+                  <div className="w-56 h-56 rounded-full overflow-hidden border-4 border-primary shadow-xl">
                     <img
                       src={advisor.image}
                       alt={advisor.name}
-                      className={`w-full h-full object-cover ${
-                        advisor.name === "Prof. Anil Shaji"
-                          ? "scale-90"
-                          : ""
-                      }`}
+                      className="w-full h-full object-cover"
                     />
-
                   </div>
 
                   <h3 className="mt-8 text-3xl font-semibold">
@@ -228,4 +222,3 @@ export default function TeamPage() {
     </div>
   );
 }
-
