@@ -2,8 +2,20 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, ArrowDown } from "lucide-react";
 
+// ============================================================
+// ASSETS
+// ============================================================
+
 import heroBg from "../assets/campus_1_.jpg";
 import ibmLogo from "../assets/ibm_logo.png";
+
+// Change these filenames if your actual assets have different names
+import qiskitLogo from "../assets/qiskit_purple-40.png";
+import iiserLogo from "../assets/Logo_1782481254440.png";
+
+// ============================================================
+// HERO
+// ============================================================
 
 export function Hero() {
   return (
@@ -16,6 +28,7 @@ export function Hero() {
       <div className="absolute inset-0 z-0 overflow-hidden">
 
         {/* Campus Image - Slow Cinematic Zoom */}
+
         <motion.img
           src={heroBg}
           alt="IISER Thiruvananthapuram campus"
@@ -42,9 +55,11 @@ export function Hero() {
         />
 
         {/* Light Overall Darkening */}
+
         <div className="absolute inset-0 bg-black/10" />
 
         {/* Cinematic Vertical Gradient */}
+
         <div
           className="
             absolute
@@ -57,6 +72,7 @@ export function Hero() {
         />
 
         {/* Subtle Vignette */}
+
         <div
           className="
             absolute
@@ -66,6 +82,7 @@ export function Hero() {
         />
 
         {/* Subtle Cyan Atmospheric Glow */}
+
         <div
           className="
             absolute
@@ -81,6 +98,7 @@ export function Hero() {
             pointer-events-none
           "
         />
+
       </div>
 
 
@@ -91,6 +109,7 @@ export function Hero() {
       <div className="absolute inset-0 z-[1] pointer-events-none">
 
         {/* Ambient Point 1 */}
+
         <motion.div
           animate={{
             y: [0, -10, 0],
@@ -108,6 +127,7 @@ export function Hero() {
 
 
         {/* Ambient Point 2 */}
+
         <motion.div
           animate={{
             y: [0, 12, 0],
@@ -126,6 +146,7 @@ export function Hero() {
 
 
         {/* Ambient Point 3 */}
+
         <motion.div
           animate={{
             y: [0, -8, 0],
@@ -167,7 +188,7 @@ export function Hero() {
       >
 
         {/* =====================================================
-            DATE / LOCATION
+            QISKIT + IISER TVM LOGOS
         ====================================================== */}
 
         <motion.div
@@ -182,36 +203,61 @@ export function Hero() {
             scale: 1,
           }}
           transition={{
-            duration: 0.7,
+            duration: 0.8,
             ease: "easeOut",
           }}
           className="
-            inline-flex
+            flex
             items-center
-            gap-2
-            px-4
-            py-2
-            rounded-full
-            border
-            border-white/20
-            bg-black/20
-            text-white/85
-            font-mono
-            text-[10px]
-            sm:text-xs
-            md:text-sm
-            tracking-wide
-            mb-8
-            backdrop-blur-md
+            justify-center
+            gap-5
+            md:gap-7
+            mb-10
           "
         >
-          <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
 
-          <span>9–12 OCTOBER 2026</span>
+          {/* Qiskit Logo */}
 
-          <span className="text-white/30">•</span>
+          <img
+            src={qiskitLogo}
+            alt="Qiskit"
+            className="
+              h-10
+              sm:h-12
+              md:h-16
+              w-auto
+              object-contain
+              drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)]
+            "
+          />
 
-          <span>IISER THIRUVANANTHAPURAM</span>
+          {/* Thin Divider */}
+
+          <div
+            className="
+              h-9
+              sm:h-11
+              md:h-14
+              w-px
+              bg-white/50
+            "
+          />
+
+          {/* IISER TVM Logo */}
+
+          <img
+            src={iiserLogo}
+            alt="IISER Thiruvananthapuram"
+            className="
+              h-10
+              sm:h-12
+              md:h-16
+              w-auto
+              object-contain
+              drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)]
+            "
+          />
+
         </motion.div>
 
 
@@ -292,7 +338,7 @@ export function Hero() {
               to-white
             "
           >
-            Qiskit Fall Fest 2026
+            Qiskit Fall Fest - 2026
           </span>
         </motion.h1>
 
@@ -397,6 +443,7 @@ export function Hero() {
         >
 
           {/* Register Button */}
+
           <Button
             asChild
             size="lg"
@@ -417,7 +464,6 @@ export function Hero() {
             "
           >
             <a href="#register">
-
               Register Now
 
               <ChevronRight
@@ -430,12 +476,12 @@ export function Hero() {
                   group-hover:translate-x-1
                 "
               />
-
             </a>
           </Button>
 
 
           {/* Discover Button */}
+
           <Button
             asChild
             variant="outline"
