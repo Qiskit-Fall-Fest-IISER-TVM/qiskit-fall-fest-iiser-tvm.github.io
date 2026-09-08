@@ -82,8 +82,8 @@ const scheduleData: ScheduleDay[] = [
     events: [
       {
         time: "04:00 PM - 06:00 PM",
-        title: "IBM Quantum Hackathon",
-        type: "HACKATHON",
+        title: "Panel Discussion: Career in Quantum Technology",
+        type: "Panel discussion",
       },
       {
         time: "06:00 PM onwards",
