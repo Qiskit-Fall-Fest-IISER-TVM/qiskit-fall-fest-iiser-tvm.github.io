@@ -7,26 +7,18 @@ import { SectionBackground } from "@/components/SectionBackground";
 export function About() {
   return (
     <SectionBackground className="relative overflow-hidden py-28 md:py-36">
-      <div className="absolute inset-0 bg-background" />
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          right-[-180px]
-          top-[20%]
-          h-[500px]
-          w-[500px]
-          rounded-full
-          bg-primary/[0.045]
-          blur-[120px]
-        "
-      />
+      {/* =====================================================
+          CONTENT
+      ===================================================== */}
 
       <div className="container relative z-10 mx-auto px-4 md:px-6">
+
         <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
 
-          {/* LEFT: CONTENT */}
+          {/* =================================================
+              LEFT: TEXT
+          ================================================= */}
 
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -40,7 +32,11 @@ export function About() {
               ease: "easeOut",
             }}
           >
+
+            {/* Eyebrow */}
+
             <div className="mb-7 flex items-center gap-3">
+
               <div
                 className="
                   flex
@@ -50,8 +46,9 @@ export function About() {
                   justify-center
                   rounded-md
                   border
-                  border-primary/20
-                  bg-primary/5
+                  border-primary/30
+                  bg-background/20
+                  backdrop-blur-sm
                 "
               >
                 <SiQiskit className="h-4 w-4 text-primary" />
@@ -68,7 +65,11 @@ export function About() {
               >
                 ABOUT THE EVENT
               </span>
+
             </div>
+
+
+            {/* Heading */}
 
             <h2
               className="
@@ -84,10 +85,19 @@ export function About() {
             >
               The Quantum
               <br />
-              <span className="text-primary">Frontier</span>
+
+              <span className="text-primary">
+                Frontier
+              </span>
             </h2>
 
+
+            {/* Accent */}
+
             <div className="mt-8 h-px w-16 bg-primary" />
+
+
+            {/* Description */}
 
             <div
               className="
@@ -100,6 +110,7 @@ export function About() {
                 md:text-base
               "
             >
+
               <p>
                 Ever wondered what quantum computing is actually
                 about? Maybe you've heard of qubits, superposition,
@@ -142,12 +153,18 @@ export function About() {
                 little, come join us and let's explore the quantum
                 realm together.
               </p>
+
             </div>
 
+
+            {/* Closing statement */}
+
             <div className="mt-9 flex items-start gap-4">
+
               <div className="mt-2 h-8 w-1 shrink-0 rounded-full bg-primary" />
 
               <div>
+
                 <p className="text-base font-semibold text-foreground md:text-lg">
                   See you at Qiskit Fall Fest 2026!
                 </p>
@@ -163,8 +180,13 @@ export function About() {
                 >
                   IISER THIRUVANANTHAPURAM · 09—12 OCTOBER 2026
                 </p>
+
               </div>
+
             </div>
+
+
+            {/* Event information */}
 
             <div
               className="
@@ -173,15 +195,20 @@ export function About() {
                 grid-cols-1
                 gap-3
                 border-t
-                border-border
+                border-border/60
                 pt-6
                 sm:grid-cols-2
               "
             >
+
+              {/* Date */}
+
               <div className="flex items-center gap-3">
+
                 <CalendarDays className="h-4 w-4 shrink-0 text-primary" />
 
                 <div>
+
                   <p
                     className="
                       font-mono
@@ -196,13 +223,20 @@ export function About() {
                   <p className="mt-0.5 text-xs font-medium text-foreground">
                     09 — 12 October 2026
                   </p>
+
                 </div>
+
               </div>
 
+
+              {/* Location */}
+
               <div className="flex items-center gap-3">
+
                 <MapPin className="h-4 w-4 shrink-0 text-primary" />
 
                 <div>
+
                   <p
                     className="
                       font-mono
@@ -217,12 +251,19 @@ export function About() {
                   <p className="mt-0.5 text-xs font-medium text-foreground">
                     IISER Thiruvananthapuram
                   </p>
+
                 </div>
+
               </div>
+
             </div>
+
           </motion.div>
 
-          {/* RIGHT: VISUAL */}
+
+          {/* =================================================
+              RIGHT: IMAGE
+          ================================================= */}
 
           <motion.div
             initial={{
@@ -245,6 +286,9 @@ export function About() {
             }}
             className="relative"
           >
+
+            {/* Image */}
+
             <div
               className="
                 relative
@@ -252,12 +296,14 @@ export function About() {
                 overflow-hidden
                 rounded-2xl
                 border
-                border-border
-                bg-muted
-                shadow-xl
+                border-border/60
+                bg-background/10
+                shadow-2xl
+                backdrop-blur-[2px]
                 md:aspect-[5/4]
               "
             >
+
               <img
                 src={aboutBg}
                 alt="Abstract visualization of quantum computing"
@@ -265,22 +311,28 @@ export function About() {
                   h-full
                   w-full
                   object-cover
+                  opacity-90
                   transition-transform
                   duration-700
                   hover:scale-[1.02]
                 "
               />
 
+              {/* Subtle overlay */}
+
               <div
                 className="
                   absolute
                   inset-0
                   bg-gradient-to-t
-                  from-background/80
+                  from-background/70
                   via-transparent
                   to-transparent
                 "
               />
+
+
+              {/* Top label */}
 
               <div
                 className="
@@ -293,6 +345,7 @@ export function About() {
                   justify-between
                 "
               >
+
                 <div
                   className="
                     rounded-full
@@ -322,7 +375,11 @@ export function About() {
                 >
                   2026
                 </div>
+
               </div>
+
+
+              {/* Bottom caption */}
 
               <div
                 className="
@@ -332,6 +389,7 @@ export function About() {
                   right-6
                 "
               >
+
                 <div
                   className="
                     mb-2
@@ -345,6 +403,7 @@ export function About() {
                 </div>
 
                 <div className="flex items-end justify-between gap-6">
+
                   <h3
                     className="
                       max-w-sm
@@ -379,9 +438,15 @@ export function About() {
                   >
                     <ArrowUpRight className="h-4 w-4 text-white" />
                   </div>
+
                 </div>
+
               </div>
+
             </div>
+
+
+            {/* Decorative frame */}
 
             <div
               className="
@@ -430,10 +495,13 @@ export function About() {
             >
               QFF / IISER-TVM / 2026
             </div>
+
           </motion.div>
 
         </div>
+
       </div>
+
     </SectionBackground>
   );
 }
