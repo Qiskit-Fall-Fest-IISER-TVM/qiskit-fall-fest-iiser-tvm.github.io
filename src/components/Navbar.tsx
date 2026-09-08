@@ -22,7 +22,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", to: "/" },
-    { name: "Speakers", to: "/speakers" },
+    //{ name: "Speakers", to: "/speakers" },
     { name: "Team", to: "/team" },
     { name: "Schedule", to: "/schedule" },
     { name: "Register", to: "/register" },
