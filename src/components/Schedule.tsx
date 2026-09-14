@@ -20,18 +20,18 @@ const scheduleData: ScheduleDay[] = [
     visual: "bloch",
     events: [
       {
-        time: "05:00 PM – 05:30 PM",
-        title: "Inaugural Address & Welcome Remarks",
+        time: "05:00 PM - 05:30 PM",
+        title: "Inauguration Ceremony",
         type: "INAUGURATION",
       },
       {
-        time: "05:45 PM – 07:00 PM",
-        title: "Keynote: Geometric Phases and Two-Level State Manifolds",
+        time: "05:45 PM - 07:00 PM",
+        title: "Keynote: Foundations of Quantum Information & Qubit Manifolds",
         type: "SESSION",
       },
       {
-        time: "09:00 PM – 11:00 PM",
-        title: "Quantum 101: State Geometry & Transformations in Hilbert Space",
+        time: "09:00 PM - 11:00 PM",
+        title: "Quantum 101: Geometric State Rotations & Hilbert Space",
         type: "LECTURE",
       },
     ],
@@ -43,13 +43,13 @@ const scheduleData: ScheduleDay[] = [
     visual: "circuit",
     events: [
       {
-        time: "09:00 AM – 12:00 PM",
-        title: "Workshop: Bell State Generation & Quantum Teleportation Protocols",
+        time: "09:00 AM - 12:00 PM",
+        title: "Workshop: Bell States, Entanglement & Teleportation Protocols",
         type: "WORKSHOP",
       },
       {
-        time: "02:00 PM – 05:00 PM",
-        title: "Lecture: Multi-Qubit Unitaries and Controlled Phase Evolution",
+        time: "02:00 PM - 05:00 PM",
+        title: "Lecture: Multi-Qubit Unitaries & Controlled Operations",
         type: "LECTURE",
       },
     ],
@@ -61,13 +61,13 @@ const scheduleData: ScheduleDay[] = [
     visual: "state",
     events: [
       {
-        time: "09:00 AM – 12:00 PM",
-        title: "Workshop: Open Quantum Systems, Density Matrices, & Decoherence",
+        time: "09:00 AM - 12:00 PM",
+        title: "Workshop: Density Operators, Mixed Ensembles & Decoherence Channels",
         type: "WORKSHOP",
       },
       {
-        time: "02:00 PM – 05:00 PM",
-        title: "Lecture: Quantum Error Mitigation, Purity, and Surface Codes",
+        time: "02:00 PM - 05:00 PM",
+        title: "Lecture: Quantum Error Mitigation & Transverse Dephasing",
         type: "LECTURE",
       },
     ],
@@ -79,13 +79,13 @@ const scheduleData: ScheduleDay[] = [
     visual: "grover",
     events: [
       {
-        time: "04:00 PM – 06:00 PM",
-        title: "Symposium: Grover Amplitude Amplification & Complexity Bounds",
+        time: "04:00 PM - 06:00 PM",
+        title: "Symposium: Grover Amplification & Optimal Query Complexities",
         type: "PANEL",
       },
       {
         time: "06:00 PM onwards",
-        title: "Concluding Remarks & Research Poster Presentation",
+        title: "Concluding Session & Poster Presentations",
         type: "CONCLUSION",
       },
     ],
@@ -93,803 +93,811 @@ const scheduleData: ScheduleDay[] = [
 ];
 
 function EventBadge({ type }: { type: string }) {
+  const isHighlight =
+    type === "INAUGURATION" || type === "WORKSHOP" || type === "PANEL";
+
   return (
-    <span className="inline-block border border-foreground/80 px-3 py-1 font-mono text-xs uppercase tracking-widest text-foreground bg-transparent">
-      [{type}]
+    <span
+      className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-mono font-medium tracking-wide transition-colors ${
+        isHighlight
+          ? "border-primary/40 bg-primary/10 text-primary"
+          : "border-border/70 bg-muted/30 text-muted-foreground"
+      }`}
+    >
+      {type}
     </span>
   );
 }
 
 /* ============================================================
-   TIKZ REPLICA 01: PGF/TIKZ BLOCH SPHERE (STATIC)
+   DIAGRAM 01: BLOCH SPHERE
    ============================================================ */
-function TikzBlochSphere() {
+function BlochSphereDiagram() {
   return (
-    <div className="flex w-full flex-col items-center justify-center p-2">
+    <div className="flex w-full flex-col items-center justify-center p-3 opacity-90 transition-opacity hover:opacity-100">
       <svg
-        viewBox="0 0 340 340"
-        className="w-full max-w-[320px] overflow-visible text-foreground"
+        viewBox="0 0 320 320"
+        className="w-full max-w-[280px] overflow-visible text-foreground"
         fill="none"
       >
-        {/* Main Sphere Outer Boundary */}
         <circle
-          cx="170"
-          cy="170"
-          r="115"
+          cx="160"
+          cy="160"
+          r="105"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.2"
+          className="stroke-foreground/75"
         />
 
-        {/* Equator (XY Plane) */}
+        {/* Equator */}
         <path
-          d="M 55 170 A 115 36 0 0 1 285 170"
+          d="M 55 160 A 105 34 0 0 1 265 160"
           stroke="currentColor"
           strokeWidth="1"
           strokeDasharray="4 4"
+          className="stroke-foreground/40"
         />
         <path
-          d="M 55 170 A 115 36 0 0 0 285 170"
+          d="M 55 160 A 105 34 0 0 0 265 160"
           stroke="currentColor"
-          strokeWidth="1.2"
+          strokeWidth="1"
+          className="stroke-foreground/70"
         />
 
-        {/* Prime Meridian (YZ Plane) */}
+        {/* Prime Meridian */}
         <path
-          d="M 170 55 A 40 115 0 0 1 170 285"
+          d="M 160 55 A 36 105 0 0 1 160 265"
           stroke="currentColor"
           strokeWidth="1"
           strokeDasharray="4 4"
+          className="stroke-foreground/40"
         />
         <path
-          d="M 170 55 A 40 115 0 0 0 170 285"
+          d="M 160 55 A 36 105 0 0 0 160 265"
           stroke="currentColor"
-          strokeWidth="1.2"
+          strokeWidth="1"
+          className="stroke-foreground/70"
         />
 
-        {/* Z-Axis */}
+        {/* Axes */}
         <line
-          x1="170"
-          y1="25"
-          x2="170"
-          y2="305"
+          x1="160"
+          y1="28"
+          x2="160"
+          y2="285"
           stroke="currentColor"
           strokeWidth="1.2"
+          className="stroke-foreground/60"
         />
-        <polygon points="170,16 166,28 174,28" fill="currentColor" />
+        <polygon points="160,20 156,30 164,30" fill="currentColor" />
 
-        {/* X-Axis (Perspective) */}
         <line
-          x1="170"
-          y1="170"
+          x1="160"
+          y1="160"
           x2="85"
-          y2="225"
+          y2="210"
           stroke="currentColor"
           strokeWidth="1.2"
+          className="stroke-foreground/60"
         />
-        <polygon points="78,229 90,225 86,217" fill="currentColor" />
+        <polygon points="78,214 90,211 86,203" fill="currentColor" />
 
-        {/* Y-Axis */}
         <line
-          x1="170"
-          y1="170"
-          x2="295"
+          x1="160"
+          y1="160"
+          x2="275"
+          y2="160"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          className="stroke-foreground/60"
+        />
+        <polygon points="282,160 272,156 272,164" fill="currentColor" />
+
+        {/* Projection dotted lines */}
+        <line
+          x1="208"
+          y1="102"
+          x2="208"
           y2="170"
           stroke="currentColor"
-          strokeWidth="1.2"
-        />
-        <polygon points="303,170 291,166 291,174" fill="currentColor" />
-
-        {/* Projection Trajectory to XY Plane */}
-        <line
-          x1="222"
-          y1="108"
-          x2="222"
-          y2="182"
-          stroke="currentColor"
-          strokeWidth="1"
+          strokeWidth="0.9"
           strokeDasharray="3 3"
+          className="stroke-foreground/50"
         />
         <line
-          x1="170"
-          y1="170"
-          x2="222"
-          y2="182"
+          x1="160"
+          y1="160"
+          x2="208"
+          y2="170"
           stroke="currentColor"
-          strokeWidth="1"
+          strokeWidth="0.9"
           strokeDasharray="3 3"
+          className="stroke-foreground/50"
         />
 
-        {/* State Vector Arrow */}
+        {/* Vector Arrow */}
         <line
-          x1="170"
-          y1="170"
-          x2="220"
-          y2="110"
-          stroke="currentColor"
+          x1="160"
+          y1="160"
+          x2="206"
+          y2="105"
+          stroke="hsl(var(--primary))"
           strokeWidth="2.2"
         />
-        <polygon points="226,103 214,110 221,118" fill="currentColor" />
-
-        {/* Polar Angle Arc theta */}
-        <path
-          d="M 170 135 A 35 35 0 0 1 188 147"
-          stroke="currentColor"
-          strokeWidth="1"
+        <polygon
+          points="212,98 200,105 207,113"
+          fill="hsl(var(--primary))"
         />
 
-        {/* Azimuthal Angle Arc phi */}
+        {/* Angles */}
         <path
-          d="M 152 181 A 24 24 0 0 0 185 174"
+          d="M 160 128 A 32 32 0 0 1 178 138"
           stroke="currentColor"
           strokeWidth="1"
+          className="stroke-foreground/60"
+        />
+        <path
+          d="M 144 171 A 24 24 0 0 0 174 165"
+          stroke="currentColor"
+          strokeWidth="1"
+          className="stroke-foreground/60"
         />
 
-        {/* Coordinate Labels */}
+        {/* LaTeX Styled Annotations */}
         <text
-          x="170"
-          y="10"
+          x="160"
+          y="14"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           |0⟩
         </text>
         <text
-          x="170"
-          y="328"
+          x="160"
+          y="306"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           |1⟩
         </text>
         <text
           x="62"
-          y="244"
+          y="228"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           x
         </text>
         <text
-          x="315"
-          y="175"
+          x="292"
+          y="164"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           y
         </text>
         <text
-          x="182"
-          y="28"
+          x="172"
+          y="35"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           z
         </text>
 
         <text
-          x="236"
-          y="102"
-          fill="currentColor"
-          className="font-serif italic text-xl font-bold"
+          x="220"
+          y="98"
+          fill="hsl(var(--primary))"
+          className="font-serif italic text-lg font-semibold"
         >
           |ψ⟩
         </text>
         <text
-          x="182"
-          y="134"
+          x="170"
+          y="126"
           fill="currentColor"
-          className="font-serif italic text-base"
+          className="font-serif italic text-sm"
         >
           θ
         </text>
         <text
-          x="166"
-          y="195"
+          x="154"
+          y="185"
           fill="currentColor"
-          className="font-serif italic text-base"
+          className="font-serif italic text-sm"
         >
           φ
         </text>
       </svg>
-      <div className="mt-4 font-serif text-sm italic text-muted-foreground text-center">
-        Fig 1. Orthographic projection of state vector |ψ⟩ on the unit sphere S²
+      <div className="mt-3 font-serif text-sm italic text-muted-foreground text-center">
+        Fig 1. State vector trajectory on the unit Bloch sphere
       </div>
     </div>
   );
 }
 
 /* ============================================================
-   QUANTIKZ REPLICA 02: TELEPORTATION CIRCUIT (STATIC)
+   DIAGRAM 02: QUANTIKZ TELEPORTATION PROTOCOL
    ============================================================ */
-function QuantikzTeleportation() {
+function TeleportationDiagram() {
   return (
-    <div className="flex w-full flex-col items-center justify-center p-2">
+    <div className="flex w-full flex-col items-center justify-center p-3 opacity-90 transition-opacity hover:opacity-100">
       <svg
-        viewBox="0 0 460 200"
-        className="w-full max-w-[430px] text-foreground"
+        viewBox="0 0 450 190"
+        className="w-full max-w-[420px] text-foreground"
         fill="none"
       >
-        {/* Wire 1: |psi> */}
+        {/* Qubit Wires */}
         <text
-          x="10"
-          y="45"
+          x="8"
+          y="39"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           |ψ⟩
         </text>
         <line
           x1="45"
-          y1="40"
-          x2="280"
-          y2="40"
+          y1="35"
+          x2="275"
+          y2="35"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
+          className="stroke-foreground/75"
         />
 
-        {/* Wire 2: |0>_A */}
         <text
-          x="10"
-          y="105"
+          x="8"
+          y="94"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           |0⟩
         </text>
         <line
           x1="45"
-          y1="100"
-          x2="280"
-          y2="100"
+          y1="90"
+          x2="275"
+          y2="90"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
+          className="stroke-foreground/75"
         />
 
-        {/* Wire 3: |0>_B */}
         <text
-          x="10"
-          y="165"
+          x="8"
+          y="149"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           |0⟩
         </text>
         <line
           x1="45"
-          y1="160"
-          x2="415"
-          y2="160"
+          y1="145"
+          x2="410"
+          y2="145"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
+          className="stroke-foreground/75"
         />
 
-        {/* Gate: H on Wire 2 */}
+        {/* Gate H (Wire 2) */}
         <rect
           x="75"
-          y="83"
-          width="34"
-          height="34"
-          fill="currentColor"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
+          y="74"
+          width="32"
+          height="32"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
         />
         <text
-          x="92"
-          y="106"
+          x="91"
+          y="96"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif text-lg font-medium"
+          className="font-serif text-base"
         >
           H
         </text>
 
-        {/* CNOT between Wire 2 & Wire 3 */}
+        {/* Bell CNOT Wire 2 to Wire 3 */}
         <line
           x1="135"
-          y1="100"
+          y1="90"
           x2="135"
-          y2="160"
+          y2="145"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
+          className="stroke-foreground/75"
         />
-        <circle cx="135" cy="100" r="4.5" fill="currentColor" />
+        <circle cx="135" cy="90" r="4.5" fill="currentColor" />
         <circle
           cx="135"
-          cy="160"
-          r="10"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
+          cy="145"
+          r="9.5"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
         />
         <line
           x1="135"
-          y1="152"
+          y1="137"
           x2="135"
-          y2="168"
+          y2="153"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
         />
         <line
           x1="127"
-          y1="160"
+          y1="145"
           x2="143"
-          y2="160"
+          y2="145"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
         />
 
-        {/* CNOT between Wire 1 & Wire 2 */}
+        {/* Alice's Entangling CNOT Wire 1 to Wire 2 */}
         <line
           x1="185"
-          y1="40"
+          y1="35"
           x2="185"
-          y2="100"
+          y2="90"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
+          className="stroke-foreground/75"
         />
-        <circle cx="185" cy="40" r="4.5" fill="currentColor" />
+        <circle cx="185" cy="35" r="4.5" fill="currentColor" />
         <circle
           cx="185"
-          cy="100"
-          r="10"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
+          cy="90"
+          r="9.5"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
         />
         <line
           x1="185"
-          y1="92"
+          y1="82"
           x2="185"
-          y2="108"
+          y2="98"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
         />
         <line
           x1="177"
-          y1="100"
+          y1="90"
           x2="193"
-          y2="100"
+          y2="90"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
         />
 
-        {/* Gate: H on Wire 1 */}
+        {/* Gate H (Wire 1) */}
         <rect
-          x="225"
-          y="23"
-          width="34"
-          height="34"
-          fill="currentColor"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
+          x="220"
+          y="19"
+          width="32"
+          height="32"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
         />
         <text
-          x="242"
-          y="46"
+          x="236"
+          y="41"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif text-lg font-medium"
+          className="font-serif text-base"
         >
           H
         </text>
 
-        {/* Measurement Box M on Wire 1 */}
+        {/* Measurements */}
         <rect
-          x="280"
-          y="23"
-          width="38"
-          height="34"
-          fill="currentColor"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
+          x="275"
+          y="19"
+          width="36"
+          height="32"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
         />
         <path
-          d="M 288 49 A 14 14 0 0 1 310 49"
+          d="M 283 43 A 12 12 0 0 1 303 43"
           stroke="currentColor"
-          strokeWidth="1.2"
+          strokeWidth="1.1"
         />
         <line
-          x1="299"
-          y1="49"
-          x2="308"
-          y2="31"
+          x1="293"
+          y1="43"
+          x2="301"
+          y2="27"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
         />
 
-        {/* Measurement Box M on Wire 2 */}
         <rect
-          x="280"
-          y="83"
-          width="38"
-          height="34"
-          fill="currentColor"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
+          x="275"
+          y="74"
+          width="36"
+          height="32"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
         />
         <path
-          d="M 288 109 A 14 14 0 0 1 310 109"
+          d="M 283 98 A 12 12 0 0 1 303 98"
           stroke="currentColor"
-          strokeWidth="1.2"
+          strokeWidth="1.1"
         />
         <line
-          x1="299"
-          y1="109"
-          x2="308"
-          y2="91"
-          stroke="currentColor"
-          strokeWidth="1.4"
-        />
-
-        {/* Classical Feedforward Double Wires */}
-        {/* M1 -> Z Gate */}
-        <line
-          x1="318"
-          y1="38"
-          x2="390"
-          y2="38"
-          stroke="currentColor"
-          strokeWidth="0.9"
-        />
-        <line
-          x1="318"
-          y1="42"
-          x2="390"
-          y2="42"
-          stroke="currentColor"
-          strokeWidth="0.9"
-        />
-        <line
-          x1="390"
-          y1="42"
-          x2="390"
-          y2="143"
-          stroke="currentColor"
-          strokeWidth="0.9"
-        />
-
-        {/* M2 -> X Gate */}
-        <line
-          x1="318"
+          x1="293"
           y1="98"
-          x2="345"
-          y2="98"
+          x2="301"
+          y2="82"
           stroke="currentColor"
-          strokeWidth="0.9"
+          strokeWidth="1.3"
+        />
+
+        {/* Double feedforward bus wires */}
+        <line
+          x1="311"
+          y1="33"
+          x2="385"
+          y2="33"
+          stroke="currentColor"
+          strokeWidth="0.8"
+          className="stroke-foreground/60"
         />
         <line
-          x1="318"
-          y1="102"
-          x2="345"
-          y2="102"
+          x1="311"
+          y1="37"
+          x2="385"
+          y2="37"
           stroke="currentColor"
-          strokeWidth="0.9"
+          strokeWidth="0.8"
+          className="stroke-foreground/60"
+        />
+        <line
+          x1="385"
+          y1="37"
+          x2="385"
+          y2="130"
+          stroke="currentColor"
+          strokeWidth="0.8"
+          className="stroke-foreground/60"
+        />
+
+        <line
+          x1="311"
+          y1="88"
+          x2="345"
+          y2="88"
+          stroke="currentColor"
+          strokeWidth="0.8"
+          className="stroke-foreground/60"
+        />
+        <line
+          x1="311"
+          y1="92"
+          x2="345"
+          y2="92"
+          stroke="currentColor"
+          strokeWidth="0.8"
+          className="stroke-foreground/60"
         />
         <line
           x1="345"
-          y1="102"
+          y1="92"
           x2="345"
-          y2="143"
+          y2="130"
           stroke="currentColor"
-          strokeWidth="0.9"
+          strokeWidth="0.8"
+          className="stroke-foreground/60"
         />
 
-        {/* Unitary Corrections X and Z */}
+        {/* Unitary Corrections */}
         <rect
           x="330"
-          y="143"
-          width="32"
-          height="34"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
+          y="130"
+          width="30"
+          height="30"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
         />
         <text
-          x="346"
-          y="166"
+          x="345"
+          y="151"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif text-lg font-medium"
+          className="font-serif text-base"
         >
           X
         </text>
 
         <rect
-          x="375"
-          y="143"
-          width="32"
-          height="34"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
+          x="370"
+          y="130"
+          width="30"
+          height="30"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
         />
         <text
-          x="391"
-          y="166"
+          x="385"
+          y="151"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif text-lg font-medium"
+          className="font-serif text-base"
         >
           Z
         </text>
 
         <text
-          x="425"
-          y="165"
+          x="420"
+          y="150"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif italic text-base"
         >
           |ψ⟩
         </text>
       </svg>
-      <div className="mt-4 font-serif text-sm italic text-muted-foreground text-center">
-        Fig 2. Canonical teleportation circuit compiled via quantikz notation
+      <div className="mt-3 font-serif text-sm italic text-muted-foreground text-center">
+        Fig 2. Bell state entanglement and classical feedforward circuit
       </div>
     </div>
   );
 }
 
 /* ============================================================
-   TIKZ REPLICA 03: DENSITY OPERATOR & DEPHASING (STATIC)
+   DIAGRAM 03: DENSITY OPERATOR MATRIX & TRANSVERSE DECAY
    ============================================================ */
-function TikzDensityMatrix() {
+function DensityMatrixDiagram() {
   return (
-    <div className="flex w-full flex-col items-center justify-center p-2">
-      <div className="flex flex-col items-center space-y-6">
-        {/* Exact LaTeX-Style Matrix */}
-        <div className="flex items-center space-x-3 font-serif text-xl md:text-2xl text-foreground">
+    <div className="flex w-full flex-col items-center justify-center p-3 opacity-90 transition-opacity hover:opacity-100">
+      <div className="flex flex-col items-center space-y-4">
+        {/* Clean Density Matrix */}
+        <div className="flex items-center space-x-3 font-serif text-lg text-foreground">
           <span className="italic font-medium">ρ =</span>
-          <div className="relative border-l-2 border-r-2 border-foreground px-5 py-3">
-            <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-center">
+          <div className="border-l-2 border-r-2 border-foreground/70 px-4 py-2">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-center text-sm md:text-base">
               <div>
-                <span className="italic text-lg md:text-xl">|α|²</span>
-                <div className="font-sans text-[11px] uppercase tracking-wider text-muted-foreground">
-                  (population ρ₀₀)
-                </div>
+                <span className="italic">|α|²</span>
+                <div className="font-mono text-[10px] text-muted-foreground">ρ₀₀</div>
               </div>
               <div>
-                <span className="italic text-lg md:text-xl">α β* e^{"-iΔω t"}</span>
-                <div className="font-sans text-[11px] uppercase tracking-wider text-muted-foreground">
-                  (coherence ρ₀₁)
-                </div>
+                <span className="italic">αβ* e^{"-iΔω t"}</span>
+                <div className="font-mono text-[10px] text-muted-foreground">ρ₀₁</div>
               </div>
               <div>
-                <span className="italic text-lg md:text-xl">α* β e^{"iΔω t"}</span>
-                <div className="font-sans text-[11px] uppercase tracking-wider text-muted-foreground">
-                  (coherence ρ₁₀)
-                </div>
+                <span className="italic">α*β e^{"iΔω t"}</span>
+                <div className="font-mono text-[10px] text-muted-foreground">ρ₁₀</div>
               </div>
               <div>
-                <span className="italic text-lg md:text-xl">|β|²</span>
-                <div className="font-sans text-[11px] uppercase tracking-wider text-muted-foreground">
-                  (population ρ₁₁)
-                </div>
+                <span className="italic">|β|²</span>
+                <div className="font-mono text-[10px] text-muted-foreground">ρ₁₁</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* PGFPlots Style Transverse Decoherence Curve */}
+        {/* Decoherence Wave Envelope */}
         <svg
-          viewBox="0 0 340 110"
-          className="w-full max-w-[320px] text-foreground"
+          viewBox="0 0 320 90"
+          className="w-full max-w-[300px] text-foreground"
           fill="none"
         >
-          {/* T-Axis */}
           <line
-            x1="35"
-            y1="90"
-            x2="315"
-            y2="90"
+            x1="30"
+            y1="75"
+            x2="300"
+            y2="75"
             stroke="currentColor"
-            strokeWidth="1.2"
+            strokeWidth="1.1"
+            className="stroke-foreground/60"
           />
-          <polygon points="322,90 312,87 312,93" fill="currentColor" />
+          <polygon points="306,75 296,72 296,78" fill="currentColor" />
 
-          {/* Vertical Coherence Axis */}
           <line
-            x1="35"
-            y1="90"
-            x2="35"
-            y2="15"
+            x1="30"
+            y1="75"
+            x2="30"
+            y2="12"
             stroke="currentColor"
-            strokeWidth="1.2"
+            strokeWidth="1.1"
+            className="stroke-foreground/60"
           />
-          <polygon points="35,8 32,18 38,18" fill="currentColor" />
+          <polygon points="30,6 27,16 33,16" fill="currentColor" />
 
-          {/* Damped Off-diagonal Oscillations */}
           <path
-            d="M 35 25 Q 65 30 85 55 T 135 85 T 185 88 T 235 89.5 L 300 90"
+            d="M 30 20 Q 55 25 75 48 T 120 71 T 165 73 T 215 74.5 L 285 75"
             stroke="currentColor"
-            strokeWidth="1.6"
+            strokeWidth="1.5"
           />
-
-          {/* Exponential Decay Envelope (Dashed) */}
           <path
-            d="M 35 25 Q 125 45 300 90"
+            d="M 30 20 Q 110 38 285 75"
             stroke="currentColor"
-            strokeWidth="1"
-            strokeDasharray="4 4"
+            strokeWidth="0.9"
+            strokeDasharray="3 3"
+            className="stroke-foreground/50"
           />
 
-          <text
-            x="315"
-            y="105"
-            fill="currentColor"
-            className="font-serif italic text-sm"
-          >
+          <text x="300" y="88" fill="currentColor" className="font-serif italic text-xs">
             t
           </text>
-          <text
-            x="12"
-            y="22"
-            fill="currentColor"
-            className="font-serif italic text-sm"
-          >
+          <text x="10" y="18" fill="currentColor" className="font-serif italic text-xs">
             |ρ₀₁|
           </text>
-          <text
-            x="180"
-            y="42"
-            fill="currentColor"
-            className="font-serif italic text-sm"
-          >
-            e^{"-t / T₂*"}
+          <text x="165" y="36" fill="currentColor" className="font-serif italic text-xs">
+            e^{"-t/T₂*"}
           </text>
         </svg>
       </div>
 
-      <div className="mt-4 font-serif text-sm italic text-muted-foreground text-center">
-        Fig 3. Density operator matrix elements and transverse dephasing channel
+      <div className="mt-3 font-serif text-sm italic text-muted-foreground text-center">
+        Fig 3. Density matrix coherences under transverse dephasing
       </div>
     </div>
   );
 }
 
 /* ============================================================
-   QUANTIKZ REPLICA 04: GROVER ITERATION (STATIC)
+   DIAGRAM 04: GROVER AMPLIFICATION (CLEANLY SPACED & TRANSPARENT)
    ============================================================ */
-function QuantikzGrover() {
+function GroverDiagram() {
   return (
-    <div className="flex w-full flex-col items-center justify-center p-2">
+    <div className="flex w-full flex-col items-center justify-center p-3 opacity-90 transition-opacity hover:opacity-100">
       <svg
-        viewBox="0 0 450 170"
-        className="w-full max-w-[430px] text-foreground"
+        viewBox="0 0 520 185"
+        className="w-full max-w-[480px] overflow-visible text-foreground"
         fill="none"
       >
-        {/* Wire n-qubits */}
+        {/* Input Register State */}
         <text
-          x="8"
-          y="56"
+          x="12"
+          y="66"
           fill="currentColor"
-          className="font-serif italic text-lg"
+          className="font-serif text-base"
         >
-          |0⟩^{"⊗n"}
+          <tspan fontStyle="italic">|0⟩</tspan>
+          <tspan dy="-6" fontSize="11" fontStyle="italic">⊗n</tspan>
         </text>
+
+        {/* Quantum Wire */}
         <line
-          x1="65"
-          y1="50"
-          x2="415"
-          y2="50"
+          x1="68"
+          y1="60"
+          x2="480"
+          y2="60"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
+          className="stroke-foreground/75"
         />
 
-        {/* Slash for multi-qubit bus */}
+        {/* Multi-qubit Slash */}
         <line
-          x1="82"
-          y1="42"
-          x2="90"
-          y2="58"
+          x1="86"
+          y1="52"
+          x2="94"
+          y2="68"
           stroke="currentColor"
-          strokeWidth="1.4"
+          strokeWidth="1.3"
+          className="stroke-foreground/80"
         />
         <text
-          x="90"
-          y="38"
+          x="95"
+          y="48"
           fill="currentColor"
           className="font-serif italic text-xs"
         >
           n
         </text>
 
-        {/* Initial Walsh-Hadamard */}
+        {/* Gate: H^⊗n */}
         <rect
-          x="110"
-          y="31"
-          width="38"
-          height="38"
-          className="fill-background stroke-foreground"
+          x="115"
+          y="38"
+          width="48"
+          height="44"
+          rx="3"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
+        />
+        <text
+          x="139"
+          y="66"
+          textAnchor="middle"
+          fill="currentColor"
+          className="font-serif text-base"
+        >
+          <tspan fontStyle="normal">H</tspan>
+          <tspan dy="-6" fontSize="11" fontStyle="italic">⊗n</tspan>
+        </text>
+
+        {/* Oracle Gate: U_ω */}
+        <rect
+          x="185"
+          y="32"
+          width="68"
+          height="56"
+          rx="3"
+          className="fill-background/80 stroke-foreground/80"
           strokeWidth="1.4"
         />
         <text
-          x="129"
-          y="56"
+          x="219"
+          y="67"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif text-base font-medium"
+          className="font-serif text-lg"
         >
-          H^{"⊗n"}
-        </text>
-
-        {/* Oracle Box U_w */}
-        <rect
-          x="175"
-          y="23"
-          width="62"
-          height="54"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.6"
-        />
-        <text
-          x="206"
-          y="56"
-          textAnchor="middle"
-          fill="currentColor"
-          className="font-serif text-lg font-medium"
-        >
-          U_ω
+          <tspan fontStyle="italic">U</tspan>
+          <tspan dy="4" fontSize="12" fontStyle="italic">ω</tspan>
         </text>
 
         {/* Diffusion Operator */}
         <rect
-          x="260"
-          y="23"
-          width="90"
-          height="54"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.6"
+          x="275"
+          y="32"
+          width="118"
+          height="56"
+          rx="3"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.4"
         />
         <text
-          x="305"
-          y="56"
+          x="334"
+          y="67"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif text-base font-medium"
+          className="font-serif text-base"
         >
-          2|s⟩⟨s| - I
+          2|s⟩⟨s| − I
         </text>
 
-        {/* Grover Repeat Bracket */}
+        {/* Measurement Box */}
+        <rect
+          x="418"
+          y="40"
+          width="40"
+          height="40"
+          rx="3"
+          className="fill-background/80 stroke-foreground/80"
+          strokeWidth="1.3"
+        />
         <path
-          d="M 175 85 C 175 95 260 95 260 105 C 260 95 350 95 350 85"
+          d="M 426 71 A 14 14 0 0 1 450 71"
           stroke="currentColor"
-          strokeWidth="1.2"
+          strokeWidth="1.1"
+        />
+        <line
+          x1="438"
+          y1="71"
+          x2="448"
+          y2="51"
+          stroke="currentColor"
+          strokeWidth="1.3"
+        />
+
+        {/* Repetition Curly Bracket */}
+        <path
+          d="M 185 98 C 185 108, 269 108, 269 118 C 269 108, 393 108, 393 98"
+          stroke="currentColor"
+          strokeWidth="1.1"
           fill="none"
+          className="stroke-foreground/60"
         />
         <text
-          x="260"
-          y="126"
+          x="289"
+          y="140"
           textAnchor="middle"
           fill="currentColor"
-          className="font-serif italic text-sm"
+          className="font-serif italic text-sm text-foreground/80"
         >
           Repeat R ≈ (π/4)√N times
         </text>
-
-        {/* Final Measurement */}
-        <rect
-          x="372"
-          y="33"
-          width="38"
-          height="34"
-          className="fill-background stroke-foreground"
-          strokeWidth="1.4"
-        />
-        <path
-          d="M 380 59 A 14 14 0 0 1 402 59"
-          stroke="currentColor"
-          strokeWidth="1.2"
-        />
-        <line
-          x1="391"
-          y1="59"
-          x2="400"
-          y2="41"
-          stroke="currentColor"
-          strokeWidth="1.4"
-        />
       </svg>
-      <div className="mt-4 font-serif text-sm italic text-muted-foreground text-center">
-        Fig 4. Schematic circuit layout for unstructured search via amplitude amplification
+      <div className="mt-2 font-serif text-sm italic text-muted-foreground text-center">
+        Fig 4. Circuit layout for Grover amplitude amplification
       </div>
     </div>
   );
@@ -898,105 +906,135 @@ function QuantikzGrover() {
 function QuantumVisual({ type }: { type: ScheduleDay["visual"] }) {
   switch (type) {
     case "bloch":
-      return <TikzBlochSphere />;
+      return <BlochSphereDiagram />;
     case "circuit":
-      return <QuantikzTeleportation />;
+      return <TeleportationDiagram />;
     case "state":
-      return <TikzDensityMatrix />;
+      return <DensityMatrixDiagram />;
     case "grover":
-      return <QuantikzGrover />;
+      return <GroverDiagram />;
   }
 }
 
 /* ============================================================
-   MAIN COMPONENT: SCHEDULE
+   MAIN SCHEDULE COMPONENT
    ============================================================ */
 export function Schedule() {
   return (
-    <section
-      id="schedule"
-      className="w-full bg-background py-20 text-foreground font-serif selection:bg-foreground selection:text-background"
-    >
-      <div className="container mx-auto max-w-6xl px-4 md:px-8">
-        {/* ACADEMIC HEADER */}
-        <div className="border-b-2 border-foreground pb-8 mb-16">
-          <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-4">
+    <section id="schedule" className="relative w-full bg-background py-24 md:py-32">
+      <div className="container mx-auto max-w-6xl px-4 md:px-6">
+        
+        {/* HEADER */}
+        <div className="mb-20">
+          <div className="mb-3 flex items-center gap-3">
+            <span className="h-px w-10 bg-primary" />
+            <span className="font-mono text-xs font-semibold tracking-widest text-primary uppercase">
+              Symposium Syllabus
+            </span>
+          </div>
+
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <div className="font-mono text-sm uppercase tracking-widest text-muted-foreground">
-                Section IV · Symposia & Lectures
-              </div>
-              <h1 className="mt-2 font-serif text-4xl md:text-5xl font-normal tracking-normal text-foreground">
-                Programme & Theoretical Schemata
-              </h1>
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Event Schedule & Modules
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                Four days spanning state geometry, entanglement distribution,
+                mixed-state density matrices, and quantum search bounds.
+              </p>
             </div>
-            <div className="font-serif italic text-xl md:text-2xl text-muted-foreground">
-              October 9 – 12, 2026
+
+            <div className="shrink-0 rounded-full border border-border/80 bg-muted/20 px-4 py-2 font-mono text-xs tracking-wider text-muted-foreground backdrop-blur-sm">
+              09 – 12 OCTOBER 2026
             </div>
           </div>
-          <p className="mt-4 max-w-3xl font-serif text-lg leading-relaxed text-muted-foreground">
-            A comprehensive four-day symposium exploring the algebraic foundations
-            of quantum information, state tomography, teleportation protocols, and
-            fault-tolerant compilation.
-          </p>
         </div>
 
-        {/* DAYS LIST WITH INTEGRATED SCHEMATICS */}
-        <div className="divide-y divide-foreground/20">
-          {scheduleData.map((day) => (
-            <div
-              key={day.number}
-              className="py-16 grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-start"
-            >
-              {/* TIMELINE LIST */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="border-b border-foreground/40 pb-2 flex items-baseline justify-between">
-                  <h2 className="font-serif text-2xl md:text-3xl font-normal">
-                    Day {day.number} · {day.weekday}
-                  </h2>
-                  <span className="font-mono text-sm tracking-wider text-muted-foreground">
-                    {day.date}
-                  </span>
-                </div>
+        {/* DAYS & VISUALS */}
+        <div className="space-y-16 md:space-y-24">
+          {scheduleData.map((day, index) => {
+            const isEven = index % 2 === 0;
 
-                <div className="divide-y divide-foreground/10">
-                  {day.events.map((event) => (
-                    <div
-                      key={event.title}
-                      className="py-5 flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-3"
-                    >
-                      <div className="space-y-1.5 sm:max-w-[76%]">
-                        <div className="font-mono text-xs tracking-wider text-muted-foreground">
-                          {event.time}
-                        </div>
-                        <div className="font-serif text-lg md:text-xl font-medium leading-snug">
-                          {event.title}
-                        </div>
-                      </div>
-                      <div className="mt-1 sm:mt-0">
-                        <EventBadge type={event.type} />
-                      </div>
+            return (
+              <div
+                key={day.number}
+                className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12"
+              >
+                {/* TIMELINE LIST */}
+                <div
+                  className={`lg:col-span-7 ${
+                    isEven ? "lg:order-1" : "lg:order-2"
+                  }`}
+                >
+                  <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-card/30 p-6 md:p-8 backdrop-blur-sm shadow-sm">
+                    {/* Background Index Number */}
+                    <div className="pointer-events-none absolute -right-2 -top-6 select-none font-mono text-[120px] font-bold leading-none text-muted-foreground/[0.04]">
+                      {day.number}
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* TIKZ / QUANTIKZ FIGURE PANEL */}
-              <div className="lg:col-span-5 border border-foreground/30 bg-card/20 p-5 shadow-sm">
-                <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground border-b border-foreground/20 pb-2 mb-3">
-                  Theoretical Model Ref: 0{day.number}
+                    {/* Day Header */}
+                    <div className="relative mb-6 flex items-center justify-between border-b border-border/60 pb-4">
+                      <div>
+                        <div className="font-mono text-xs font-medium text-primary">
+                          DAY {day.number}
+                        </div>
+                        <h3 className="mt-1 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                          {day.date}
+                        </h3>
+                      </div>
+                      <span className="font-mono text-xs text-muted-foreground uppercase">
+                        {day.weekday}
+                      </span>
+                    </div>
+
+                    {/* Events List */}
+                    <div className="divide-y divide-border/40">
+                      {day.events.map((event) => (
+                        <div
+                          key={event.title}
+                          className="flex flex-col justify-between gap-3 py-4 sm:flex-row sm:items-center sm:gap-6"
+                        >
+                          <div className="space-y-1 sm:max-w-[78%]">
+                            <div className="font-mono text-xs text-muted-foreground">
+                              {event.time}
+                            </div>
+                            <div className="text-base font-semibold text-foreground md:text-lg">
+                              {event.title}
+                            </div>
+                          </div>
+
+                          <div className="shrink-0">
+                            <EventBadge type={event.type} />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <QuantumVisual type={day.visual} />
+
+                {/* THEORETICAL SCHEMATIC */}
+                <div
+                  className={`flex items-center justify-center lg:col-span-5 ${
+                    isEven ? "lg:order-2" : "lg:order-1"
+                  }`}
+                >
+                  <div className="w-full rounded-2xl border border-border/50 bg-card/25 p-5 backdrop-blur-sm shadow-sm transition-colors hover:border-border/80">
+                    <div className="mb-2 flex items-center justify-between border-b border-border/40 pb-2 font-mono text-xs text-muted-foreground">
+                      <span>THEORETICAL MODEL // 0{day.number}</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
+                    </div>
+                    <QuantumVisual type={day.visual} />
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
-        {/* ACADEMIC FOOTER */}
-        <div className="border-t-2 border-foreground pt-6 mt-12 flex flex-col sm:flex-row justify-between text-sm text-muted-foreground font-serif">
-          <span>* All sessions follow Indian Standard Time (IST, UTC+5:30).</span>
-          <span className="italic mt-2 sm:mt-0">
-            Typeset in Computer Modern / Latin Modern representation.
-          </span>
+        {/* FOOTER */}
+        <div className="mt-20 border-t border-border/60 pt-6 flex flex-col sm:flex-row justify-between gap-4 font-mono text-xs text-muted-foreground">
+          <span>PROGRAMME NOTE: SCHEDULE FOLLOWS IST (UTC+5:30)</span>
+          <span>SUBJECT TO MODIFICATION BY THE ORGANIZING COMMITTEE</span>
         </div>
       </div>
     </section>
