@@ -2,8 +2,15 @@ import { GraduationCap, Globe } from "lucide-react";
 import { StudentCard } from "@/components/StudentCard";
 import teamBg from "@/assets/Hero_1_without_title.png";
 
+// Faculty photos
 import shajiPhoto from "@/assets/anil.jpg";
 import madhuPhoto from "@/assets/madhu.jpg";
+
+// Student organizer photos
+import namanPhoto from "@/assets/naman.jpeg";
+import leyanaPhoto from "@/assets/leyana.jpeg";
+import khushiPhoto from "@/assets/khushi.jpeg";
+import ajitPhoto from "@/assets/ajit.jpeg";
 
 const facultyAdvisors = [
   {
@@ -28,43 +35,42 @@ const organizers = [
   {
     name: "Naman Agarwal",
     role: "5th Year BS-MS (Physics)",
-    // image: img1,
-    scholar: "#",
-    linkedin: "#",
+    image: namanPhoto,
+    linkedin:
+      "https://www.linkedin.com/in/naman-agarwal-2849b6247/",
   },
   {
     name: "Debashis Saikia",
     role: "4th Year BS-MS (Physics)",
-    // image: img2,
-    scholar: "#",
-    linkedin: "#",
+    initial: "D",
+    linkedin:
+      "https://www.linkedin.com/in/debashis-saikia-239b1727a/",
   },
   {
     name: "Ajit Gopalakrishna Bhat",
     role: "4th Year BS-MS (Physics)",
-    // image: img3,
-    scholar: "#",
-    linkedin: "#",
+    image: ajitPhoto,
+    linkedin:
+      "https://www.linkedin.com/in/ajit-gopalakrishna-bhat-0453a2346/",
   },
   {
     name: "Khushi Tiwari",
     role: "5th Year BS-MS (Physics)",
-    // image: img4,
-    scholar: "#",
-    linkedin: "#",
+    image: khushiPhoto,
+    linkedin:
+      "https://www.linkedin.com/in/khushi-tiwari-3665002a8/",
   },
   {
     name: "Leyana K P",
     role: "4th Year BS-MS (Physics)",
-    // image: img5,
-    scholar: "#",
-    linkedin: "#",
+    image: leyanaPhoto,
+    linkedin:
+      "https://www.linkedin.com/in/leyana-k-p-301812307/",
   },
   {
     name: "Aman Vijay Tallur",
     role: "4th Year BS-MS (Physics)",
-    // image: img6,
-    scholar: "#",
+    initial: "A",
     linkedin: "#",
   },
 ];
@@ -137,6 +143,7 @@ export default function TeamPage() {
 
                   <div className="flex flex-wrap justify-center gap-4 mt-7">
 
+                    {/* Google Scholar */}
                     <a
                       href={advisor.scholar}
                       target="_blank"
@@ -147,6 +154,7 @@ export default function TeamPage() {
                       Google Scholar
                     </a>
 
+                    {/* Faculty Website */}
                     <a
                       href={advisor.website}
                       target="_blank"
