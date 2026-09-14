@@ -1,0 +1,11 @@
+\documentclass[tikz,border=2mm]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{quantikz2}
+
+\begin{document}
+\begin{quantikz}
+\lstick{$\ket{\psi}$} & \qw      & \ctrl{1} & \gate{H} & \meter{} & \cw \cwbend{2} \\
+\lstick{$\ket{0}_A$}  & \gate{H} & \targ{}   & \qw      & \meter{} & \cwbend{1}     \\
+\lstick{$\ket{0}_B$}  & \qw      & \targ{}   & \qw      & \gate{X} & \gate{Z} & \rstick{$\ket{\psi}$}\qw
+\end{quantikz}
+\end{document}
