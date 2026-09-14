@@ -1,3 +1,5 @@
+import bgImage from "@/assets/Hero_1_without_title.png";
+
 type Event = {
   time: string;
   title: string;
@@ -72,7 +74,7 @@ const scheduleData: ScheduleDay[] = [
       },
       {
         time: "04:00 PM - 05:00 PM",
-        title: "Panel Discussion: Career in Quantum",
+        title: "Panel Discussion on Career in Quantum",
         type: "PANEL",
       },
     ],
@@ -338,7 +340,7 @@ function TeleportationDiagram() {
         className="w-full max-w-[420px] text-foreground"
         fill="none"
       >
-        {/* Qubit Wires */}
+        {/* Continuous Qubit Wires drawn first */}
         <text
           x="8"
           y="39"
@@ -393,160 +395,7 @@ function TeleportationDiagram() {
           className="stroke-foreground/75"
         />
 
-        {/* Gate H (Wire 2) */}
-        <rect
-          x="75"
-          y="74"
-          width="32"
-          height="32"
-          className="fill-background/80 stroke-foreground/80"
-          strokeWidth="1.3"
-        />
-        <text
-          x="91"
-          y="96"
-          textAnchor="middle"
-          fill="currentColor"
-          className="font-serif text-base"
-        >
-          H
-        </text>
-
-        {/* Bell CNOT Wire 2 to Wire 3 */}
-        <line
-          x1="135"
-          y1="90"
-          x2="135"
-          y2="145"
-          stroke="currentColor"
-          strokeWidth="1.3"
-          className="stroke-foreground/75"
-        />
-        <circle cx="135" cy="90" r="4.5" fill="currentColor" />
-        <circle
-          cx="135"
-          cy="145"
-          r="9.5"
-          className="fill-background/80 stroke-foreground/80"
-          strokeWidth="1.3"
-        />
-        <line
-          x1="135"
-          y1="137"
-          x2="135"
-          y2="153"
-          stroke="currentColor"
-          strokeWidth="1.3"
-        />
-        <line
-          x1="127"
-          y1="145"
-          x2="143"
-          y2="145"
-          stroke="currentColor"
-          strokeWidth="1.3"
-        />
-
-        {/* Alice's Entangling CNOT Wire 1 to Wire 2 */}
-        <line
-          x1="185"
-          y1="35"
-          x2="185"
-          y2="90"
-          stroke="currentColor"
-          strokeWidth="1.3"
-          className="stroke-foreground/75"
-        />
-        <circle cx="185" cy="35" r="4.5" fill="currentColor" />
-        <circle
-          cx="185"
-          cy="90"
-          r="9.5"
-          className="fill-background/80 stroke-foreground/80"
-          strokeWidth="1.3"
-        />
-        <line
-          x1="185"
-          y1="82"
-          x2="185"
-          y2="98"
-          stroke="currentColor"
-          strokeWidth="1.3"
-        />
-        <line
-          x1="177"
-          y1="90"
-          x2="193"
-          y2="90"
-          stroke="currentColor"
-          strokeWidth="1.3"
-        />
-
-        {/* Gate H (Wire 1) */}
-        <rect
-          x="220"
-          y="19"
-          width="32"
-          height="32"
-          className="fill-background/80 stroke-foreground/80"
-          strokeWidth="1.3"
-        />
-        <text
-          x="236"
-          y="41"
-          textAnchor="middle"
-          fill="currentColor"
-          className="font-serif text-base"
-        >
-          H
-        </text>
-
-        {/* Measurements */}
-        <rect
-          x="275"
-          y="19"
-          width="36"
-          height="32"
-          className="fill-background/80 stroke-foreground/80"
-          strokeWidth="1.3"
-        />
-        <path
-          d="M 283 43 A 12 12 0 0 1 303 43"
-          stroke="currentColor"
-          strokeWidth="1.1"
-        />
-        <line
-          x1="293"
-          y1="43"
-          x2="301"
-          y2="27"
-          stroke="currentColor"
-          strokeWidth="1.3"
-        />
-
-        <rect
-          x="275"
-          y="74"
-          width="36"
-          height="32"
-          className="fill-background/80 stroke-foreground/80"
-          strokeWidth="1.3"
-        />
-        <path
-          d="M 283 98 A 12 12 0 0 1 303 98"
-          stroke="currentColor"
-          strokeWidth="1.1"
-        />
-        <line
-          x1="293"
-          y1="98"
-          x2="301"
-          y2="82"
-          stroke="currentColor"
-          strokeWidth="1.3"
-        />
-
-        {/* Double feedforward bus wires */}
+        {/* Double Feedforward Bus Wires */}
         <line
           x1="311"
           y1="33"
@@ -603,13 +452,166 @@ function TeleportationDiagram() {
           className="stroke-foreground/60"
         />
 
-        {/* Unitary Corrections */}
+        {/* Gate H (Wire 2) - Solid background masks the wire underneath */}
+        <rect
+          x="75"
+          y="74"
+          width="32"
+          height="32"
+          className="fill-background stroke-foreground/80"
+          strokeWidth="1.3"
+        />
+        <text
+          x="91"
+          y="96"
+          textAnchor="middle"
+          fill="currentColor"
+          className="font-serif text-base"
+        >
+          H
+        </text>
+
+        {/* Bell CNOT Wire 2 to Wire 3 */}
+        <line
+          x1="135"
+          y1="90"
+          x2="135"
+          y2="145"
+          stroke="currentColor"
+          strokeWidth="1.3"
+          className="stroke-foreground/75"
+        />
+        <circle cx="135" cy="90" r="4.5" fill="currentColor" />
+        <circle
+          cx="135"
+          cy="145"
+          r="9.5"
+          className="fill-background stroke-foreground/80"
+          strokeWidth="1.3"
+        />
+        <line
+          x1="135"
+          y1="137"
+          x2="135"
+          y2="153"
+          stroke="currentColor"
+          strokeWidth="1.3"
+        />
+        <line
+          x1="127"
+          y1="145"
+          x2="143"
+          y2="145"
+          stroke="currentColor"
+          strokeWidth="1.3"
+        />
+
+        {/* Alice's Entangling CNOT Wire 1 to Wire 2 */}
+        <line
+          x1="185"
+          y1="35"
+          x2="185"
+          y2="90"
+          stroke="currentColor"
+          strokeWidth="1.3"
+          className="stroke-foreground/75"
+        />
+        <circle cx="185" cy="35" r="4.5" fill="currentColor" />
+        <circle
+          cx="185"
+          cy="90"
+          r="9.5"
+          className="fill-background stroke-foreground/80"
+          strokeWidth="1.3"
+        />
+        <line
+          x1="185"
+          y1="82"
+          x2="185"
+          y2="98"
+          stroke="currentColor"
+          strokeWidth="1.3"
+        />
+        <line
+          x1="177"
+          y1="90"
+          x2="193"
+          y2="90"
+          stroke="currentColor"
+          strokeWidth="1.3"
+        />
+
+        {/* Gate H (Wire 1) */}
+        <rect
+          x="220"
+          y="19"
+          width="32"
+          height="32"
+          className="fill-background stroke-foreground/80"
+          strokeWidth="1.3"
+        />
+        <text
+          x="236"
+          y="41"
+          textAnchor="middle"
+          fill="currentColor"
+          className="font-serif text-base"
+        >
+          H
+        </text>
+
+        {/* Measurements */}
+        <rect
+          x="275"
+          y="19"
+          width="36"
+          height="32"
+          className="fill-background stroke-foreground/80"
+          strokeWidth="1.3"
+        />
+        <path
+          d="M 283 43 A 12 12 0 0 1 303 43"
+          stroke="currentColor"
+          strokeWidth="1.1"
+        />
+        <line
+          x1="293"
+          y1="43"
+          x2="301"
+          y2="27"
+          stroke="currentColor"
+          strokeWidth="1.3"
+        />
+
+        <rect
+          x="275"
+          y="74"
+          width="36"
+          height="32"
+          className="fill-background stroke-foreground/80"
+          strokeWidth="1.3"
+        />
+        <path
+          d="M 283 98 A 12 12 0 0 1 303 98"
+          stroke="currentColor"
+          strokeWidth="1.1"
+        />
+        <line
+          x1="293"
+          y1="98"
+          x2="301"
+          y2="82"
+          stroke="currentColor"
+          strokeWidth="1.3"
+        />
+
+        {/* Unitary Corrections X and Z */}
         <rect
           x="330"
           y="130"
           width="30"
           height="30"
-          className="fill-background/80 stroke-foreground/80"
+          className="fill-background stroke-foreground/80"
           strokeWidth="1.3"
         />
         <text
@@ -627,7 +629,7 @@ function TeleportationDiagram() {
           y="130"
           width="30"
           height="30"
-          className="fill-background/80 stroke-foreground/80"
+          className="fill-background stroke-foreground/80"
           strokeWidth="1.3"
         />
         <text
@@ -663,32 +665,40 @@ function DensityMatrixDiagram() {
   return (
     <div className="flex w-full flex-col items-center justify-center p-3 opacity-90 transition-opacity hover:opacity-100">
       <div className="flex flex-col items-center space-y-4">
-        {/* Density Matrix */}
+        {/* Clean Density Matrix using proper HTML <sup> exponents */}
         <div className="flex items-center space-x-3 font-serif text-lg text-foreground">
           <span className="italic font-medium">ρ =</span>
           <div className="border-l-2 border-r-2 border-foreground/70 px-4 py-2">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-center text-sm md:text-base">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-center text-sm md:text-base">
               <div>
-                <span className="italic">|α|²</span>
+                <span className="italic">
+                  |α|<sup>2</sup>
+                </span>
                 <div className="font-mono text-[10px] text-muted-foreground">ρ₀₀</div>
               </div>
               <div>
-                <span className="italic">αβ* e^{"-iΔω t"}</span>
+                <span className="italic">
+                  αβ<sup>*</sup> e<sup>−iΔω t</sup>
+                </span>
                 <div className="font-mono text-[10px] text-muted-foreground">ρ₀₁</div>
               </div>
               <div>
-                <span className="italic">α*β e^{"iΔω t"}</span>
+                <span className="italic">
+                  α<sup>*</sup>β e<sup>iΔω t</sup>
+                </span>
                 <div className="font-mono text-[10px] text-muted-foreground">ρ₁₀</div>
               </div>
               <div>
-                <span className="italic">|β|²</span>
+                <span className="italic">
+                  |β|<sup>2</sup>
+                </span>
                 <div className="font-mono text-[10px] text-muted-foreground">ρ₁₁</div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Decoherence Wave Envelope */}
+        {/* Decoherence Envelope with SVG tspan superscripts */}
         <svg
           viewBox="0 0 320 90"
           className="w-full max-w-[300px] text-foreground"
@@ -736,7 +746,7 @@ function DensityMatrixDiagram() {
             |ρ₀₁|
           </text>
           <text x="165" y="36" fill="currentColor" className="font-serif italic text-xs">
-            e^{"-t/T₂*"}
+            e<tspan dy="-5" fontSize="9">−t/T₂*</tspan>
           </text>
         </svg>
       </div>
@@ -770,7 +780,7 @@ function GroverDiagram() {
           <tspan dy="-6" fontSize="11" fontStyle="italic">⊗n</tspan>
         </text>
 
-        {/* Quantum Wire */}
+        {/* Main Continuous Quantum Wire */}
         <line
           x1="68"
           y1="60"
@@ -781,7 +791,7 @@ function GroverDiagram() {
           className="stroke-foreground/75"
         />
 
-        {/* Multi-qubit Slash */}
+        {/* Multi-qubit Bus Slash */}
         <line
           x1="86"
           y1="52"
@@ -800,14 +810,14 @@ function GroverDiagram() {
           n
         </text>
 
-        {/* Gate: H^⊗n */}
+        {/* Gate: H^⊗n with opaque background fill to mask wire */}
         <rect
           x="115"
           y="38"
           width="48"
           height="44"
           rx="3"
-          className="fill-background/80 stroke-foreground/80"
+          className="fill-background stroke-foreground/80"
           strokeWidth="1.3"
         />
         <text
@@ -821,14 +831,14 @@ function GroverDiagram() {
           <tspan dy="-6" fontSize="11" fontStyle="italic">⊗n</tspan>
         </text>
 
-        {/* Oracle Gate: U_ω */}
+        {/* Oracle Gate: U_ω with opaque background fill */}
         <rect
           x="185"
           y="32"
           width="68"
           height="56"
           rx="3"
-          className="fill-background/80 stroke-foreground/80"
+          className="fill-background stroke-foreground/80"
           strokeWidth="1.4"
         />
         <text
@@ -842,14 +852,14 @@ function GroverDiagram() {
           <tspan dy="4" fontSize="12" fontStyle="italic">ω</tspan>
         </text>
 
-        {/* Diffusion Operator */}
+        {/* Diffusion Operator with opaque background fill */}
         <rect
           x="275"
           y="32"
           width="118"
           height="56"
           rx="3"
-          className="fill-background/80 stroke-foreground/80"
+          className="fill-background stroke-foreground/80"
           strokeWidth="1.4"
         />
         <text
@@ -862,14 +872,14 @@ function GroverDiagram() {
           2|s⟩⟨s| − I
         </text>
 
-        {/* Measurement Box */}
+        {/* Measurement Box with opaque background fill */}
         <rect
           x="418"
           y="40"
           width="40"
           height="40"
           rx="3"
-          className="fill-background/80 stroke-foreground/80"
+          className="fill-background stroke-foreground/80"
           strokeWidth="1.3"
         />
         <path
@@ -886,7 +896,7 @@ function GroverDiagram() {
           strokeWidth="1.3"
         />
 
-        {/* Repetition Curly Bracket */}
+        {/* Repetition Bracket */}
         <path
           d="M 185 98 C 185 108, 269 108, 269 118 C 269 108, 393 108, 393 98"
           stroke="currentColor"
@@ -930,24 +940,19 @@ function QuantumVisual({ type }: { type: ScheduleDay["visual"] }) {
 export function Schedule() {
   return (
     <section id="schedule" className="relative overflow-hidden bg-background py-24 md:py-32">
-      {/* Restored Subtle Tech Background Grid */}
+      {/* Background Hero Asset Layer without any synthetic grid */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
+        className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+        style={{ backgroundImage: `url(${bgImage})` }}
       />
 
       <div className="container relative mx-auto max-w-6xl px-4 md:px-6">
-        
         {/* HEADER */}
         <div className="mb-20">
           <div className="mb-3 flex items-center gap-3">
             <span className="h-px w-10 bg-primary" />
             <span className="font-mono text-xs font-semibold tracking-widest text-primary uppercase">
-              Schedule
+              Symposium Syllabus
             </span>
           </div>
 
@@ -957,7 +962,7 @@ export function Schedule() {
                 Event Schedule
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                Four days of workshops, keynote lectures, and panel discussions...
+                Four days of workshops, keynote lectures, and panel discussions.
               </p>
             </div>
 
@@ -1046,8 +1051,8 @@ export function Schedule() {
 
         {/* FOOTER */}
         <div className="mt-20 border-t border-border/60 pt-6 flex flex-col sm:flex-row justify-between gap-4 font-mono text-xs text-muted-foreground">
-          <span>PROGRAMME NOTE: Schedule follows IST (UTC+5:30)</span>
-          <span>Hackathon time will be communicated later to the participants.</span>
+          <span>PROGRAMME NOTE: SCHEDULE FOLLOWS IST (UTC+5:30)</span>
+          <span>SUBJECT TO MODIFICATION BY THE ORGANIZING COMMITTEE</span>
         </div>
       </div>
     </section>
