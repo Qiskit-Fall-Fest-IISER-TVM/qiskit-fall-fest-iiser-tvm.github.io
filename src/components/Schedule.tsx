@@ -11,7 +11,7 @@ type ScheduleDay = {
   date: string;
   weekday: string;
   events: Event[];
-  visual: "bloch" | "circuit" | "state" | "algorithm";
+  visual: "bloch" | "circuit" | "state" | "grover";
 };
 
 const scheduleData: ScheduleDay[] = [
@@ -28,12 +28,12 @@ const scheduleData: ScheduleDay[] = [
       },
       {
         time: "05:45 PM - 07:00 PM",
-        title: "Inaugural Session",
+        title: "Inaugural Session: Foundations of Qubits",
         type: "SESSION",
       },
       {
         time: "09:00 PM - 11:00 PM",
-        title: "Quantum 101",
+        title: "Quantum 101: State Geometry & Transformations",
         type: "LECTURE",
       },
     ],
@@ -46,12 +46,12 @@ const scheduleData: ScheduleDay[] = [
     events: [
       {
         time: "09:00 AM - 12:00 PM",
-        title: "Workshop / Hands-on Session",
+        title: "Workshop: Bell States & Quantum Teleportation Protocols",
         type: "WORKSHOP",
       },
       {
         time: "02:00 PM - 05:00 PM",
-        title: "Lecture Series",
+        title: "Lecture Series: Multi-Qubit Gates & Decoherence Channels",
         type: "LECTURE",
       },
     ],
@@ -64,12 +64,12 @@ const scheduleData: ScheduleDay[] = [
     events: [
       {
         time: "09:00 AM - 12:00 PM",
-        title: "Workshop / Hands-on Session",
+        title: "Workshop: Density Matrices, Ensembles & Noise Simulation",
         type: "WORKSHOP",
       },
       {
         time: "02:00 PM - 05:00 PM",
-        title: "Lecture Series",
+        title: "Lecture Series: Error Correction & Fault Tolerance",
         type: "LECTURE",
       },
     ],
@@ -78,16 +78,16 @@ const scheduleData: ScheduleDay[] = [
     number: "04",
     date: "12 OCTOBER 2026",
     weekday: "MONDAY",
-    visual: "algorithm",
+    visual: "grover",
     events: [
       {
         time: "04:00 PM - 06:00 PM",
-        title: "Panel Discussion: Career in Quantum Technology",
-        type: "Panel discussion",
+        title: "Panel: Geometric Phase, Grover Amplification & Industry Careers",
+        type: "PANEL",
       },
       {
         time: "06:00 PM onwards",
-        title: "Concluding Session",
+        title: "Concluding Session & Research Showcase",
         type: "CONCLUSION",
       },
     ],
@@ -96,24 +96,16 @@ const scheduleData: ScheduleDay[] = [
 
 function EventBadge({ type }: { type: string }) {
   const isHighlight =
-    type === "HACKATHON" || type === "INAUGURATION";
+    type === "INAUGURATION" || type === "WORKSHOP" || type === "PANEL";
 
   return (
     <span
       className={`
-        inline-flex
-        items-center
-        rounded-full
-        border
-        px-2.5
-        py-1
-        text-[9px]
-        font-mono
-        font-semibold
-        tracking-[0.16em]
-        ${isHighlight
-          ? "border-primary/30 bg-primary/5 text-primary"
-          : "border-border bg-muted/40 text-muted-foreground"
+        inline-flex items-center rounded-md border px-2.5 py-0.5 font-mono text-[9px] font-semibold tracking-wider transition-colors
+        ${
+          isHighlight
+            ? "border-primary/40 bg-primary/10 text-primary shadow-[0_0_12px_hsl(var(--primary)/0.15)]"
+            : "border-border/80 bg-muted/30 text-muted-foreground"
         }
       `}
     >
@@ -123,552 +115,497 @@ function EventBadge({ type }: { type: string }) {
 }
 
 /* ============================================================
-   BLOCH SPHERE
+   DIAGRAM 01: THEORETICAL BLOCH SPHERE
    ============================================================ */
 
-function BlochSphere() {
+function BlochSphereDiagram() {
   return (
-    <div className="relative h-[330px] w-[330px]">
+    <div className="relative flex w-full max-w-[400px] flex-col items-center rounded-xl border border-border/40 bg-card/20 p-6 backdrop-blur-md">
+      <div className="mb-3 flex w-full items-center justify-between font-mono text-[10px] text-muted-foreground">
+        <span className="tracking-widest text-primary">SCHEMATIC // 01</span>
+        <span>SU(2) STATE MANIFOLD</span>
+      </div>
 
-      {/* Ambient rings */}
-      <div className="absolute inset-[22px] rounded-full border border-border/50" />
-      <div className="absolute inset-[42px] rounded-full border border-border/30" />
+      <div className="relative h-[280px] w-[280px]">
+        <svg
+          viewBox="0 0 280 280"
+          className="h-full w-full overflow-visible"
+          fill="none"
+        >
+          {/* Ambient Glow */}
+          <circle
+            cx="140"
+            cy="140"
+            r="95"
+            className="fill-primary/[0.02] stroke-border/40"
+            strokeWidth="1"
+          />
 
-      {/* Sphere */}
-      <div
-        className="
-          absolute
-          left-1/2
-          top-1/2
-          h-[205px]
-          w-[205px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          border
-          border-border
-        "
-      />
+          {/* Equator (XY Plane) - Front & Back */}
+          <ellipse
+            cx="140"
+            cy="140"
+            rx="95"
+            ry="30"
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-border"
+          />
+          <path
+            d="M 45 140 A 95 30 0 0 1 235 140"
+            stroke="currentColor"
+            strokeWidth="1.2"
+            strokeDasharray="3 3"
+            className="text-muted-foreground/40"
+          />
 
-      {/* Horizontal latitude */}
-      <div
-        className="
-          absolute
-          left-1/2
-          top-1/2
-          h-[72px]
-          w-[205px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-[50%]
-          border
-          border-border
-        "
-      />
+          {/* Prime Meridian (YZ Plane) */}
+          <ellipse
+            cx="140"
+            cy="140"
+            rx="34"
+            ry="95"
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-border/80"
+          />
 
-      {/* Vertical longitude */}
-      <div
-        className="
-          absolute
-          left-1/2
-          top-1/2
-          h-[205px]
-          w-[72px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-[50%]
-          border
-          border-border
-        "
-      />
+          {/* Z-Axis */}
+          <line
+            x1="140"
+            y1="25"
+            x2="140"
+            y2="255"
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-border"
+          />
+          {/* X-Axis (Perspective) */}
+          <line
+            x1="70"
+            y1="180"
+            x2="210"
+            y2="100"
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-border/60"
+          />
+          {/* Y-Axis */}
+          <line
+            x1="30"
+            y1="140"
+            x2="250"
+            y2="140"
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-border/60"
+          />
 
-      {/* Z axis */}
-      <div
-        className="
-          absolute
-          left-1/2
-          top-[30px]
-          h-[245px]
-          w-px
-          -translate-x-1/2
-          bg-border
-        "
-      />
+          {/* Precession / Uncertainty Cone Ring */}
+          <ellipse
+            cx="140"
+            cy="88"
+            rx="46"
+            ry="14"
+            stroke="currentColor"
+            strokeWidth="1"
+            strokeDasharray="2 2"
+            className="text-primary/40"
+          />
 
-      {/* X axis */}
-      <div
-        className="
-          absolute
-          left-[48px]
-          top-1/2
-          h-px
-          w-[235px]
-          -translate-y-1/2
-          bg-border
-        "
-      />
+          {/* State Vector |psi> */}
+          <motion.g
+            animate={{ rotate: [0, 8, -4, 0] }}
+            style={{ transformOrigin: "140px 140px" }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          >
+            {/* Projection line to XY */}
+            <line
+              x1="182"
+              y1="88"
+              x2="182"
+              y2="148"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeDasharray="2 2"
+              className="text-primary/40"
+            />
+            <line
+              x1="140"
+              y1="140"
+              x2="182"
+              y2="148"
+              stroke="currentColor"
+              strokeWidth="1"
+              className="text-primary/30"
+            />
 
-      {/* State vector */}
-      <motion.div
-        initial={{ rotate: -28 }}
-        animate={{ rotate: -20 }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          repeatType: "reverse",
-          ease: "easeInOut",
-        }}
-        className="
-          absolute
-          left-1/2
-          top-1/2
-          h-[105px]
-          w-px
-          origin-bottom
-          -translate-x-1/2
-          -translate-y-full
-          bg-primary
-        "
-      />
+            {/* Vector arrow */}
+            <line
+              x1="140"
+              y1="140"
+              x2="182"
+              y2="88"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+            />
 
-      {/* State point */}
-      <motion.div
-        animate={{
-          scale: [1, 1.15, 1],
-        }}
-        transition={{
-          duration: 2.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="
-          absolute
-          left-[calc(50%-10px)]
-          top-[calc(50%-92px)]
-          h-5
-          w-5
-          rounded-full
-          border
-          border-primary
-          bg-background
-          shadow-[0_0_25px_hsl(var(--primary)/0.45)]
-        "
-      />
+            {/* Terminal State Point */}
+            <circle
+              cx="182"
+              cy="88"
+              r="4.5"
+              fill="hsl(var(--background))"
+              stroke="hsl(var(--primary))"
+              strokeWidth="2"
+            />
+            <circle
+              cx="182"
+              cy="88"
+              r="8"
+              stroke="hsl(var(--primary))"
+              strokeWidth="0.8"
+              className="animate-ping opacity-75"
+            />
 
-      {/* Labels */}
-      <span className="absolute left-1/2 top-0 -translate-x-1/2 font-mono text-xs text-muted-foreground">
-        |0⟩
-      </span>
+            {/* Label |psi> */}
+            <text
+              x="194"
+              y="84"
+              fill="hsl(var(--primary))"
+              className="font-mono text-[11px] font-bold"
+            >
+              |ψ⟩
+            </text>
+          </motion.g>
 
-      <span className="absolute bottom-0 left-1/2 -translate-x-1/2 font-mono text-xs text-muted-foreground">
-        |1⟩
-      </span>
+          {/* Axis Endpoints Labels */}
+          <text
+            x="140"
+            y="18"
+            textAnchor="middle"
+            fill="currentColor"
+            className="font-mono text-[10px] text-muted-foreground"
+          >
+            |0⟩ (+z)
+          </text>
+          <text
+            x="140"
+            y="272"
+            textAnchor="middle"
+            fill="currentColor"
+            className="font-mono text-[10px] text-muted-foreground"
+          >
+            |1⟩ (-z)
+          </text>
+          <text
+            x="260"
+            y="144"
+            fill="currentColor"
+            className="font-mono text-[9px] text-muted-foreground"
+          >
+            |+y⟩
+          </text>
+          <text
+            x="58"
+            y="192"
+            fill="currentColor"
+            className="font-mono text-[9px] text-muted-foreground"
+          >
+            |+x⟩
+          </text>
 
-      <span className="absolute right-2 top-1/2 -translate-y-1/2 font-mono text-xs text-muted-foreground">
-        X
-      </span>
+          {/* Angle Theta & Phi arc */}
+          <path
+            d="M 140 115 A 25 25 0 0 1 156 122"
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-primary/70"
+          />
+          <text
+            x="147"
+            y="112"
+            fill="hsl(var(--primary))"
+            className="font-mono text-[9px]"
+          >
+            θ
+          </text>
+        </svg>
+      </div>
 
-      <span className="absolute left-2 top-1/2 -translate-y-1/2 font-mono text-xs text-muted-foreground">
-        -X
-      </span>
-
-      <span className="absolute right-8 top-[58px] font-mono text-[10px] tracking-widest text-primary">
-        |ψ⟩
-      </span>
-
-      {/* Caption */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 text-center">
-        <div className="font-mono text-[9px] tracking-[0.25em] text-muted-foreground">
-          BLOCH SPHERE
-        </div>
+      <div className="mt-2 text-center font-mono text-[10px] text-muted-foreground">
+        |ψ⟩ = cos(θ/2)|0⟩ + e^{"iφ"}sin(θ/2)|1⟩
       </div>
     </div>
   );
 }
 
 /* ============================================================
-   QUANTUM CIRCUIT
+   DIAGRAM 02: TELEPORTATION & BELL ENTANGLEMENT CIRCUIT
    ============================================================ */
 
-function QuantumCircuit() {
+function QuantumCircuitDiagram() {
   return (
-    <div className="w-full max-w-[430px]">
-
-      <div className="mb-10 flex items-center justify-between">
-        <span className="font-mono text-[10px] tracking-[0.22em] text-muted-foreground">
-          QUANTUM CIRCUIT
-        </span>
-
-        <span className="font-mono text-[10px] text-muted-foreground">
-          02 / 04
-        </span>
+    <div className="flex w-full max-w-[430px] flex-col rounded-xl border border-border/40 bg-card/20 p-6 backdrop-blur-md">
+      <div className="mb-6 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+        <span className="tracking-widest text-primary">SCHEMATIC // 02</span>
+        <span>TELEPORTATION PROTOCOL</span>
       </div>
 
-      <div className="space-y-12">
-
-        {/* Qubit 0 */}
-        <div className="relative flex items-center gap-4">
-
-          <span className="w-8 font-mono text-xs text-muted-foreground">
-            q₀
+      <div className="space-y-6">
+        {/* Qubit 0: Alice's Unknown State */}
+        <div className="relative flex items-center">
+          <span className="w-14 font-mono text-xs font-semibold text-primary">
+            |ψ⟩
           </span>
-
           <div className="relative h-px flex-1 bg-border">
-
-            <div className="absolute left-[22%] top-1/2 -translate-y-1/2">
-              <div
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-md
-                  border
-                  border-primary/40
-                  bg-background
-                  font-mono
-                  text-sm
-                  text-primary
-                "
-              >
-                H
-              </div>
+            {/* CNOT Control */}
+            <div className="absolute left-[36%] top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div className="h-3 w-3 rounded-full bg-primary ring-4 ring-background" />
             </div>
 
-            <div className="absolute left-[57%] top-1/2 -translate-y-1/2">
-              <div className="h-3 w-3 rounded-full bg-primary" />
+            {/* Hadamard Gate */}
+            <div className="absolute left-[60%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded border border-primary/50 bg-background px-2 py-1 font-mono text-[11px] font-bold text-primary shadow-sm">
+              H
             </div>
 
-            <div className="absolute right-[12%] top-1/2 -translate-y-1/2">
-              <div
-                className="
-                  flex
-                  h-10
-                  w-10
-                  items-center
-                  justify-center
-                  rounded-md
-                  border
-                  border-border
-                  bg-background
-                  font-mono
-                  text-sm
-                "
-              >
-                X
-              </div>
+            {/* Measurement Box */}
+            <div className="absolute right-[8%] top-1/2 -translate-y-1/2 rounded border border-border bg-muted/40 px-2 py-1 font-mono text-[10px] text-muted-foreground">
+              M₁
             </div>
           </div>
-
         </div>
 
-        {/* Qubit 1 */}
-        <div className="relative flex items-center gap-4">
-
-          <span className="w-8 font-mono text-xs text-muted-foreground">
-            q₁
+        {/* Qubit 1: Bell Pair Half (Alice) */}
+        <div className="relative flex items-center">
+          <span className="w-14 font-mono text-xs text-muted-foreground">
+            |0⟩_A
           </span>
-
           <div className="relative h-px flex-1 bg-border">
+            {/* Bell Pair Creation: H */}
+            <div className="absolute left-[12%] top-1/2 -translate-x-1/2 -translate-y-1/2 rounded border border-border bg-card px-2 py-1 font-mono text-[11px]">
+              H
+            </div>
 
-            {/* Control line */}
-            <div
-              className="
-                absolute
-                left-[57%]
-                top-0
-                h-[49px]
-                w-px
-                bg-primary/50
-              "
-            />
-
-            <div
-              className="
-                absolute
-                left-[57%]
-                top-1/2
-                flex
-                h-9
-                w-9
-                -translate-x-1/2
-                -translate-y-1/2
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-primary/50
-                bg-background
-                font-mono
-                text-sm
-                text-primary
-              "
-            >
+            {/* Bell Pair Creation: CNOT Target */}
+            <div className="absolute left-[24%] top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-base font-light text-primary">
               ⊕
             </div>
 
+            {/* CNOT Target from |psi> */}
+            <div className="absolute left-[36%] top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-base font-light text-primary">
+              ⊕
+            </div>
+
+            {/* Measurement Box */}
+            <div className="absolute right-[8%] top-1/2 -translate-y-1/2 rounded border border-border bg-muted/40 px-2 py-1 font-mono text-[10px] text-muted-foreground">
+              M₂
+            </div>
           </div>
         </div>
 
+        {/* Vertical Entanglement links */}
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full"
+          fill="none"
+        >
+          {/* Bell state generation line */}
+          <line
+            x1="126"
+            y1="82"
+            x2="126"
+            y2="128"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1.2"
+            strokeDasharray="2 2"
+          />
+          {/* Alice's entangling control line */}
+          <line
+            x1="176"
+            y1="56"
+            x2="176"
+            y2="128"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1.5"
+          />
+        </svg>
+
+        {/* Qubit 2: Bob's Target Line */}
+        <div className="relative flex items-center pt-2">
+          <span className="w-14 font-mono text-xs text-muted-foreground">
+            |0⟩_B
+          </span>
+          <div className="relative h-px flex-1 bg-border">
+            {/* Target from Bell Pair */}
+            <div className="absolute left-[24%] top-1/2 -translate-x-1/2 -translate-y-1/2 font-mono text-base text-primary">
+              ⊕
+            </div>
+
+            {/* Correction Unit */}
+            <div className="absolute right-[8%] top-1/2 -translate-y-1/2 flex items-center gap-1">
+              <div className="rounded border border-primary/40 bg-primary/5 px-2 py-1 font-mono text-[10px] text-primary">
+                X^{"M₂"}
+              </div>
+              <div className="rounded border border-primary/40 bg-primary/5 px-2 py-1 font-mono text-[10px] text-primary">
+                Z^{"M₁"}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-10 flex items-center gap-3">
-        <span className="h-px flex-1 bg-border" />
-
-        <span className="font-mono text-[10px] text-muted-foreground">
-          H · CNOT · X
-        </span>
-
-        <span className="h-px flex-1 bg-border" />
+      {/* Classical Double Wire representation */}
+      <div className="mt-8 flex items-center justify-between border-t border-border/50 pt-3 font-mono text-[9px] text-muted-foreground">
+        <span>CLASSICAL BUS: 2 BITS (c=2)</span>
+        <span className="text-primary font-semibold">OUTPUT: |ψ⟩_B</span>
       </div>
-
     </div>
   );
 }
 
 /* ============================================================
-   QUANTUM STATE
+   DIAGRAM 03: DENSITY MATRIX & INTERFERENCE DYNAMICS
    ============================================================ */
 
-function QuantumState() {
+function QuantumInterferenceDiagram() {
   return (
-    <div className="flex w-full max-w-[430px] flex-col items-center">
-
-      <div className="mb-10 w-full flex items-center justify-between">
-        <span className="font-mono text-[10px] tracking-[0.22em] text-muted-foreground">
-          QUANTUM STATE
-        </span>
-
-        <span className="font-mono text-[10px] text-muted-foreground">
-          03 / 04
-        </span>
+    <div className="flex w-full max-w-[430px] flex-col rounded-xl border border-border/40 bg-card/20 p-6 backdrop-blur-md">
+      <div className="mb-4 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+        <span className="tracking-widest text-primary">SCHEMATIC // 03</span>
+        <span>MIXED STATE PURITY & COHERENCE</span>
       </div>
 
-      {/* Equation */}
-      <div className="font-mono text-3xl md:text-4xl tracking-tight text-foreground">
-        |ψ⟩ = α|0⟩ + β|1⟩
-      </div>
-
-      <div className="mt-4 font-mono text-xs text-muted-foreground">
-        |α|² + |β|² = 1
-      </div>
-
-      {/* Probability bars */}
-      <div className="mt-12 w-full max-w-[350px] space-y-6">
-
-        <div>
-          <div className="mb-2 flex justify-between font-mono text-[10px]">
-            <span className="text-muted-foreground">
-              P(|0⟩)
-            </span>
-
-            <span className="text-foreground">
-              |α|²
-            </span>
-          </div>
-
-          <div className="h-2 overflow-hidden rounded-full bg-muted">
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: "64%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1 }}
-              className="h-full rounded-full bg-primary"
-            />
+      {/* Density Matrix Visual Grid */}
+      <div className="my-2 flex items-center justify-center gap-4">
+        <span className="font-mono text-xl text-muted-foreground">ρ =</span>
+        <div className="relative rounded-lg border border-border/80 bg-background/60 p-3 font-mono">
+          <div className="grid grid-cols-2 gap-3 text-center text-xs">
+            <div className="rounded border border-primary/30 bg-primary/5 p-2">
+              <span className="text-primary">|α|²</span>
+              <p className="text-[9px] text-muted-foreground">POPULATION ρ₀₀</p>
+            </div>
+            <div className="rounded border border-border/60 bg-muted/20 p-2">
+              <span className="text-foreground">αβ* e^{"-iΔt"}</span>
+              <p className="text-[9px] text-muted-foreground">COHERENCE ρ₀₁</p>
+            </div>
+            <div className="rounded border border-border/60 bg-muted/20 p-2">
+              <span className="text-foreground">α*β e^{"iΔt"}</span>
+              <p className="text-[9px] text-muted-foreground">COHERENCE ρ₁₀</p>
+            </div>
+            <div className="rounded border border-primary/30 bg-primary/5 p-2">
+              <span className="text-primary">|β|²</span>
+              <p className="text-[9px] text-muted-foreground">POPULATION ρ₁₁</p>
+            </div>
           </div>
         </div>
-
-        <div>
-          <div className="mb-2 flex justify-between font-mono text-[10px]">
-            <span className="text-muted-foreground">
-              P(|1⟩)
-            </span>
-
-            <span className="text-foreground">
-              |β|²
-            </span>
-          </div>
-
-          <div className="h-2 overflow-hidden rounded-full bg-muted">
-            <motion.div
-              initial={{ width: 0 }}
-              whileInView={{ width: "36%" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.15 }}
-              className="h-full rounded-full bg-primary/50"
-            />
-          </div>
-        </div>
-
       </div>
 
-      {/* Basis states */}
-      <div className="mt-12 flex items-center gap-5 font-mono text-xs">
-
-        <div className="rounded-lg border border-border px-5 py-3">
-          |0⟩
+      {/* Interference Phase Waveform */}
+      <div className="mt-5">
+        <div className="mb-1 flex justify-between font-mono text-[9px] text-muted-foreground">
+          <span>COHERENT OSCILLATION: P(θ) = cos²(ωt/2)</span>
+          <span className="text-primary">Tr(ρ²) = 1.0</span>
         </div>
 
-        <span className="text-muted-foreground">
-          +
-        </span>
-
-        <div className="rounded-lg border border-border px-5 py-3">
-          |1⟩
-        </div>
-
+        <svg viewBox="0 0 320 50" className="w-full" fill="none">
+          <path
+            d="M 0 25 C 40 0, 40 50, 80 25 C 120 0, 120 50, 160 25 C 200 0, 200 50, 240 25 C 280 0, 280 50, 320 25"
+            stroke="hsl(var(--primary))"
+            strokeWidth="1.5"
+            className="opacity-80"
+          />
+          <line
+            x1="0"
+            y1="25"
+            x2="320"
+            y2="25"
+            stroke="currentColor"
+            strokeWidth="0.75"
+            strokeDasharray="4 4"
+            className="text-border"
+          />
+        </svg>
       </div>
 
+      <div className="mt-4 flex items-center justify-between border-t border-border/50 pt-3 font-mono text-[9px] text-muted-foreground">
+        <span>DEPHASING TIME: T₂* ≈ 94.2 μs</span>
+        <span>RELAXATION: T₁ ≈ 128 μs</span>
+      </div>
     </div>
   );
 }
 
 /* ============================================================
-   ALGORITHM / HACKATHON VISUAL
+   DIAGRAM 04: GROVER AMPLIFICATION & DIFFUSION
    ============================================================ */
 
-function QuantumAlgorithm() {
+function GroverAlgorithmDiagram() {
   return (
-    <div className="w-full max-w-[430px]">
+    <div className="flex w-full max-w-[430px] flex-col rounded-xl border border-border/40 bg-card/20 p-6 backdrop-blur-md">
+      <div className="mb-4 flex items-center justify-between font-mono text-[10px] text-muted-foreground">
+        <span className="tracking-widest text-primary">SCHEMATIC // 04</span>
+        <span>GROVER ORACLE & DIFFUSION</span>
+      </div>
 
-      <div className="mb-10 flex items-center justify-between">
-        <span className="font-mono text-[10px] tracking-[0.22em] text-muted-foreground">
-          QUANTUM ALGORITHM
+      {/* Amplitude reflection schematic */}
+      <div className="space-y-4 py-2">
+        <div className="space-y-1">
+          <div className="flex justify-between font-mono text-[9px] text-muted-foreground">
+            <span>TARGET STATE |ω⟩ AMPLITUDE</span>
+            <span className="text-primary font-bold">O(√N) ROTATION</span>
+          </div>
+          <div className="relative h-7 w-full overflow-hidden rounded border border-border bg-background">
+            {/* Base mean line */}
+            <div className="absolute bottom-0 left-0 top-0 w-1/4 border-r border-border bg-muted/20" />
+            <motion.div
+              initial={{ width: "22%" }}
+              whileInView={{ width: "86%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, ease: "easeOut" }}
+              className="h-full bg-gradient-to-r from-primary/60 to-primary flex items-center justify-end pr-2 font-mono text-[10px] font-bold text-primary-foreground"
+            >
+              sin((2k+1)θ)
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Orthogonal states suppression */}
+        <div className="space-y-1">
+          <div className="flex justify-between font-mono text-[9px] text-muted-foreground">
+            <span>NON-TARGET STATES |s'⟩</span>
+            <span>AMPLITUDE SUPPRESSION</span>
+          </div>
+          <div className="relative h-4 w-full overflow-hidden rounded border border-border bg-background">
+            <motion.div
+              initial={{ width: "70%" }}
+              whileInView={{ width: "14%" }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.4, ease: "easeOut" }}
+              className="h-full bg-muted-foreground/30"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Unitary Pipeline */}
+      <div className="mt-4 flex items-center justify-center gap-2 font-mono text-[10px]">
+        <span className="rounded border border-border bg-card px-2 py-1">
+          H^{"⊗n"}
         </span>
-
-        <span className="font-mono text-[10px] text-primary">
-          04 / 04
+        <span className="text-muted-foreground">→</span>
+        <span className="rounded border border-primary/40 bg-primary/10 px-2 py-1 text-primary">
+          U_ω (Oracle)
+        </span>
+        <span className="text-muted-foreground">→</span>
+        <span className="rounded border border-border bg-card px-2 py-1">
+          2|s⟩⟨s| - I
         </span>
       </div>
 
-      <div className="space-y-5">
-
-        {/* Step 1 */}
-        <div className="flex items-center gap-4">
-
-          <div
-            className="
-              flex
-              h-12
-              w-12
-              shrink-0
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-border
-              bg-card
-              font-mono
-              text-sm
-            "
-          >
-            01
-          </div>
-
-          <div className="h-px flex-1 bg-border" />
-
-          <div className="w-28 rounded-lg border border-border px-4 py-3">
-            <div className="font-mono text-xs">
-              INIT
-            </div>
-
-            <div className="mt-1 text-[9px] text-muted-foreground">
-              |000⟩
-            </div>
-          </div>
-
-        </div>
-
-        {/* Step 2 */}
-        <div className="flex items-center gap-4">
-
-          <div
-            className="
-              flex
-              h-12
-              w-12
-              shrink-0
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-primary/30
-              bg-primary/5
-              font-mono
-              text-sm
-              text-primary
-            "
-          >
-            02
-          </div>
-
-          <div className="h-px flex-1 bg-primary/30" />
-
-          <div className="w-28 rounded-lg border border-primary/30 bg-primary/5 px-4 py-3">
-            <div className="font-mono text-xs text-primary">
-              APPLY
-            </div>
-
-            <div className="mt-1 text-[9px] text-muted-foreground">
-              U(θ)
-            </div>
-          </div>
-
-        </div>
-
-        {/* Step 3 */}
-        <div className="flex items-center gap-4">
-
-          <div
-            className="
-              flex
-              h-12
-              w-12
-              shrink-0
-              items-center
-              justify-center
-              rounded-lg
-              border
-              border-border
-              bg-card
-              font-mono
-              text-sm
-            "
-          >
-            03
-          </div>
-
-          <div className="h-px flex-1 bg-border" />
-
-          <div className="w-28 rounded-lg border border-border px-4 py-3">
-            <div className="font-mono text-xs">
-              MEASURE
-            </div>
-
-            <div className="mt-1 text-[9px] text-muted-foreground">
-              M(q)
-            </div>
-          </div>
-
-        </div>
-
+      <div className="mt-6 flex items-center justify-between border-t border-border/50 pt-3 font-mono text-[9px] text-muted-foreground">
+        <span>DIFFUSION OPERATOR</span>
+        <span className="text-primary">OPTIMAL RUNTIME: (π/4)√N</span>
       </div>
-
-      <div className="mt-10 flex items-center justify-end gap-3">
-        <span className="font-mono text-[10px] text-muted-foreground">
-          BUILD
-        </span>
-
-        <span className="text-primary">
-          →
-        </span>
-
-        <span className="font-mono text-[10px] text-primary">
-          CREATE
-        </span>
-      </div>
-
     </div>
   );
 }
@@ -677,28 +614,24 @@ function QuantumAlgorithm() {
    VISUAL SELECTOR
    ============================================================ */
 
-function QuantumVisual({
-  type,
-}: {
-  type: ScheduleDay["visual"];
-}) {
+function QuantumVisual({ type }: { type: ScheduleDay["visual"] }) {
   if (type === "bloch") {
-    return <BlochSphere />;
+    return <BlochSphereDiagram />;
   }
 
   if (type === "circuit") {
-    return <QuantumCircuit />;
+    return <QuantumCircuitDiagram />;
   }
 
   if (type === "state") {
-    return <QuantumState />;
+    return <QuantumInterferenceDiagram />;
   }
 
-  return <QuantumAlgorithm />;
+  return <GroverAlgorithmDiagram />;
 }
 
 /* ============================================================
-   MAIN COMPONENT
+   MAIN SCHEDULE COMPONENT
    ============================================================ */
 
 export function Schedule() {
@@ -707,291 +640,149 @@ export function Schedule() {
       id="schedule"
       className="relative overflow-hidden bg-background py-28 md:py-36"
     >
-      <div className="container mx-auto max-w-6xl px-4 md:px-6">
+      {/* Structural Blueprint Grid Background Accent */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-        {/* ==================================================
-            HEADER
-        ================================================== */}
-
+      <div className="container relative mx-auto max-w-6xl px-4 md:px-6">
+        {/* HEADER */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
           className="mb-24 md:mb-32"
         >
-
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-px w-10 bg-primary" />
-
-            <span className="font-mono text-[10px] font-semibold tracking-[0.28em] text-primary">
-              PROGRAMME
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-8 bg-primary" />
+            <span className="font-mono text-[10px] font-semibold tracking-[0.25em] text-primary uppercase">
+              Symposium Syllabus
             </span>
           </div>
 
-          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <h2 className="text-4xl font-bold tracking-tight text-foreground md:text-6xl">
-                Event Schedule
+              <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+                Event Schedule & Theory
               </h2>
-
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                Explore four days of quantum computing, hands-on learning,
-                lectures, workshops, and collaborative innovation.
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+                Four days spanning state space geometries, entanglement
+                protocols, mixed-state density matrices, and quantum search
+                complexity.
               </p>
             </div>
 
-            <div className="shrink-0 font-mono text-[10px] tracking-[0.2em] text-muted-foreground">
+            <div className="flex items-center gap-3 rounded-lg border border-border/80 bg-card/40 px-4 py-2 font-mono text-[10px] tracking-widest text-muted-foreground backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
               09 - 12 OCTOBER 2026
             </div>
-
           </div>
-
         </motion.div>
 
-
-        {/* ==================================================
-            DAYS
-        ================================================== */}
-
+        {/* DAYS & DIAGRAMS */}
         <div className="space-y-24 md:space-y-36">
-
           {scheduleData.map((day, index) => {
-
-            const left = index % 2 === 0;
+            const isEven = index % 2 === 0;
 
             return (
               <div
                 key={day.number}
-                className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-24"
+                className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16"
               >
-
-                {/* ==================================================
-                    SCHEDULE CARD
-                ================================================== */}
-
+                {/* TIMELINE LIST */}
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    x: left ? -35 : 35,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    margin: "-100px",
-                  }}
-                  transition={{
-                    duration: 0.7,
-                  }}
-                  className={left ? "md:order-1" : "md:order-2"}
+                  initial={{ opacity: 0, x: isEven ? -25 : 25 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.6 }}
+                  className={`lg:col-span-7 ${
+                    isEven ? "lg:order-1" : "lg:order-2"
+                  }`}
                 >
-
-                  <div
-                    className="
-                      relative
-                      overflow-hidden
-                      rounded-2xl
-                      border
-                      border-border/70
-                      bg-card/30
-                      p-6
-                      backdrop-blur-sm
-                      transition-all
-                      duration-300
-                      hover:border-border
-                      hover:bg-card/50
-                      md:p-8
-                    "
-                  >
-
-                    {/* Large background number */}
-                    <div
-                      className="
-                        pointer-events-none
-                        absolute
-                        -right-3
-                        -top-8
-                        select-none
-                        font-mono
-                        text-[150px]
-                        font-bold
-                        leading-none
-                        text-muted-foreground/[0.035]
-                      "
-                    >
+                  <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-card/30 p-6 backdrop-blur-md md:p-8 transition-colors hover:border-border">
+                    {/* Background Index Number */}
+                    <div className="pointer-events-none absolute -right-2 -top-6 select-none font-mono text-[130px] font-bold leading-none text-muted-foreground/[0.04]">
                       {day.number}
                     </div>
 
-
-                    {/* Header */}
-                    <div className="relative mb-8">
-
-                      <div className="mb-4 flex items-center gap-3">
-
-                        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-primary">
-                          DAY {day.number}
-                        </span>
-
-                        <span className="h-px w-8 bg-border" />
-
-                        <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground">
-                          {day.weekday}
-                        </span>
-
+                    {/* Day Header */}
+                    <div className="relative mb-6 flex items-center justify-between border-b border-border/60 pb-4">
+                      <div>
+                        <div className="font-mono text-[10px] font-semibold tracking-wider text-primary">
+                          STAGE // DAY {day.number}
+                        </div>
+                        <h3 className="mt-1 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+                          {day.date}
+                        </h3>
                       </div>
-
-                      <h3 className="text-2xl font-bold tracking-tight text-foreground md:text-3xl">
-                        {day.date}
-                      </h3>
-
+                      <span className="rounded border border-border bg-muted/30 px-2 py-1 font-mono text-[10px] text-muted-foreground">
+                        {day.weekday}
+                      </span>
                     </div>
 
-
-                    {/* Events */}
-                    <div className="relative space-y-0">
-
+                    {/* Event Rows */}
+                    <div className="relative divide-y divide-border/40">
                       {day.events.map((event, eventIndex) => (
-
                         <motion.div
                           key={event.title}
-                          initial={{
-                            opacity: 0,
-                            y: 12,
-                          }}
-                          whileInView={{
-                            opacity: 1,
-                            y: 0,
-                          }}
-                          viewport={{
-                            once: true,
-                          }}
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
                           transition={{
-                            duration: 0.45,
-                            delay: eventIndex * 0.1,
+                            duration: 0.4,
+                            delay: eventIndex * 0.08,
                           }}
-                          className="
-                            group
-                            border-t
-                            border-border/60
-                            py-5
-                            first:border-t-0
-                            first:pt-0
-                            last:pb-0
-                          "
+                          className="group flex flex-col justify-between gap-3 py-4 sm:flex-row sm:items-center sm:gap-6"
                         >
-
-                          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
-
-                            <div className="min-w-0">
-
-                              <div className="mb-2 font-mono text-[10px] tracking-wide text-muted-foreground">
-                                {event.time}
-                              </div>
-
-                              <h4
-                                className="
-                                  text-base
-                                  font-semibold
-                                  tracking-tight
-                                  text-foreground
-                                  transition-colors
-                                  duration-200
-                                  group-hover:text-primary
-                                  md:text-lg
-                                "
-                              >
-                                {event.title}
-                              </h4>
-
+                          <div className="space-y-1">
+                            <div className="font-mono text-[10px] text-muted-foreground">
+                              {event.time}
                             </div>
-
-                            <EventBadge type={event.type} />
-
+                            <div className="text-sm font-medium text-foreground transition-colors group-hover:text-primary md:text-base">
+                              {event.title}
+                            </div>
                           </div>
 
+                          <div className="shrink-0">
+                            <EventBadge type={event.type} />
+                          </div>
                         </motion.div>
-
                       ))}
-
                     </div>
-
                   </div>
-
                 </motion.div>
 
-
-                {/* ==================================================
-                    QUANTUM OBJECT
-                ================================================== */}
-
+                {/* THEORETICAL DIAGRAM */}
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    x: left ? 35 : -35,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                    margin: "-100px",
-                  }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.1,
-                  }}
-                  className={`
-                    hidden
-                    min-h-[330px]
-                    items-center
-                    justify-center
-                    md:flex
-                    ${left ? "md:order-2" : "md:order-1"}
-                  `}
+                  initial={{ opacity: 0, x: isEven ? 25 : -25 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className={`flex items-center justify-center lg:col-span-5 ${
+                    isEven ? "lg:order-2" : "lg:order-1"
+                  }`}
                 >
-
                   <QuantumVisual type={day.visual} />
-
                 </motion.div>
-
               </div>
             );
           })}
-
         </div>
 
-
-        {/* ==================================================
-            FOOTER
-        ================================================== */}
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-24 border-t border-border pt-7 md:mt-36"
-        >
-
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-
-            <span className="font-mono text-[9px] font-semibold tracking-[0.22em] text-muted-foreground">
-              PROGRAMME NOTE
-            </span>
-
-            <p className="text-sm text-muted-foreground">
-              The schedule is tentative and may be subject to change.
-            </p>
-
+        {/* FOOTER */}
+        <div className="mt-24 border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[10px] text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span>RIGOROUS ACADEMIC STANDARDS APPLIED</span>
           </div>
-
-        </motion.div>
-
+          <span>SUBJECT TO MODIFICATION BY THE ORGANIZING COMMITTEE</span>
+        </div>
       </div>
     </section>
   );
