@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, ArrowDown } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 // ============================================================
 // ASSETS
@@ -416,7 +416,7 @@ export function Hero() {
 
 
         {/* =====================================================
-            ACTION BUTTONS
+            ACTION BUTTON
         ====================================================== */}
 
         <motion.div
@@ -435,10 +435,8 @@ export function Hero() {
           }}
           className="
             flex
-            flex-col
-            sm:flex-row
             items-center
-            gap-4
+            justify-center
           "
         >
 
@@ -479,107 +477,9 @@ export function Hero() {
             </a>
           </Button>
 
-
-          {/* Discover Button */}
-
-          <Button
-            asChild
-            variant="outline"
-            size="lg"
-            className="
-              rounded-full
-              px-8
-              h-14
-              text-lg
-              bg-white/5
-              text-white
-              border-white/30
-              hover:bg-white/15
-              hover:text-white
-              backdrop-blur-sm
-              transition-all
-              duration-300
-            "
-          >
-            <a href="#about">
-              Discover More
-            </a>
-          </Button>
-
         </motion.div>
 
       </div>
-
-
-      {/* =========================================================
-          SCROLL INDICATOR
-      ========================================================== */}
-
-      <motion.div
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          delay: 1.5,
-          duration: 1,
-        }}
-        className="
-          absolute
-          bottom-10
-          left-1/2
-          -translate-x-1/2
-          flex
-          flex-col
-          items-center
-          gap-3
-          z-10
-        "
-      >
-
-        <span
-          className="
-            text-[10px]
-            md:text-xs
-            font-mono
-            text-white/60
-            tracking-[0.3em]
-            uppercase
-          "
-        >
-          Scroll
-        </span>
-
-
-        <motion.div
-          animate={{
-            y: [0, 6, 0],
-          }}
-          transition={{
-            duration: 1.8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="flex flex-col items-center"
-        >
-
-          <div
-            className="
-              w-px
-              h-8
-              bg-gradient-to-b
-              from-white/70
-              to-transparent
-            "
-          />
-
-          <ArrowDown className="w-4 h-4 text-white/60" />
-
-        </motion.div>
-
-      </motion.div>
 
 
       {/* =========================================================
