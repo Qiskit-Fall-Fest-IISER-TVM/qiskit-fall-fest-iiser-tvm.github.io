@@ -1,4 +1,4 @@
-import { GraduationCap, Linkedin } from "lucide-react";
+import { Linkedin } from "lucide-react";
 
 interface StudentCardProps {
   name: string;
@@ -15,7 +15,6 @@ export function StudentCard({
 }: StudentCardProps) {
   return (
     <div className="flex flex-col items-center text-center">
-
       <img
         src={image}
         alt={name}
@@ -40,9 +39,7 @@ export function StudentCard({
           <Linkedin className="w-4 h-4" />
           LinkedIn
         </a>
-
       </div>
-
     </div>
   );
 }
