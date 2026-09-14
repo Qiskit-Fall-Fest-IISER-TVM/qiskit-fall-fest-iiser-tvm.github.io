@@ -20,19 +20,19 @@ const scheduleData: ScheduleDay[] = [
     visual: "bloch",
     events: [
       {
-        time: "05:00 PM - 05:30 PM",
-        title: "Inauguration Ceremony",
+        time: "05:15 PM - 05:45 PM",
+        title: "Inauguration",
         type: "INAUGURATION",
       },
       {
-        time: "05:45 PM - 07:00 PM",
-        title: "Keynote: Foundations of Quantum Information & Qubit Manifolds",
-        type: "SESSION",
+        time: "06:00 PM - 07:00 PM",
+        title: "Inaugural Lecture",
+        type: "LECTURE",
       },
       {
-        time: "09:00 PM - 11:00 PM",
-        title: "Quantum 101: Geometric State Rotations & Hilbert Space",
-        type: "LECTURE",
+        time: "08:00 PM - 09:00 PM",
+        title: "Keynote Lecture",
+        type: "KEYNOTE",
       },
     ],
   },
@@ -43,14 +43,14 @@ const scheduleData: ScheduleDay[] = [
     visual: "circuit",
     events: [
       {
-        time: "09:00 AM - 12:00 PM",
-        title: "Workshop: Bell States, Entanglement & Teleportation Protocols",
+        time: "10:00 AM - 12:00 PM",
+        title: "Workshop",
         type: "WORKSHOP",
       },
       {
         time: "02:00 PM - 05:00 PM",
-        title: "Lecture: Multi-Qubit Unitaries & Controlled Operations",
-        type: "LECTURE",
+        title: "Keynote Lectures",
+        type: "KEYNOTE",
       },
     ],
   },
@@ -61,14 +61,19 @@ const scheduleData: ScheduleDay[] = [
     visual: "state",
     events: [
       {
-        time: "09:00 AM - 12:00 PM",
-        title: "Workshop: Density Operators, Mixed Ensembles & Decoherence Channels",
+        time: "10:00 AM - 12:00 PM",
+        title: "Workshop",
         type: "WORKSHOP",
       },
       {
-        time: "02:00 PM - 05:00 PM",
-        title: "Lecture: Quantum Error Mitigation & Transverse Dephasing",
-        type: "LECTURE",
+        time: "02:00 PM - 04:00 PM",
+        title: "Keynote Lecture",
+        type: "KEYNOTE",
+      },
+      {
+        time: "04:00 PM - 05:00 PM",
+        title: "Panel Discussion: Career in Quantum",
+        type: "PANEL",
       },
     ],
   },
@@ -79,13 +84,13 @@ const scheduleData: ScheduleDay[] = [
     visual: "grover",
     events: [
       {
-        time: "04:00 PM - 06:00 PM",
-        title: "Symposium: Grover Amplification & Optimal Query Complexities",
-        type: "PANEL",
+        time: "05:00 PM - 06:00 PM",
+        title: "Keynote Lecture",
+        type: "KEYNOTE",
       },
       {
-        time: "06:00 PM onwards",
-        title: "Concluding Session & Poster Presentations",
+        time: "06:00 PM - 06:30 PM",
+        title: "Concluding Session",
         type: "CONCLUSION",
       },
     ],
@@ -94,7 +99,10 @@ const scheduleData: ScheduleDay[] = [
 
 function EventBadge({ type }: { type: string }) {
   const isHighlight =
-    type === "INAUGURATION" || type === "WORKSHOP" || type === "PANEL";
+    type === "INAUGURATION" ||
+    type === "WORKSHOP" ||
+    type === "PANEL" ||
+    type === "KEYNOTE";
 
   return (
     <span
@@ -243,7 +251,7 @@ function BlochSphereDiagram() {
           className="stroke-foreground/60"
         />
 
-        {/* LaTeX Styled Annotations */}
+        {/* Annotations */}
         <text
           x="160"
           y="14"
@@ -312,15 +320,15 @@ function BlochSphereDiagram() {
           φ
         </text>
       </svg>
-      <div className="mt-3 font-serif text-sm italic text-muted-foreground text-center">
-        Fig 1. State vector trajectory on the unit Bloch sphere
+      <div className="mt-3 font-mono text-xs tracking-wider text-muted-foreground text-center uppercase">
+        Bloch Sphere
       </div>
     </div>
   );
 }
 
 /* ============================================================
-   DIAGRAM 02: QUANTIKZ TELEPORTATION PROTOCOL
+   DIAGRAM 02: TELEPORTATION PROTOCOL
    ============================================================ */
 function TeleportationDiagram() {
   return (
@@ -641,8 +649,8 @@ function TeleportationDiagram() {
           |ψ⟩
         </text>
       </svg>
-      <div className="mt-3 font-serif text-sm italic text-muted-foreground text-center">
-        Fig 2. Bell state entanglement and classical feedforward circuit
+      <div className="mt-3 font-mono text-xs tracking-wider text-muted-foreground text-center uppercase">
+        Quantum Teleportation Circuit
       </div>
     </div>
   );
@@ -655,7 +663,7 @@ function DensityMatrixDiagram() {
   return (
     <div className="flex w-full flex-col items-center justify-center p-3 opacity-90 transition-opacity hover:opacity-100">
       <div className="flex flex-col items-center space-y-4">
-        {/* Clean Density Matrix */}
+        {/* Density Matrix */}
         <div className="flex items-center space-x-3 font-serif text-lg text-foreground">
           <span className="italic font-medium">ρ =</span>
           <div className="border-l-2 border-r-2 border-foreground/70 px-4 py-2">
@@ -733,15 +741,15 @@ function DensityMatrixDiagram() {
         </svg>
       </div>
 
-      <div className="mt-3 font-serif text-sm italic text-muted-foreground text-center">
-        Fig 3. Density matrix coherences under transverse dephasing
+      <div className="mt-3 font-mono text-xs tracking-wider text-muted-foreground text-center uppercase">
+        Density Matrix & Dephasing
       </div>
     </div>
   );
 }
 
 /* ============================================================
-   DIAGRAM 04: GROVER AMPLIFICATION (CLEANLY SPACED & TRANSPARENT)
+   DIAGRAM 04: GROVER AMPLIFICATION
    ============================================================ */
 function GroverDiagram() {
   return (
@@ -896,8 +904,8 @@ function GroverDiagram() {
           Repeat R ≈ (π/4)√N times
         </text>
       </svg>
-      <div className="mt-2 font-serif text-sm italic text-muted-foreground text-center">
-        Fig 4. Circuit layout for Grover amplitude amplification
+      <div className="mt-2 font-mono text-xs tracking-wider text-muted-foreground text-center uppercase">
+        Grover Search Circuit
       </div>
     </div>
   );
@@ -921,26 +929,35 @@ function QuantumVisual({ type }: { type: ScheduleDay["visual"] }) {
    ============================================================ */
 export function Schedule() {
   return (
-    <section id="schedule" className="relative w-full bg-background py-24 md:py-32">
-      <div className="container mx-auto max-w-6xl px-4 md:px-6">
+    <section id="schedule" className="relative overflow-hidden bg-background py-24 md:py-32">
+      {/* Restored Subtle Tech Background Grid */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      <div className="container relative mx-auto max-w-6xl px-4 md:px-6">
         
         {/* HEADER */}
         <div className="mb-20">
           <div className="mb-3 flex items-center gap-3">
             <span className="h-px w-10 bg-primary" />
             <span className="font-mono text-xs font-semibold tracking-widest text-primary uppercase">
-              Symposium Syllabus
+              Schedule
             </span>
           </div>
 
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">
-                Event Schedule & Modules
+                Event Schedule
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                Four days spanning state geometry, entanglement distribution,
-                mixed-state density matrices, and quantum search bounds.
+                Four days of workshops, keynote lectures, and panel discussions...
               </p>
             </div>
 
@@ -1012,17 +1029,13 @@ export function Schedule() {
                   </div>
                 </div>
 
-                {/* THEORETICAL SCHEMATIC */}
+                {/* SCHEMATIC PANEL */}
                 <div
                   className={`flex items-center justify-center lg:col-span-5 ${
                     isEven ? "lg:order-2" : "lg:order-1"
                   }`}
                 >
                   <div className="w-full rounded-2xl border border-border/50 bg-card/25 p-5 backdrop-blur-sm shadow-sm transition-colors hover:border-border/80">
-                    <div className="mb-2 flex items-center justify-between border-b border-border/40 pb-2 font-mono text-xs text-muted-foreground">
-                      <span>THEORETICAL MODEL // 0{day.number}</span>
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary/70" />
-                    </div>
                     <QuantumVisual type={day.visual} />
                   </div>
                 </div>
@@ -1033,8 +1046,8 @@ export function Schedule() {
 
         {/* FOOTER */}
         <div className="mt-20 border-t border-border/60 pt-6 flex flex-col sm:flex-row justify-between gap-4 font-mono text-xs text-muted-foreground">
-          <span>PROGRAMME NOTE: SCHEDULE FOLLOWS IST (UTC+5:30)</span>
-          <span>SUBJECT TO MODIFICATION BY THE ORGANIZING COMMITTEE</span>
+          <span>PROGRAMME NOTE: Schedule follows IST (UTC+5:30)</span>
+          <span>Hackathon time will be communicated later to the participants.</span>
         </div>
       </div>
     </section>
