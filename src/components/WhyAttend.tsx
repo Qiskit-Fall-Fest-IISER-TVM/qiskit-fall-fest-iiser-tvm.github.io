@@ -37,7 +37,7 @@ export function WhyAttend() {
 
   return (
     <SectionBackground className="relative overflow-hidden py-20 md:py-28">
-      {/* Background Hero Asset Layer */}
+      {/* Background Hero Asset Layer without any synthetic grid */}
       <div
         className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
         style={{ backgroundImage: `url(${bgImage})` }}
@@ -68,7 +68,7 @@ export function WhyAttend() {
           </p>
         </div>
 
-        {/* Compact QFT Schematic Card */}
+        {/* Compact 4-Qubit QFT Schematic Card */}
         <div className="mx-auto mb-14 max-w-3xl">
           <QFTCircuit />
         </div>
@@ -134,43 +134,44 @@ export function WhyAttend() {
 }
 
 /* =====================================================================
-   COMPACT & STATIC QUANTIKZ 3-QUBIT QFT CIRCUIT
-   - Uses clean Unicode subscripts (|j₁⟩, |j₂⟩, |j₃⟩) to prevent raw underscores
-   - Solid fill on gate boxes cleanly masks the wire pass-throughs
+   COMPACT & STATIC 4-QUBIT QFT CIRCUIT
+   - Uses clean subscripts (|j₁⟩, |j₂⟩, |j₃⟩, |j₄⟩) without raw underscores
+   - Reduced gate sizes and tighter column widths for a balanced aspect ratio
+   - Solid fill on boxes cleanly masks continuous lines
 ===================================================================== */
 function QFTCircuit() {
-  const rowY = [35, 85, 135];
-  const qubitLabels = ["|j₁⟩", "|j₂⟩", "|j₃⟩"];
-  const wireStart = 55;
-  const wireEnd = 435;
+  const rowY = [28, 64, 100, 136];
+  const qubitLabels = ["|j₁⟩", "|j₂⟩", "|j₃⟩", "|j₄⟩"];
+  const wireStart = 48;
+  const wireEnd = 475;
 
   return (
     <div className="relative w-full overflow-hidden rounded-2xl border border-border/70 bg-card/30 p-5 backdrop-blur-sm shadow-sm md:p-6">
       {/* Header */}
-      <div className="mb-4 flex items-center justify-between border-b border-border/40 pb-3">
+      <div className="mb-3 flex items-center justify-between border-b border-border/40 pb-2.5">
         <div className="font-mono text-xs font-medium text-primary uppercase tracking-wider">
-          Quantum Fourier Transform (QFT₃)
+          Quantum Fourier Transform (QFT₄)
         </div>
-        <div className="font-serif text-sm italic text-muted-foreground">
-          |j⟩ ↦ 2<sup>−3/2</sup> ∑<sub>k</sub> e<sup>2πi jk / 8</sup> |k⟩
+        <div className="font-serif text-xs md:text-sm italic text-muted-foreground">
+          |j⟩ ↦ 2<sup>−2</sup> ∑<sub>k</sub> e<sup>2πi jk / 16</sup> |k⟩
         </div>
       </div>
 
-      {/* SVG Canvas */}
+      {/* Compact SVG Canvas */}
       <div className="flex w-full items-center justify-center overflow-x-auto py-1">
         <svg
-          viewBox="0 0 480 170"
-          className="w-full max-w-[460px] text-foreground opacity-90 transition-opacity hover:opacity-100"
+          viewBox="0 0 500 165"
+          className="w-full max-w-[490px] text-foreground opacity-90 transition-opacity hover:opacity-100"
           fill="none"
         >
           {/* Continuous Qubit Wire Lines */}
           {rowY.map((y, i) => (
             <g key={`wire-${i}`}>
               <text
-                x={12}
-                y={y + 5}
+                x={8}
+                y={y + 4}
                 fill="currentColor"
-                className="font-serif italic text-base"
+                className="font-serif italic text-sm"
               >
                 {qubitLabels[i]}
               </text>
@@ -180,7 +181,7 @@ function QFTCircuit() {
                 x2={wireEnd}
                 y2={y}
                 stroke="currentColor"
-                strokeWidth={1.3}
+                strokeWidth={1.2}
                 className="stroke-foreground/75"
               />
             </g>
@@ -188,181 +189,71 @@ function QFTCircuit() {
 
           {/* Vertical Control-Phase Connecting Lines */}
           {/* q0 control links */}
-          <line
-            x1={148}
-            y1={rowY[0]}
-            x2={148}
-            y2={rowY[1]}
-            stroke="currentColor"
-            strokeWidth={1.3}
-            className="stroke-foreground/75"
-          />
-          <line
-            x1={208}
-            y1={rowY[0]}
-            x2={208}
-            y2={rowY[2]}
-            stroke="currentColor"
-            strokeWidth={1.3}
-            className="stroke-foreground/75"
-          />
+          <line x1={120} y1={rowY[0]} x2={120} y2={rowY[1]} stroke="currentColor" strokeWidth={1.2} className="stroke-foreground/75" />
+          <line x1={162} y1={rowY[0]} x2={162} y2={rowY[2]} stroke="currentColor" strokeWidth={1.2} className="stroke-foreground/75" />
+          <line x1={204} y1={rowY[0]} x2={204} y2={rowY[3]} stroke="currentColor" strokeWidth={1.2} className="stroke-foreground/75" />
 
-          {/* q1 control link */}
-          <line
-            x1={318}
-            y1={rowY[1]}
-            x2={318}
-            y2={rowY[2]}
-            stroke="currentColor"
-            strokeWidth={1.3}
-            className="stroke-foreground/75"
-          />
+          {/* q1 control links */}
+          <line x1={278} y1={rowY[1]} x2={278} y2={rowY[2]} stroke="currentColor" strokeWidth={1.2} className="stroke-foreground/75" />
+          <line x1={320} y1={rowY[1]} x2={320} y2={rowY[3]} stroke="currentColor" strokeWidth={1.2} className="stroke-foreground/75" />
 
-          {/* SWAP Gate vertical wire */}
-          <line
-            x1={405}
-            y1={rowY[0]}
-            x2={405}
-            y2={rowY[2]}
-            stroke="currentColor"
-            strokeWidth={1.3}
-            className="stroke-foreground/75"
-          />
+          {/* q2 control link */}
+          <line x1={394} y1={rowY[2]} x2={394} y2={rowY[3]} stroke="currentColor" strokeWidth={1.2} className="stroke-foreground/75" />
+
+          {/* SWAP Gate vertical connecting wires */}
+          <line x1={444} y1={rowY[0]} x2={444} y2={rowY[3]} stroke="currentColor" strokeWidth={1.2} className="stroke-foreground/75" />
+          <line x1={460} y1={rowY[1]} x2={460} y2={rowY[2]} stroke="currentColor" strokeWidth={1.2} className="stroke-foreground/75" />
 
           {/* --- QUBIT 0 STAGE --- */}
-          {/* H Gate */}
-          <rect
-            x={88}
-            y={rowY[0] - 14}
-            width={28}
-            height={28}
-            rx={2}
-            className="fill-background stroke-foreground/80"
-            strokeWidth={1.3}
-          />
-          <text
-            x={102}
-            y={rowY[0] + 5}
-            textAnchor="middle"
-            fill="currentColor"
-            className="font-serif text-sm font-medium"
-          >
-            H
-          </text>
+          <rect x={72} y={rowY[0] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={83} y={rowY[0] + 4} textAnchor="middle" fill="currentColor" className="font-serif text-xs font-medium">H</text>
 
-          {/* Controlled R2 on q0 from q1 */}
-          <rect
-            x={134}
-            y={rowY[0] - 14}
-            width={28}
-            height={28}
-            rx={2}
-            className="fill-background stroke-foreground/80"
-            strokeWidth={1.3}
-          />
-          <text
-            x={148}
-            y={rowY[0] + 4}
-            textAnchor="middle"
-            fill="currentColor"
-            className="font-serif text-xs"
-          >
-            R₂
-          </text>
-          <circle cx={148} cy={rowY[1]} r={4} fill="currentColor" />
+          <rect x={109} y={rowY[0] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={120} y={rowY[0] + 3} textAnchor="middle" fill="currentColor" className="font-serif text-[10px]">R₂</text>
+          <circle cx={120} cy={rowY[1]} r={3.5} fill="currentColor" />
 
-          {/* Controlled R3 on q0 from q2 */}
-          <rect
-            x={194}
-            y={rowY[0] - 14}
-            width={28}
-            height={28}
-            rx={2}
-            className="fill-background stroke-foreground/80"
-            strokeWidth={1.3}
-          />
-          <text
-            x={208}
-            y={rowY[0] + 4}
-            textAnchor="middle"
-            fill="currentColor"
-            className="font-serif text-xs"
-          >
-            R₃
-          </text>
-          <circle cx={208} cy={rowY[2]} r={4} fill="currentColor" />
+          <rect x={151} y={rowY[0] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={162} y={rowY[0] + 3} textAnchor="middle" fill="currentColor" className="font-serif text-[10px]">R₃</text>
+          <circle cx={162} cy={rowY[2]} r={3.5} fill="currentColor" />
+
+          <rect x={193} y={rowY[0] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={204} y={rowY[0] + 3} textAnchor="middle" fill="currentColor" className="font-serif text-[10px]">R₄</text>
+          <circle cx={204} cy={rowY[3]} r={3.5} fill="currentColor" />
 
           {/* --- QUBIT 1 STAGE --- */}
-          {/* H Gate */}
-          <rect
-            x={258}
-            y={rowY[1] - 14}
-            width={28}
-            height={28}
-            rx={2}
-            className="fill-background stroke-foreground/80"
-            strokeWidth={1.3}
-          />
-          <text
-            x={272}
-            y={rowY[1] + 5}
-            textAnchor="middle"
-            fill="currentColor"
-            className="font-serif text-sm font-medium"
-          >
-            H
-          </text>
+          <rect x={232} y={rowY[1] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={243} y={rowY[1] + 4} textAnchor="middle" fill="currentColor" className="font-serif text-xs font-medium">H</text>
 
-          {/* Controlled R2 on q1 from q2 */}
-          <rect
-            x={304}
-            y={rowY[1] - 14}
-            width={28}
-            height={28}
-            rx={2}
-            className="fill-background stroke-foreground/80"
-            strokeWidth={1.3}
-          />
-          <text
-            x={318}
-            y={rowY[1] + 4}
-            textAnchor="middle"
-            fill="currentColor"
-            className="font-serif text-xs"
-          >
-            R₂
-          </text>
-          <circle cx={318} cy={rowY[2]} r={4} fill="currentColor" />
+          <rect x={267} y={rowY[1] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={278} y={rowY[1] + 3} textAnchor="middle" fill="currentColor" className="font-serif text-[10px]">R₂</text>
+          <circle cx={278} cy={rowY[2]} r={3.5} fill="currentColor" />
+
+          <rect x={309} y={rowY[1] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={320} y={rowY[1] + 3} textAnchor="middle" fill="currentColor" className="font-serif text-[10px]">R₃</text>
+          <circle cx={320} cy={rowY[3]} r={3.5} fill="currentColor" />
 
           {/* --- QUBIT 2 STAGE --- */}
-          {/* H Gate */}
-          <rect
-            x={354}
-            y={rowY[2] - 14}
-            width={28}
-            height={28}
-            rx={2}
-            className="fill-background stroke-foreground/80"
-            strokeWidth={1.3}
-          />
-          <text
-            x={368}
-            y={rowY[2] + 5}
-            textAnchor="middle"
-            fill="currentColor"
-            className="font-serif text-sm font-medium"
-          >
-            H
-          </text>
+          <rect x={348} y={rowY[2] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={359} y={rowY[2] + 4} textAnchor="middle" fill="currentColor" className="font-serif text-xs font-medium">H</text>
 
-          {/* --- SWAP GATES (q0 <-> q2) --- */}
-          <SwapCross cx={405} cy={rowY[0]} />
-          <SwapCross cx={405} cy={rowY[2]} />
+          <rect x={383} y={rowY[2] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={394} y={rowY[2] + 3} textAnchor="middle" fill="currentColor" className="font-serif text-[10px]">R₂</text>
+          <circle cx={394} cy={rowY[3]} r={3.5} fill="currentColor" />
+
+          {/* --- QUBIT 3 STAGE --- */}
+          <rect x={412} y={rowY[3] - 11} width={22} height={22} rx={2} className="fill-background stroke-foreground/80" strokeWidth={1.2} />
+          <text x={423} y={rowY[3] + 4} textAnchor="middle" fill="currentColor" className="font-serif text-xs font-medium">H</text>
+
+          {/* --- SWAP GATES --- */}
+          <SwapCross cx={444} cy={rowY[0]} />
+          <SwapCross cx={444} cy={rowY[3]} />
+          <SwapCross cx={460} cy={rowY[1]} />
+          <SwapCross cx={460} cy={rowY[2]} />
         </svg>
       </div>
 
       {/* Clean Math Footer */}
-      <div className="mt-3 flex items-center justify-between border-t border-border/40 pt-3 font-mono text-xs text-muted-foreground">
+      <div className="mt-3 flex items-center justify-between border-t border-border/40 pt-2.5 font-mono text-xs text-muted-foreground">
         <span>PHASE SHIFT: R<sub>k</sub> = diag(1, e<sup>2πi/2<sup>k</sup></sup>)</span>
         <span className="uppercase">Complexity: O(n²)</span>
       </div>
@@ -370,19 +261,19 @@ function QFTCircuit() {
   );
 }
 
-/** Crisp SWAP target cross with solid fill */
+/** Compact SWAP target cross */
 function SwapCross({ cx, cy }: { cx: number; cy: number }) {
-  const d = 4.5;
+  const d = 3.5;
   return (
     <g>
-      <circle cx={cx} cy={cy} r={6} className="fill-background" />
+      <circle cx={cx} cy={cy} r={5} className="fill-background" />
       <line
         x1={cx - d}
         y1={cy - d}
         x2={cx + d}
         y2={cy + d}
         stroke="currentColor"
-        strokeWidth={1.3}
+        strokeWidth={1.2}
         className="stroke-foreground"
       />
       <line
@@ -391,7 +282,7 @@ function SwapCross({ cx, cy }: { cx: number; cy: number }) {
         x2={cx + d}
         y2={cy - d}
         stroke="currentColor"
-        strokeWidth={1.3}
+        strokeWidth={1.2}
         className="stroke-foreground"
       />
     </g>
