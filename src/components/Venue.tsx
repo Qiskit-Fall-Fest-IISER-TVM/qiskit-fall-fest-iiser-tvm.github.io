@@ -116,7 +116,7 @@ export function Venue() {
                 </h3>
 
                 <p className="text-white/70">
-                  Fall 2026 — Exact dates to be announced. Stay tuned!
+                  Fall 2026 — October 9th - 12th, 2026
                 </p>
 
               </div>
@@ -165,7 +165,7 @@ export function Venue() {
                   href="mailto:qiskitfallfest@iisertvm.ac.in"
                   className="text-white/70 hover:text-cyan-300 transition-colors"
                 >
-                  qiskitfallfest@iisertvm.ac.in
+                  qiskitfallfest2026@iisertvm.ac.in
                 </a>
 
               </div>
