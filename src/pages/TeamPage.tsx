@@ -1,4 +1,4 @@
-import { GraduationCap, Globe } from "lucide-react";
+import { Globe } from "lucide-react";
 import { StudentCard } from "@/components/StudentCard";
 import teamBg from "@/assets/Hero_1_without_title.png";
 
@@ -17,16 +17,12 @@ const facultyAdvisors = [
     name: "Prof. Anil Shaji",
     role: "Professor",
     image: shajiPhoto,
-    scholar:
-      "https://scholar.google.com/citations?user=Pp5t7VsAAAAJ&hl=en",
     website: "https://www.iisertvm.ac.in/faculty/shaji",
   },
   {
     name: "Prof. Madhu Thalakulam",
     role: "Associate Professor",
     image: madhuPhoto,
-    scholar:
-      "https://scholar.google.com/citations?user=3--YLbIAAAAJ&hl=en",
     website: "https://www.iisertvm.ac.in/faculty/madhu",
   },
 ];
@@ -141,20 +137,9 @@ export default function TeamPage() {
                     {advisor.role}
                   </p>
 
+                  {/* Faculty Website */}
                   <div className="flex flex-wrap justify-center gap-4 mt-7">
 
-                    {/* Google Scholar */}
-                    <a
-                      href={advisor.scholar}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 rounded-full border border-primary/30 bg-background/20 backdrop-blur-sm px-5 py-2 hover:bg-primary/10 transition"
-                    >
-                      <GraduationCap className="w-5 h-5" />
-                      Google Scholar
-                    </a>
-
-                    {/* Faculty Website */}
                     <a
                       href={advisor.website}
                       target="_blank"
