@@ -3,7 +3,6 @@ import {
   ArrowUpRight,
   CalendarDays,
   MapPin,
-  ExternalLink,
 } from "lucide-react";
 import { SectionBackground } from "@/components/SectionBackground";
 
@@ -12,752 +11,136 @@ const REGISTRATION_URL =
 
 export function Registration() {
   return (
-    <SectionBackground className="relative overflow-hidden py-28 md:py-36">
+    <SectionBackground className="relative overflow-hidden py-24 md:py-32">
 
-      {/* =====================================================
-          BACKGROUND
-      ===================================================== */}
-
-      <div className="absolute inset-0 bg-primary/[0.035] dark:bg-primary/[0.07]" />
-
+      {/* Background */}
+      <div className="absolute inset-0 bg-primary/[0.03] dark:bg-primary/[0.05]" />
       <div
         className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-1/2
-          h-[500px]
-          w-[900px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          bg-primary/[0.08]
-          blur-[140px]
+          pointer-events-none absolute left-1/2 top-1/2 h-[460px] w-[820px]
+          -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/[0.06] blur-[130px]
         "
       />
-
-      {/* Subtle grid */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-[0.035]
-          [background-image:linear-gradient(to_right,hsl(var(--foreground))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--foreground))_1px,transparent_1px)]
-          [background-size:48px_48px]
-        "
-      />
-
-      {/* =====================================================
-          MAIN CONTENT
-      ===================================================== */}
 
       <div className="container relative z-10 mx-auto px-4 md:px-6">
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className="
-            mx-auto
-            max-w-5xl
-            overflow-hidden
-            rounded-3xl
-            border
-            border-border/70
-            bg-background/85
-            shadow-2xl
-            backdrop-blur-xl
+            mx-auto max-w-5xl overflow-hidden rounded-2xl
+            border border-border bg-background shadow-xl
           "
         >
 
-          {/* =================================================
-              TOP ACCENT
-          ================================================= */}
+          <div className="grid grid-cols-1 md:grid-cols-[1.2fr_1fr]">
 
-          <div className="h-1 w-full bg-primary" />
+            {/* ============================= LEFT ============================= */}
 
-          <div className="grid grid-cols-1 md:grid-cols-[1.25fr_0.75fr]">
+            <div className="p-8 md:p-12 lg:p-14">
 
-            {/* =================================================
-                LEFT CONTENT
-            ================================================= */}
+              <p className="text-sm font-medium text-primary">
+                Registration is open
+              </p>
 
-            <div className="relative p-8 md:p-14 lg:p-16">
-
-              {/* Small label */}
-              <motion.div
-                initial={{ opacity: 0, x: -15 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.15 }}
-                className="mb-6 flex items-center gap-3"
-              >
-                <span className="h-px w-10 bg-primary" />
-
-                <span
-                  className="
-                    font-mono
-                    text-[10px]
-                    font-semibold
-                    tracking-[0.25em]
-                    text-primary
-                  "
-                >
-                  REGISTRATION
-                </span>
-              </motion.div>
-
-              {/* Heading */}
-              <motion.h2
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
+              <h2
                 className="
-                  max-w-xl
-                  text-4xl
-                  font-bold
-                  tracking-tight
-                  text-foreground
-                  md:text-5xl
-                  lg:text-6xl
+                  mt-4 max-w-xl text-3xl font-semibold leading-[1.1]
+                  tracking-tight text-foreground md:text-4xl lg:text-[2.75rem]
                 "
               >
-                Join the
-                <span className="text-primary"> Quantum Frontier.</span>
-              </motion.h2>
+                Join Qiskit Fall Fest 2026 at IISER Thiruvananthapuram
+              </h2>
 
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.25 }}
-                className="
-                  mt-6
-                  max-w-xl
-                  text-base
-                  leading-relaxed
-                  text-muted-foreground
-                  md:text-lg
-                "
-              >
-                Be part of Qiskit Fall Fest 2026 at IISER
-                Thiruvananthapuram. Learn, build, and explore
-                the possibilities of quantum computing alongside
-                students, educators, and researchers.
-              </motion.p>
+              <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground">
+                Four days of talks, hands-on labs, and challenges in
+                quantum computing — open to students, educators, and
+                researchers of every background.
+              </p>
 
-              {/* Event information */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="
-                  mt-10
-                  grid
-                  grid-cols-1
-                  gap-4
-                  sm:grid-cols-2
-                "
-              >
-
-                {/* Date */}
-                <div
-                  className="
-                    flex
-                    items-start
-                    gap-4
-                    rounded-xl
-                    border
-                    border-border
-                    bg-muted/30
-                    p-4
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-lg
-                      border
-                      border-border
-                      bg-background
-                    "
-                  >
-                    <CalendarDays className="h-4 w-4 text-primary" />
-                  </div>
-
+              {/* Event details */}
+              <dl className="mt-9 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="flex items-start gap-3">
+                  <CalendarDays className="mt-0.5 h-4.5 w-4.5 shrink-0 text-primary" />
                   <div>
-                    <p
-                      className="
-                        font-mono
-                        text-[9px]
-                        tracking-[0.18em]
-                        text-muted-foreground
-                      "
-                    >
-                      DATE
-                    </p>
-
-                    <p
-                      className="
-                        mt-1
-                        text-sm
-                        font-semibold
-                        text-foreground
-                      "
-                    >
-                      09 - 12 October 2026
-                    </p>
+                    <dt className="text-xs text-muted-foreground">Date</dt>
+                    <dd className="text-sm font-medium text-foreground">
+                      09–12 October 2026
+                    </dd>
                   </div>
                 </div>
 
-                {/* Location */}
-                <div
-                  className="
-                    flex
-                    items-start
-                    gap-4
-                    rounded-xl
-                    border
-                    border-border
-                    bg-muted/30
-                    p-4
-                  "
-                >
-                  <div
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-lg
-                      border
-                      border-border
-                      bg-background
-                    "
-                  >
-                    <MapPin className="h-4 w-4 text-primary" />
-                  </div>
-
+                <div className="flex items-start gap-3">
+                  <MapPin className="mt-0.5 h-4.5 w-4.5 shrink-0 text-primary" />
                   <div>
-                    <p
-                      className="
-                        font-mono
-                        text-[9px]
-                        tracking-[0.18em]
-                        text-muted-foreground
-                      "
-                    >
-                      VENUE
-                    </p>
-
-                    <p
-                      className="
-                        mt-1
-                        text-sm
-                        font-semibold
-                        text-foreground
-                      "
-                    >
+                    <dt className="text-xs text-muted-foreground">Venue</dt>
+                    <dd className="text-sm font-medium text-foreground">
                       IISER Thiruvananthapuram
-                    </p>
+                    </dd>
                   </div>
                 </div>
-
-              </motion.div>
+              </dl>
 
               {/* CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.35 }}
-                className="mt-10"
-              >
+              <div className="mt-10 flex items-center gap-4">
                 <a
                   href={REGISTRATION_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="
-                    group
-                    inline-flex
-                    h-13
-                    items-center
-                    gap-3
-                    rounded-xl
-                    bg-primary
-                    px-7
-                    py-3.5
-                    text-sm
-                    font-semibold
-                    text-primary-foreground
-                    shadow-lg
-                    transition-all
-                    duration-300
-                    hover:-translate-y-0.5
-                    hover:bg-primary/90
-                    hover:shadow-xl
+                    group inline-flex h-11 items-center gap-2 rounded-lg
+                    bg-primary px-6 text-sm font-medium text-primary-foreground
+                    transition-colors hover:bg-primary/90
                   "
                 >
-                  Register Now
-
-                  <ArrowUpRight
-                    className="
-                      h-4
-                      w-4
-                      transition-transform
-                      duration-300
-                      group-hover:translate-x-0.5
-                      group-hover:-translate-y-0.5
-                    "
-                  />
+                  Register now
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
 
-                <p
-                  className="
-                    mt-4
-                    flex
-                    items-center
-                    gap-2
-                    text-xs
-                    text-muted-foreground
-                  "
-                >
-                  Registration opens in a new tab
-
-                  <ExternalLink className="h-3 w-3" />
-                </p>
-              </motion.div>
+                <span className="text-xs text-muted-foreground">
+                  Opens in a new tab
+                </span>
+              </div>
 
             </div>
 
-            {/* =================================================
-                RIGHT VISUAL - GHZ CIRCUIT
-            ================================================= */}
+            {/* ============================= RIGHT: CIRCUIT ============================= */}
 
             <div
               className="
-                relative
-                hidden
-                min-h-[500px]
-                overflow-hidden
-                border-l
-                border-border
-                bg-muted/20
-                md:flex
-                md:items-center
-                md:justify-center
+                relative hidden min-h-[440px] flex-col justify-center
+                border-l border-border bg-muted/20 p-10 md:flex
               "
             >
+              <p className="mb-6 text-xs font-medium text-muted-foreground">
+                GHZ state preparation · 3 qubits
+              </p>
 
-              {/* Subtle grid */}
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  inset-0
-                  opacity-[0.035]
-                  [background-image:linear-gradient(to_right,hsl(var(--foreground))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--foreground))_1px,transparent_1px)]
-                  [background-size:32px_32px]
-                "
-              />
+              <QiskitCircuit />
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                className="relative w-full max-w-[460px] px-7"
-              >
-
-                {/* Circuit heading */}
-                <div className="mb-8 flex items-center gap-3">
-                  <span className="h-px w-8 bg-primary" />
-
-                  <span
-                    className="
-                      font-mono
-                      text-[9px]
-                      font-semibold
-                      tracking-[0.25em]
-                      text-primary
-                    "
-                  >
-                    GHZ STATE PREPARATION
-                  </span>
-                </div>
-
-
-                {/* =================================================
-                    QUANTUM CIRCUIT
-                ================================================= */}
-
-                <div
-                  className="
-                    rounded-2xl
-                    border
-                    border-border/70
-                    bg-background/70
-                    px-6
-                    py-8
-                    shadow-xl
-                    backdrop-blur-sm
-                  "
-                >
-
-                  {/* Circuit columns */}
-                  <div className="relative">
-
-                    {/* Vertical CNOT 1 */}
-                    <div
-                      className="
-                        absolute
-                        left-[168px]
-                        top-[32px]
-                        h-[96px]
-                        w-px
-                        bg-primary
-                      "
-                    />
-
-                    {/* Vertical CNOT 2 */}
-                    <div
-                      className="
-                        absolute
-                        left-[268px]
-                        top-[96px]
-                        h-[96px]
-                        w-px
-                        bg-primary
-                      "
-                    />
-
-
-                    {/* ===============================
-                        QUBIT 0
-                    =============================== */}
-
-                    <div className="relative flex h-16 items-center">
-
-                      <span
-                        className="
-                          w-10
-                          shrink-0
-                          font-mono
-                          text-sm
-                          text-muted-foreground
-                        "
-                      >
-                        q₀
-                      </span>
-
-                      <div className="relative flex flex-1 items-center">
-
-                        {/* Wire */}
-                        <div
-                          className="
-                            absolute
-                            left-0
-                            right-0
-                            h-px
-                            bg-border
-                          "
-                        />
-
-                        {/* H gate */}
-                        <div
-                          className="
-                            relative
-                            z-10
-                            ml-4
-                            flex
-                            h-10
-                            w-10
-                            items-center
-                            justify-center
-                            rounded-md
-                            border
-                            border-primary/60
-                            bg-background
-                            font-serif
-                            text-lg
-                            text-primary
-                            shadow-sm
-                          "
-                        >
-                          H
-                        </div>
-
-                        {/* CNOT control 1 */}
-                        <div
-                          className="
-                            absolute
-                            left-[120px]
-                            z-10
-                            h-3.5
-                            w-3.5
-                            rounded-full
-                            bg-primary
-                          "
-                        />
-
-                      </div>
-                    </div>
-
-
-                    {/* ===============================
-                        QUBIT 1
-                    =============================== */}
-
-                    <div className="relative flex h-16 items-center">
-
-                      <span
-                        className="
-                          w-10
-                          shrink-0
-                          font-mono
-                          text-sm
-                          text-muted-foreground
-                        "
-                      >
-                        q₁
-                      </span>
-
-                      <div className="relative flex flex-1 items-center">
-
-                        {/* Wire */}
-                        <div
-                          className="
-                            absolute
-                            left-0
-                            right-0
-                            h-px
-                            bg-border
-                          "
-                        />
-
-                        {/* CNOT target 1 */}
-                        <div
-                          className="
-                            absolute
-                            left-[112px]
-                            z-10
-                            flex
-                            h-5
-                            w-5
-                            items-center
-                            justify-center
-                            rounded-full
-                            border-2
-                            border-primary
-                            bg-background
-                          "
-                        >
-                          <div className="h-2 w-2 rounded-full bg-primary" />
-                        </div>
-
-                        {/* CNOT control 2 */}
-                        <div
-                          className="
-                            absolute
-                            left-[212px]
-                            z-10
-                            h-3.5
-                            w-3.5
-                            rounded-full
-                            bg-primary
-                          "
-                        />
-
-                      </div>
-                    </div>
-
-
-                    {/* ===============================
-                        QUBIT 2
-                    =============================== */}
-
-                    <div className="relative flex h-16 items-center">
-
-                      <span
-                        className="
-                          w-10
-                          shrink-0
-                          font-mono
-                          text-sm
-                          text-muted-foreground
-                        "
-                      >
-                        q₂
-                      </span>
-
-                      <div className="relative flex flex-1 items-center">
-
-                        {/* Wire */}
-                        <div
-                          className="
-                            absolute
-                            left-0
-                            right-0
-                            h-px
-                            bg-border
-                          "
-                        />
-
-                        {/* CNOT target 2 */}
-                        <div
-                          className="
-                            absolute
-                            left-[212px]
-                            z-10
-                            flex
-                            h-5
-                            w-5
-                            items-center
-                            justify-center
-                            rounded-full
-                            border-2
-                            border-primary
-                            bg-background
-                          "
-                        >
-                          <div className="h-2 w-2 rounded-full bg-primary" />
-                        </div>
-
-                      </div>
-                    </div>
-
-                  </div>
-
-                </div>
-
-
-                {/* =================================================
-                    GHZ EQUATION
-                ================================================= */}
-
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5, duration: 0.7 }}
-                  className="mt-7 text-center"
-                >
-
-                  <div
-                    className="
-                      font-serif
-                      text-lg
-                      text-foreground
-                    "
-                  >
-                    <span className="text-primary">
-                      |GHZ₃⟩
-                    </span>
-
-                    <span className="mx-2 opacity-60">
-                      =
-                    </span>
-
-                    <span className="text-primary">
-                      1/√2
-                    </span>
-
-                    <span className="mx-2 opacity-60">
-                      (
-                    </span>
-
-                    <span>
-                      |000⟩ + |111⟩
-                    </span>
-
-                    <span className="opacity-60">
-                      )
-                    </span>
-                  </div>
-
-                  <p
-                    className="
-                      mt-3
-                      font-mono
-                      text-[9px]
-                      tracking-[0.18em]
-                      text-muted-foreground
-                    "
-                  >
-                    THREE QUBITS · ENTANGLED STATE
-                  </p>
-
-                </motion.div>
-
-
-                {/* =================================================
-                    IDENTIFIER
-                ================================================= */}
-
-                <div
-                  className="
-                    mt-8
-                    flex
-                    items-center
-                    justify-between
-                    font-mono
-                    text-[8px]
-                    tracking-[0.18em]
-                    text-muted-foreground/50
-                  "
-                >
-                  <span>QFF_2026</span>
-                  <span>Q₃ → |GHZ₃⟩</span>
-                </div>
-
-              </motion.div>
-
+              <div className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">|GHZ₃⟩</span>
+                <span>=</span>
+                <span>
+                  1/√2&nbsp;(|000⟩ + |111⟩)
+                </span>
+              </div>
             </div>
 
           </div>
 
-
-          {/* =================================================
-              BOTTOM BAR
-          ================================================= */}
+          {/* ============================= BOTTOM BAR ============================= */}
 
           <div
             className="
-              flex
-              flex-col
-              gap-3
-              border-t
-              border-border
-              px-8
-              py-5
-              sm:flex-row
-              sm:items-center
-              sm:justify-between
-              md:px-14
+              flex flex-col gap-2 border-t border-border px-8 py-4
+              sm:flex-row sm:items-center sm:justify-between md:px-12
             "
           >
-
-            <span
-              className="
-                font-mono
-                text-[9px]
-                tracking-[0.2em]
-                text-muted-foreground
-              "
-            >
-              IBM QUANTUM × IISER THIRUVANANTHAPURAM
+            <span className="text-xs text-muted-foreground">
+              Organized with IBM Quantum
             </span>
 
             <a
@@ -765,21 +148,13 @@ export function Registration() {
               target="_blank"
               rel="noopener noreferrer"
               className="
-                inline-flex
-                items-center
-                gap-2
-                text-xs
-                font-medium
-                text-muted-foreground
-                transition-colors
-                hover:text-primary
+                inline-flex items-center gap-1.5 text-xs font-medium
+                text-muted-foreground transition-colors hover:text-primary
               "
             >
               Open registration form
-
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
-
           </div>
 
         </motion.div>
@@ -787,5 +162,137 @@ export function Registration() {
       </div>
 
     </SectionBackground>
+  );
+}
+
+/* =====================================================================
+   QISKIT-STYLE CIRCUIT DIAGRAM
+   Drawn as a single SVG so gate boxes, wires, and control/target dots
+   stay pixel-aligned at any size — modeled on Qiskit's matplotlib
+   circuit drawer conventions.
+===================================================================== */
+
+function QiskitCircuit() {
+  const rowY = [30, 100, 170];
+  const wireStart = 56;
+  const wireEnd = 380;
+
+  return (
+    <svg
+      viewBox="0 0 380 200"
+      className="mx-auto w-full max-w-[380px] overflow-visible"
+      role="img"
+      aria-label="Quantum circuit preparing a three-qubit GHZ state: a Hadamard gate on q0 followed by two CNOT gates"
+    >
+      {/* Qubit wires */}
+      {rowY.map((y, i) => (
+        <line
+          key={i}
+          x1={wireStart}
+          y1={y}
+          x2={wireEnd}
+          y2={y}
+          stroke="hsl(var(--border))"
+          strokeWidth={1.5}
+        />
+      ))}
+
+      {/* Qubit labels */}
+      {rowY.map((y, i) => (
+        <text
+          key={i}
+          x={0}
+          y={y + 5}
+          fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+          fontSize={14}
+          fill="hsl(var(--muted-foreground))"
+        >
+          {`q${i}`}
+        </text>
+      ))}
+
+      {/* CNOT connector lines (drawn first, under the dots) */}
+      <line
+        x1={190}
+        y1={rowY[0]}
+        x2={190}
+        y2={rowY[1]}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={1.5}
+      />
+      <line
+        x1={290}
+        y1={rowY[1]}
+        x2={290}
+        y2={rowY[2]}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={1.5}
+      />
+
+      {/* Hadamard gate on q0 */}
+      <rect
+        x={100}
+        y={10}
+        width={40}
+        height={40}
+        rx={5}
+        fill="hsl(var(--primary) / 0.12)"
+        stroke="hsl(var(--primary))"
+        strokeWidth={1.5}
+      />
+      <text
+        x={120}
+        y={35}
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fontFamily="ui-serif, Georgia, serif"
+        fontSize={18}
+        fontWeight={600}
+        fill="hsl(var(--primary))"
+      >
+        H
+      </text>
+
+      {/* CNOT 1 — control on q0, target on q1 */}
+      <circle cx={190} cy={rowY[0]} r={6} fill="hsl(var(--foreground))" />
+      <TargetSymbol cx={190} cy={rowY[1]} />
+
+      {/* CNOT 2 — control on q1, target on q2 */}
+      <circle cx={290} cy={rowY[1]} r={6} fill="hsl(var(--foreground))" />
+      <TargetSymbol cx={290} cy={rowY[2]} />
+    </svg>
+  );
+}
+
+/** The ⊕ target symbol used for a CNOT gate, matching Qiskit's drawer. */
+function TargetSymbol({ cx, cy }: { cx: number; cy: number }) {
+  const r = 14;
+  return (
+    <g>
+      <circle
+        cx={cx}
+        cy={cy}
+        r={r}
+        fill="hsl(var(--background))"
+        stroke="hsl(var(--foreground))"
+        strokeWidth={1.5}
+      />
+      <line
+        x1={cx - r}
+        y1={cy}
+        x2={cx + r}
+        y2={cy}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={1.5}
+      />
+      <line
+        x1={cx}
+        y1={cy - r}
+        x2={cx}
+        y2={cy + r}
+        stroke="hsl(var(--foreground))"
+        strokeWidth={1.5}
+      />
+    </g>
   );
 }
