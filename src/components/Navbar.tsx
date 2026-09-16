@@ -26,6 +26,7 @@ export function Navbar() {
     { name: "Team", to: "/team" },
     { name: "Schedule", to: "/schedule" },
     { name: "Register", to: "/register" },
+    { name: "Contact", to: "/contact" },
   ];
 
   return (
@@ -37,9 +38,7 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-
         {/* Logo */}
-
         <Link to="/" className="flex items-center gap-3">
           <img
             src={iiserLogo}
@@ -48,21 +47,14 @@ export function Navbar() {
           />
 
           <div>
-            <h1 className="font-bold text-lg text-black">
-              Qiskit
-            </h1>
+            <h1 className="font-bold text-lg text-black">Qiskit</h1>
 
-            <p className="text-xs text-black/70">
-              Fall Fest '26
-            </p>
+            <p className="text-xs text-black/70">Fall Fest '26</p>
           </div>
         </Link>
 
-
         {/* Desktop Navigation */}
-
         <div className="hidden md:flex items-center gap-8">
-
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -76,14 +68,10 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-
         </div>
 
-
         {/* Mobile Controls */}
-
         <div className="md:hidden flex items-center gap-2">
-
           <Button
             variant="ghost"
             size="icon"
@@ -96,17 +84,12 @@ export function Navbar() {
               <Menu className="h-6 w-6" />
             )}
           </Button>
-
         </div>
-
       </div>
 
-
       {/* Mobile Menu */}
-
       {mobileMenuOpen && (
         <div className="md:hidden bg-white/90 backdrop-blur-md border-t border-black/10">
-
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -121,7 +104,6 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-
         </div>
       )}
     </nav>
