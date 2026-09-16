@@ -23,7 +23,7 @@ export function Navbar() {
   const navLinks = [
     { name: "Home", to: "/" },
     { name: "Journey", to: "/journey" },
-    //{ name: "Speakers", to: "/speakers" },
+    // { name: "Speakers", to: "/speakers" },
     { name: "Team", to: "/team" },
     { name: "Schedule", to: "/schedule" },
     { name: "Register", to: "/register" },
@@ -49,7 +49,6 @@ export function Navbar() {
 
           <div>
             <h1 className="font-bold text-lg text-black">Qiskit</h1>
-
             <p className="text-xs text-black/70">Fall Fest '26</p>
           </div>
         </Link>
@@ -108,3 +107,5 @@ export function Navbar() {
         </div>
       )}
     </nav>
+  );
+}
