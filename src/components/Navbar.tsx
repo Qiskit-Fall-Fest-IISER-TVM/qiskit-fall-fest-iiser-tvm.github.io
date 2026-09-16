@@ -22,6 +22,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", to: "/" },
+    { name: "Journey", to: "/journey" },
     //{ name: "Speakers", to: "/speakers" },
     { name: "Team", to: "/team" },
     { name: "Schedule", to: "/schedule" },
@@ -107,5 +108,3 @@ export function Navbar() {
         </div>
       )}
     </nav>
-  );
-}
