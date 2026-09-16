@@ -9,7 +9,6 @@ import shorHardwareImage from "../assets/journey/shor-hardware.png";
 import ibmQuantumImage from "../assets/journey/ibm-quantum.png";
 import nisqImage from "../assets/journey/nisq.png";
 import sycamoreImage from "../assets/journey/sycamore.png";
-import backgroundImage from "../assets/journey/background.png";
 
 interface Milestone {
   year: string;
@@ -163,48 +162,60 @@ export default function Journey() {
         .journey-page {
           --journey-bg: #050914;
           --journey-text: #f4f7fb;
-          --journey-muted: rgba(220, 228, 240, 0.68);
+          --journey-muted: rgba(220, 228, 240, 0.72);
           --journey-line: rgba(157, 177, 205, 0.28);
           --journey-accent: #78a9ff;
 
           position: relative;
           min-height: 100vh;
           overflow: hidden;
-          background: var(--journey-bg);
+          background:
+            radial-gradient(
+              circle at 20% 15%,
+              rgba(54, 92, 150, 0.22),
+              transparent 28%
+            ),
+            radial-gradient(
+              circle at 80% 28%,
+              rgba(65, 95, 150, 0.18),
+              transparent 30%
+            ),
+            radial-gradient(
+              circle at 50% 70%,
+              rgba(30, 58, 105, 0.15),
+              transparent 32%
+            ),
+            #050914;
           color: var(--journey-text);
         }
 
-        .journey-background {
-          position: fixed;
+        .journey-page::before {
+          content: "";
+          position: absolute;
           inset: 0;
-          z-index: 0;
           pointer-events: none;
           background-image:
-            linear-gradient(
-              rgba(5, 9, 20, 0.28),
-              rgba(5, 9, 20, 0.52)
-            ),
-            url(${backgroundImage});
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
+            radial-gradient(circle at 15% 20%, rgba(255,255,255,0.72) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 78% 14%, rgba(255,255,255,0.58) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 63% 34%, rgba(255,255,255,0.45) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 32% 46%, rgba(255,255,255,0.4) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 89% 60%, rgba(255,255,255,0.5) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 12% 76%, rgba(255,255,255,0.42) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 72% 82%, rgba(255,255,255,0.38) 0 1px, transparent 1.5px),
+            radial-gradient(circle at 47% 92%, rgba(255,255,255,0.55) 0 1px, transparent 1.5px);
+          opacity: 0.6;
         }
 
-        .journey-overlay {
-          position: fixed;
+        .journey-page::after {
+          content: "";
+          position: absolute;
           inset: 0;
-          z-index: 1;
           pointer-events: none;
           background:
             radial-gradient(
-              circle at 50% 15%,
-              rgba(70, 105, 160, 0.12),
-              transparent 38%
-            ),
-            linear-gradient(
-              to bottom,
-              rgba(5, 9, 20, 0.08),
-              rgba(5, 9, 20, 0.48)
+              ellipse at center,
+              transparent 30%,
+              rgba(0, 0, 0, 0.35) 100%
             );
         }
 
@@ -597,11 +608,7 @@ export default function Journey() {
       `}</style>
 
       <div className="journey-page">
-        <div className="journey-background" />
-        <div className="journey-overlay" />
-
         <div className="journey-content">
-          {/* Hero */}
           <section className="journey-hero">
             <div className="journey-hero-inner journey-reveal">
               <div className="journey-kicker">
@@ -619,13 +626,10 @@ export default function Journey() {
                 to the pursuit of fault-tolerant quantum computation.
               </p>
 
-              <div className="journey-scroll">
-                Scroll to explore
-              </div>
+              <div className="journey-scroll">Scroll to explore</div>
             </div>
           </section>
 
-          {/* Timeline */}
           <section className="journey-timeline">
             <div className="journey-spine" />
 
@@ -678,16 +682,13 @@ export default function Journey() {
             })}
           </section>
 
-          {/* Ending */}
           <section className="journey-ending journey-reveal">
             <div className="journey-ending-inner">
               <div className="journey-ending-small">
                 The next frontier
               </div>
 
-              <h2 className="journey-ending-title">
-                Towards FTQC
-              </h2>
+              <h2 className="journey-ending-title">Towards FTQC</h2>
 
               <div className="journey-ending-line" />
             </div>
