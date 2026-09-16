@@ -45,8 +45,8 @@ export function Contact() {
       <div className="container relative z-10 mx-auto max-w-6xl px-4 md:px-6">
         <div className="mb-14">
           <div className="mb-3 flex items-center gap-3">
-            <span className="h-px w-8 bg-primary" />
-            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-primary">Get in touch</span>
+            <span className="h-px w-8 bg-foreground" />
+            <span className="font-mono text-xs font-semibold uppercase tracking-widest text-foreground">Get in touch</span>
           </div>
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-5xl">Contact &amp; Enquiries</h2>
           <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
@@ -58,7 +58,7 @@ export function Contact() {
           <div className="space-y-8 lg:col-span-3">
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <ContactCard icon={<Mail className="h-4 w-4" />} label="Official email">
-                <a href={`mailto:${TARGET_EMAIL}`} className="mt-0.5 flex items-center gap-1 text-xs font-medium text-foreground transition-colors hover:text-primary sm:text-sm">
+                <a href={`mailto:${TARGET_EMAIL}`} className="mt-0.5 flex items-center gap-1 text-xs font-medium text-foreground transition-colors hover:text-foreground/70 sm:text-sm">
                   {TARGET_EMAIL} <ExternalLink className="h-3 w-3 opacity-60" />
                 </a>
               </ContactCard>
@@ -70,17 +70,16 @@ export function Contact() {
             </div>
 
             <div className="rounded-2xl border border-border/70 bg-card/35 p-6 shadow-sm backdrop-blur-sm md:p-8">
-              {/* Deliberately the only heading in the form card. */}
               <h3 className="mb-6 text-xl font-bold tracking-tight text-foreground md:text-2xl">
                 Write your feedback or queries
               </h3>
 
               {status === "success" ? (
-                <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-primary/30 bg-primary/5 py-10 text-center">
-                  <CheckCircle2 className="h-8 w-8 text-primary" />
+                <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card/50 py-10 text-center">
+                  <CheckCircle2 className="h-8 w-8 text-foreground" />
                   <p className="text-sm font-semibold text-foreground">Message sent successfully.</p>
                   <p className="max-w-xs text-xs text-muted-foreground">The organizing committee will respond via email shortly.</p>
-                  <button type="button" onClick={() => setStatus("idle")} className="mt-2 font-mono text-xs uppercase tracking-wider text-primary hover:underline">
+                  <button type="button" onClick={() => setStatus("idle")} className="mt-2 font-mono text-xs uppercase tracking-wider text-foreground hover:underline">
                     Send another message
                   </button>
                 </div>
@@ -108,7 +107,7 @@ export function Contact() {
                     </div>
                   )}
 
-                  <button type="submit" disabled={status === "sending"} className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-6 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-md transition-all hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60">
+                  <button type="submit" disabled={status === "sending"} className="inline-flex h-11 items-center gap-2 rounded-lg bg-foreground px-6 text-xs font-semibold uppercase tracking-wider text-background shadow-md transition-all hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-60">
                     {status === "sending" ? <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</> : <><Send className="h-4 w-4" /> Send message</>}
                   </button>
                 </form>
@@ -119,8 +118,8 @@ export function Contact() {
           <aside className="lg:col-span-2">
             <div className="rounded-2xl border border-border/70 bg-card/35 p-5 shadow-sm backdrop-blur-sm md:p-6">
               <div className="mb-4 flex items-center justify-between border-b border-border/40 pb-3">
-                <span className="text-xs font-medium uppercase tracking-wider text-primary" style={{ fontFamily: latexTextFont }}>VQE in context</span>
-                <span className="text-xs italic text-muted-foreground" style={mathTextStyle}>E(θ) → min</span>
+                <span className="text-sm font-medium uppercase tracking-wider text-foreground" style={{ fontFamily: latexTextFont }}>VQE in context</span>
+                <span className="text-sm italic text-muted-foreground" style={mathTextStyle}>E(θ) → min</span>
               </div>
               <VQEWorkflow />
             </div>
@@ -136,7 +135,7 @@ export function Contact() {
   );
 }
 
-const inputClassName = "w-full rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary";
+const inputClassName = "w-full rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground";
 
 function FieldLabel({ label, children }: { label: string; children: React.ReactNode }) {
   return <label className="block font-mono text-xs uppercase tracking-wider text-muted-foreground"><span className="mb-1.5 block">{label}</span>{children}</label>;
@@ -146,73 +145,108 @@ function ContactCard({ icon, label, children }: { icon: React.ReactNode; label: 
   return (
     <div className="rounded-2xl border border-border/70 bg-card/35 p-5 shadow-sm backdrop-blur-sm">
       <div className="flex items-start gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-primary/40 bg-primary/10 text-primary">{icon}</div>
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-muted/40 text-foreground">{icon}</div>
         <div><div className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">{label}</div>{children}</div>
       </div>
     </div>
   );
 }
 
-/* These are the browser names for Computer/Latin Modern, the typefaces used by LaTeX.
-   STIX and Cambria Math keep the scientific typography graceful when they are not installed. */
 const latexTextFont = '"Latin Modern Roman", "Computer Modern Serif", "STIX Two Text", Georgia, serif';
 const latexMathFont = '"Latin Modern Math", "Computer Modern Serif", "STIX Two Math", "Cambria Math", serif';
 const mathTextStyle = { fontFamily: latexMathFont, fontStyle: "italic" as const };
 
-/** A complete VQE story: molecule → Hamiltonian → QPU → measured energy → optimizer → updated parameters. */
+/** Complete B&W monochrome VQE loop with colored Ferrocene anchor */
 function VQEWorkflow() {
   return (
-    <svg viewBox="0 0 440 680" className="mx-auto block w-full max-w-[410px] overflow-visible text-foreground" fill="none" aria-label="Variational quantum eigensolver workflow for ferrocene" style={{ fontFamily: latexTextFont }}>
+    <svg viewBox="0 0 440 760" className="mx-auto block w-full max-w-[410px] overflow-visible text-foreground" fill="none" aria-label="Variational quantum eigensolver workflow for ferrocene" style={{ fontFamily: latexTextFont }}>
       <defs>
-        <filter id="vqe-shadow" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="2" stdDeviation="2.5" floodColor="#0f172a" floodOpacity="0.22" /></filter>
-        <radialGradient id="iron-core" cx="35%" cy="25%" r="70%"><stop offset="0%" stopColor="#fde68a" /><stop offset="55%" stopColor="#f59e0b" /><stop offset="100%" stopColor="#92400e" /></radialGradient>
-        <linearGradient id="ring-surface" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stopColor="#7dd3fc" stopOpacity="0.72" /><stop offset="100%" stopColor="#0369a1" stopOpacity="0.32" /></linearGradient>
-        <marker id="arrow-primary" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" className="fill-primary" /></marker>
-        <marker id="arrow-muted" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" className="fill-muted-foreground" /></marker>
+        <filter id="vqe-shadow" x="-25%" y="-25%" width="150%" height="150%">
+          <feDropShadow dx="0" dy="2" stdDeviation="2.5" floodColor="#000000" floodOpacity="0.18" />
+        </filter>
+        <radialGradient id="iron-core" cx="35%" cy="25%" r="70%">
+          <stop offset="0%" stopColor="#fde68a" />
+          <stop offset="55%" stopColor="#f59e0b" />
+          <stop offset="100%" stopColor="#92400e" />
+        </radialGradient>
+        <linearGradient id="ring-surface" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#7dd3fc" stopOpacity="0.75" />
+          <stop offset="100%" stopColor="#0369a1" stopOpacity="0.35" />
+        </linearGradient>
+        <marker id="arrow-bw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 8 4 L 0 8 z" className="fill-foreground" />
+        </marker>
+        <marker id="arrow-muted-bw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 8 4 L 0 8 z" className="fill-muted-foreground" />
+        </marker>
       </defs>
 
-      <text x="220" y="18" textAnchor="middle" className="fill-muted-foreground text-[10px] uppercase tracking-[0.18em]">Molecular target</text>
+      {/* Target Molecule Header */}
+      <text x="220" y="18" textAnchor="middle" className="fill-muted-foreground text-[12px] uppercase tracking-[0.18em]">Molecular target</text>
+      
+      {/* Ferrocene (Colored & Stretched Horizontally) */}
       <FerroceneMolecule />
-      <text x="220" y="202" textAnchor="middle" className="fill-foreground text-[15px] font-semibold" style={mathTextStyle}>Ferrocene · Fe(C₅H₅)₂</text>
-      <text x="220" y="219" textAnchor="middle" className="fill-muted-foreground text-[10px]">Its electronic structure is the energy VQE is estimating.</text>
+      
+      <text x="220" y="204" textAnchor="middle" className="fill-foreground text-[18px] font-semibold" style={mathTextStyle}>Ferrocene · Fe(C₅H₅)₂</text>
+      <text x="220" y="224" textAnchor="middle" className="fill-muted-foreground text-[12px]">Its electronic structure is the ground-state target.</text>
 
-      <path d="M220 229V243" className="stroke-primary" strokeWidth="1.8" markerEnd="url(#arrow-primary)" />
-      <rect x="55" y="253" width="330" height="54" rx="10" className="fill-background/80 stroke-primary/60" strokeWidth="1.2" />
-      <text x="76" y="276" className="fill-muted-foreground text-[9px] uppercase tracking-wider">1 · Encode molecule</text>
-      <text x="76" y="294" className="fill-foreground text-[14px]" style={mathTextStyle}>H₍Fe(C₅H₅)₂₎  ⟶  Σᵢ cᵢPᵢ</text>
-      <text x="318" y="293" className="fill-primary text-[9px]">qubit Hamiltonian</text>
+      {/* Step 1: Encode */}
+      <path d="M220 234V246" className="stroke-foreground" strokeWidth="1.6" markerEnd="url(#arrow-bw)" />
+      <rect x="24" y="256" width="392" height="70" rx="10" className="fill-background/90 stroke-foreground/70" strokeWidth="1.2" />
+      <text x="38" y="276" className="fill-muted-foreground text-[11px] uppercase tracking-wider">1 · Encode molecule</text>
+      
+      {/* Clean inline notation without dropped subscripts */}
+      <text x="38" y="304" className="fill-foreground text-[15px]" style={mathTextStyle}>H(Fe(C₅H₅)₂)</text>
+      
+      <path d="M152 299H198" className="stroke-foreground" strokeWidth="1.4" markerEnd="url(#arrow-bw)" />
+      <text x="175" y="289" textAnchor="middle" className="fill-foreground text-[10px]">Jordan–Wigner</text>
+      <text x="208" y="304" className="fill-foreground text-[16px]" style={mathTextStyle}>∑</text>
+      <text x="216" y="309" className="fill-foreground text-[10px]" style={mathTextStyle}>i</text>
+      <text x="224" y="304" className="fill-foreground text-[15px]" style={mathTextStyle}>cᵢPᵢ</text>
+      
+      {/* Replaced boundary-overflowing label */}
+      <text x="260" y="303" className="fill-muted-foreground text-[10px] tracking-tight">Jordan–Wigner rep.</text>
 
-      <path d="M220 308V333" className="stroke-primary" strokeWidth="1.8" markerEnd="url(#arrow-primary)" />
-      <rect x="43" y="344" width="354" height="193" rx="14" className="fill-background/60 stroke-border" strokeWidth="1.2" />
-      <text x="63" y="367" className="fill-primary text-[9px] uppercase tracking-wider">2 · Quantum processor · U(θ)</text>
-      <text x="63" y="382" className="fill-muted-foreground text-[10px]">Parameterized ansatz prepares |ψ(θ)⟩, then each qubit is measured.</text>
+      {/* Step 2: Quantum Processor */}
+      <path d="M220 326V339" className="stroke-foreground" strokeWidth="1.6" markerEnd="url(#arrow-bw)" />
+      <rect x="24" y="348" width="392" height="220" rx="12" className="fill-background/60 stroke-foreground/50" strokeWidth="1.2" />
+      <text x="44" y="374" className="fill-foreground text-[11px] uppercase tracking-wider">2 · Quantum processor · U(θ)</text>
+      <text x="44" y="391" className="fill-muted-foreground text-[12px]">Parameterized ansatz prepares |ψ(θ)⟩.</text>
+      <text x="44" y="406" className="fill-muted-foreground text-[12px]">Each qubit is then measured.</text>
 
-      <CircuitRow y={410} label="q₀" gates={[{ x: 130, label: "Rʏ θ₁" }, { x: 242, label: "Rᴢ θ₄" }]} />
-      <CircuitRow y={452} label="q₁" gates={[{ x: 130, label: "Rʏ θ₂" }, { x: 242, label: "Rᴢ θ₅" }]} />
-      <CircuitRow y={494} label="q₂" gates={[{ x: 130, label: "Rʏ θ₃" }, { x: 242, label: "Rᴢ θ₆" }]} />
-      <line x1="205" y1="410" x2="205" y2="452" className="stroke-foreground" strokeWidth="1.4" />
-      <circle cx="205" cy="410" r="3.5" className="fill-foreground" />
-      <circle cx="205" cy="452" r="8" className="fill-background stroke-foreground" strokeWidth="1.4" />
-      <path d="M200 452h10M205 447v10" className="stroke-foreground" strokeWidth="1.4" />
-      <line x1="205" y1="452" x2="205" y2="494" className="stroke-foreground" strokeWidth="1.4" />
-      <circle cx="205" cy="494" r="3.5" className="fill-foreground" />
-      <text x="205" y="525" textAnchor="middle" className="fill-muted-foreground text-[9px]">entangle</text>
+      {/* Circuit Rows (Black and White) */}
+      <CircuitRow y={436} label="q₀" gates={[{ x: 135, label: "Rʏ(θ₁)" }, { x: 260, label: "Rᴢ(θ₄)" }]} />
+      <CircuitRow y={480} label="q₁" gates={[{ x: 135, label: "Rʏ(θ₂)" }, { x: 260, label: "Rᴢ(θ₅)" }]} />
+      <CircuitRow y={524} label="q₂" gates={[{ x: 135, label: "Rʏ(θ₃)" }, { x: 260, label: "Rᴢ(θ₆)" }]} />
+      
+      {/* CNOT Entanglement Wire */}
+      <line x1="210" y1="436" x2="210" y2="480" className="stroke-foreground" strokeWidth="1.4" />
+      <circle cx="210" cy="436" r="3.5" className="fill-foreground" />
+      <circle cx="210" cy="480" r="7.5" className="fill-background stroke-foreground" strokeWidth="1.4" />
+      <path d="M205 480h10M210 475v10" className="stroke-foreground" strokeWidth="1.4" />
+      <line x1="210" y1="480" x2="210" y2="524" className="stroke-foreground" strokeWidth="1.4" />
+      <circle cx="210" cy="524" r="3.5" className="fill-foreground" />
+      <text x="210" y="556" textAnchor="middle" className="fill-muted-foreground text-[10px] uppercase font-mono">entangle</text>
 
-      <path d="M340 410v84" className="stroke-muted-foreground" strokeWidth="1" strokeDasharray="3 3" />
-      <path d="M340 494V552H296" className="stroke-primary" strokeWidth="1.7" markerEnd="url(#arrow-primary)" />
-      <rect x="225" y="552" width="165" height="50" rx="10" className="fill-primary/10 stroke-primary/60" strokeWidth="1.2" />
-      <text x="240" y="574" className="fill-primary text-[9px] uppercase tracking-wider">3 · Measure energy</text>
-      <text x="240" y="591" className="fill-foreground text-[13px]" style={mathTextStyle}>E(θ) = ⟨H⟩</text>
+      {/* Step 3: Measure Energy */}
+      <path d="M365 436v88" className="stroke-muted-foreground" strokeWidth="1" strokeDasharray="3 3" />
+      <path d="M365 524V584H320" className="stroke-foreground" strokeWidth="1.6" markerEnd="url(#arrow-bw)" />
+      <rect x="230" y="584" width="165" height="60" rx="10" className="fill-background/90 stroke-foreground/70" strokeWidth="1.2" />
+      <text x="245" y="608" className="fill-foreground text-[11px] uppercase tracking-wider">3 · Measure energy</text>
+      <text x="245" y="629" className="fill-foreground text-[16px]" style={mathTextStyle}>E(θ) = ⟨H⟩</text>
 
-      <path d="M225 577H205" className="stroke-muted-foreground" strokeWidth="1.5" markerEnd="url(#arrow-muted)" />
-      <rect x="52" y="552" width="153" height="84" rx="10" className="fill-background/90 stroke-primary/60" strokeWidth="1.2" />
-      <text x="69" y="576" className="fill-primary text-[9px] uppercase tracking-wider">4 · Classical optimizer</text>
-      <text x="69" y="595" className="fill-foreground text-[13px]" style={mathTextStyle}>minimize E(θ)</text>
-      <text x="69" y="615" className="fill-muted-foreground text-[10px]" style={mathTextStyle}>update θ₁ … θ₆</text>
+      {/* Step 4: Classical Optimizer Loop */}
+      <path d="M230 614H205" className="stroke-muted-foreground" strokeWidth="1.4" markerEnd="url(#arrow-muted-bw)" />
+      <rect x="35" y="584" width="160" height="92" rx="10" className="fill-background/90 stroke-foreground/70" strokeWidth="1.2" />
+      <text x="50" y="608" className="fill-foreground text-[11px] uppercase tracking-wider">4 · Optimizer</text>
+      <text x="50" y="630" className="fill-foreground text-[15px]" style={mathTextStyle}>minimize E(θ)</text>
+      <text x="50" y="652" className="fill-muted-foreground text-[11px]" style={mathTextStyle}>update θ₁ … θ₆</text>
 
-      <path d="M120 636V655H24V390H52" className="stroke-primary" strokeWidth="1.8" strokeDasharray="5 4" markerEnd="url(#arrow-primary)" />
-      <text x="26" y="650" className="fill-primary text-[9px]" style={mathTextStyle} transform="rotate(-90 26 650)">new parameters θ</text>
-      <text x="220" y="672" textAnchor="middle" className="fill-muted-foreground text-[10px]">Repeat until the ferrocene ground-state energy converges.</text>
+      {/* Feedback Arrow */}
+      <path d="M115 676V710H16V415H36" className="stroke-foreground" strokeWidth="1.6" strokeDasharray="5 4" markerEnd="url(#arrow-bw)" />
+      <rect x="45" y="684" width="140" height="18" rx="6" className="fill-background stroke-foreground/40" />
+      <text x="115" y="697" textAnchor="middle" className="fill-foreground text-[11px]" style={mathTextStyle}>updated parameters θ</text>
+      <text x="220" y="742" textAnchor="middle" className="fill-muted-foreground text-[11px]">Repeat until the ferrocene ground-state energy converges.</text>
     </svg>
   );
 }
@@ -220,34 +254,54 @@ function VQEWorkflow() {
 function CircuitRow({ y, label, gates }: { y: number; label: string; gates: { x: number; label: string }[] }) {
   return (
     <g>
-      <text x="66" y={y + 4} className="fill-muted-foreground text-[11px]" style={mathTextStyle}>{label}</text>
-      <line x1="87" y1={y} x2="347" y2={y} className="stroke-foreground" strokeWidth="1.35" opacity="0.78" />
-      {gates.map((gate) => <g key={`${label}-${gate.x}`}>
-        <rect x={gate.x - 27} y={y - 14} width="54" height="28" rx="4" className="fill-background stroke-primary" strokeWidth="1.35" />
-        <text x={gate.x} y={y + 4} textAnchor="middle" className="fill-foreground text-[10px]" style={mathTextStyle}>{gate.label}</text>
-      </g>)}
-      <rect x="326" y={y - 13} width="25" height="26" rx="3" className="fill-background stroke-foreground" strokeWidth="1.2" />
-      <path d={`M331 ${y + 5}A7 7 0 0 1 346 ${y + 5}M339 ${y + 5}l5 -10`} className="stroke-foreground" strokeWidth="1.1" />
+      <text x="44" y={y + 5} className="fill-muted-foreground text-[13px]" style={mathTextStyle}>{label}</text>
+      <line x1="68" y1={y} x2="368" y2={y} className="stroke-foreground" strokeWidth="1.3" opacity="0.75" />
+      {gates.map((gate) => (
+        <g key={`${label}-${gate.x}`}>
+          <rect x={gate.x - 28} y={y - 15} width="56" height="30" rx="3" className="fill-background stroke-foreground" strokeWidth="1.3" />
+          <text x={gate.x} y={y + 4} textAnchor="middle" className="fill-foreground text-[11px]" style={mathTextStyle}>{gate.label}</text>
+        </g>
+      ))}
+      <rect x="345" y={y - 14} width="26" height="28" rx="2" className="fill-background stroke-foreground" strokeWidth="1.3" />
+      <path d={`M350 ${y + 5}A7 7 0 0 1 366 ${y + 5}M358 ${y + 5}l5 -10`} className="stroke-foreground" strokeWidth="1.1" />
     </g>
   );
 }
 
+/** 3D Ferrocene stretched horizontally while maintaining vertical thickness */
 function FerroceneMolecule() {
-  const upper = "220,35 178,53 188,85 252,85 262,53";
-  const lower = "220,133 178,151 188,183 252,183 262,151";
-  const topAtoms = [[220,35], [178,53], [188,85], [252,85], [262,53]];
-  const bottomAtoms = [[220,133], [178,151], [188,183], [252,183], [262,151]];
+  // Broadened horizontally by expanding X coordinates outward
+  const upper = "220,35 150,53 166,85 274,85 290,53";
+  const lower = "220,133 150,151 166,183 274,183 290,151";
+  const topAtoms = [[220, 35], [150, 53], [166, 85], [274, 85], [290, 53]];
+  const bottomAtoms = [[220, 133], [150, 151], [166, 183], [274, 183], [290, 151]];
 
   return (
     <g filter="url(#vqe-shadow)">
-      <ellipse cx="220" cy="109" rx="108" ry="86" className="fill-primary/5" />
-      {[...topAtoms, ...bottomAtoms].map(([x, y], index) => <line key={index} x1="220" y1="109" x2={x} y2={y} stroke="#f59e0b" strokeWidth="1.7" opacity="0.82" />)}
+      <ellipse cx="220" cy="109" rx="145" ry="86" className="fill-foreground/[0.02]" />
+      
+      {/* Coordinate Bonds */}
+      {[...topAtoms, ...bottomAtoms].map(([x, y], index) => (
+        <line key={index} x1="220" y1="109" x2={x} y2={y} stroke="#f59e0b" strokeWidth="1.6" opacity="0.85" />
+      ))}
+      
+      {/* Cyclopentadienyl Rings */}
       <polygon points={upper} fill="url(#ring-surface)" stroke="#38bdf8" strokeWidth="2.2" />
       <polygon points={lower} fill="url(#ring-surface)" stroke="#38bdf8" strokeWidth="2.2" />
-      {topAtoms.map(([x, y], index) => <circle key={`top-${index}`} cx={x} cy={y} r="6" fill="#7dd3fc" stroke="#075985" strokeWidth="1.4" />)}
-      {bottomAtoms.map(([x, y], index) => <circle key={`bottom-${index}`} cx={x} cy={y} r="6" fill="#38bdf8" stroke="#075985" strokeWidth="1.4" />)}
-      <ellipse cx="220" cy="61" rx="30" ry="11" className="stroke-primary" strokeWidth="1" strokeDasharray="3 3" />
-      <ellipse cx="220" cy="159" rx="30" ry="11" className="stroke-primary" strokeWidth="1" strokeDasharray="3 3" />
+      
+      {/* Carbon Centers */}
+      {topAtoms.map(([x, y], index) => (
+        <circle key={`top-${index}`} cx={x} cy={y} r="5.5" fill="#7dd3fc" stroke="#075985" strokeWidth="1.3" />
+      ))}
+      {bottomAtoms.map(([x, y], index) => (
+        <circle key={`bottom-${index}`} cx={x} cy={y} r="5.5" fill="#38bdf8" stroke="#075985" strokeWidth="1.3" />
+      ))}
+      
+      {/* Delocalized Aromatic Rings */}
+      <ellipse cx="220" cy="61" rx="46" ry="11" stroke="#38bdf8" strokeWidth="1" strokeDasharray="3 3" />
+      <ellipse cx="220" cy="159" rx="46" ry="11" stroke="#38bdf8" strokeWidth="1" strokeDasharray="3 3" />
+      
+      {/* Central Iron Core */}
       <circle cx="220" cy="109" r="18" fill="url(#iron-core)" stroke="#92400e" strokeWidth="1.8" />
       <text x="220" y="114" textAnchor="middle" fill="white" className="text-[11px] font-bold" style={{ fontFamily: latexMathFont }}>Fe</text>
     </g>
