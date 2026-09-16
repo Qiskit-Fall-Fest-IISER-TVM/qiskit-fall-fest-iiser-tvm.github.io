@@ -10,6 +10,8 @@ import SpeakersPage from "./pages/SpeakersPage";
 import SchedulePage from "./pages/SchedulePage";
 import RegisterPage from "./pages/RegisterPage";
 import TeamPage from "./pages/TeamPage";
+// 1. Import Contact component (adjust casing if your folder is named "pages" vs "Pages")
+import { Contact } from "./Pages/Contact";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/speakers" element={<SpeakersPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          {/* 2. Registered Route */}
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
 
