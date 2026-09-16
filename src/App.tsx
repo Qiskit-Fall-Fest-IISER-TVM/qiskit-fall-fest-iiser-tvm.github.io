@@ -11,7 +11,7 @@ import SchedulePage from "./pages/SchedulePage";
 import RegisterPage from "./pages/RegisterPage";
 import TeamPage from "./pages/TeamPage";
 // 1. Import Contact component (adjust casing if your folder is named "pages" vs "Pages")
-import { Contact } from "./Pages/Contact";
+import { Contact } from "./pages/Contact";
 
 function App() {
   return (
