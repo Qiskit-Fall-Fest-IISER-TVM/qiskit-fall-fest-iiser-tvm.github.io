@@ -1,8 +1,13 @@
 import { useState } from "react";
-import { Mail, MapPin, Send, ExternalLink } from "lucide-react";
+import { Mail, MapPin, Send, ExternalLink, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import bgImage from "@/assets/Hero_1_without_title.png";
 
 const TARGET_EMAIL = "qiskitfallfest2026@iisertvm.ac.in";
+// FormSubmit forwards POSTs made to this endpoint straight to TARGET_EMAIL.
+// First-ever submission triggers a one-time "confirm this inbox" email — click it once and you're done.
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${TARGET_EMAIL}`;
+
+type SubmitStatus = "idle" | "sending" | "success" | "error";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -11,16 +16,34 @@ export function Contact() {
     subject: "",
     message: "",
   });
+  const [status, setStatus] = useState<SubmitStatus>("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const mailSubject = encodeURIComponent(
-      formData.subject || `Inquiry from ${formData.name} - Qiskit Fall Fest 2026`
-    );
-    const bodyContent = encodeURIComponent(
-      `Sender: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:${TARGET_EMAIL}?subject=${mailSubject}&body=${bodyContent}`;
+    setStatus("sending");
+
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          _subject: formData.subject || `Inquiry from ${formData.name} - Qiskit Fall Fest 2026`,
+          message: formData.message,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Submission failed");
+
+      setStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+    }
   };
 
   return (
@@ -98,75 +121,109 @@ export function Contact() {
                 Direct Dispatch Form
               </h3>
               <p className="text-xs text-muted-foreground mb-6">
-                Completing this form will draft an official inquiry email directly to the organizing inbox.
+                Submitting this form sends your query directly to the organizing inbox — no mail app required.
               </p>
 
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {status === "success" ? (
+                <div className="flex flex-col items-center justify-center gap-3 rounded-xl border border-primary/30 bg-primary/5 py-10 text-center">
+                  <CheckCircle2 className="h-8 w-8 text-primary" />
+                  <p className="text-sm font-semibold text-foreground">Message sent successfully.</p>
+                  <p className="text-xs text-muted-foreground max-w-xs">
+                    The organizing committee has received your query and will respond via email shortly.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setStatus("idle")}
+                    className="mt-2 text-xs font-mono uppercase tracking-wider text-primary hover:underline"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div>
+                      <label className="block font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1.5">
+                        Your Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="Richard Feynman"
+                        className="w-full rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1.5">
+                        Your Email *
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="rfeynman@caltech.edu"
+                        className="w-full rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      />
+                    </div>
+                  </div>
+
                   <div>
                     <label className="block font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1.5">
-                      Your Name *
+                      Subject
                     </label>
                     <input
                       type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Richard Feynman"
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      placeholder="Symposium participation query / travel grant / schedule"
                       className="w-full rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
 
                   <div>
                     <label className="block font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1.5">
-                      Your Email *
+                      Message / Query Details *
                     </label>
-                    <input
-                      type="email"
+                    <textarea
+                      rows={4}
                       required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="rfeynman@caltech.edu"
-                      className="w-full rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Write your detailed query or requirement here..."
+                      className="w-full resize-none rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
-                </div>
 
-                <div>
-                  <label className="block font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1.5">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.subject}
-                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="Symposium participation query / travel grant / schedule"
-                    className="w-full rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  />
-                </div>
+                  {status === "error" && (
+                    <div className="flex items-center gap-2 rounded-lg border border-destructive/40 bg-destructive/10 px-3.5 py-2.5 text-xs text-destructive">
+                      <AlertCircle className="h-4 w-4 shrink-0" />
+                      Something went wrong sending your message. Please try again, or email us directly.
+                    </div>
+                  )}
 
-                <div>
-                  <label className="block font-mono text-xs text-muted-foreground uppercase tracking-wider mb-1.5">
-                    Message / Query Details *
-                  </label>
-                  <textarea
-                    rows={4}
-                    required
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Write your detailed query or requirement here..."
-                    className="w-full resize-none rounded-lg border border-border/80 bg-background/60 px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-6 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-md transition-all hover:bg-primary/90"
-                >
-                  <Send className="h-4 w-4" />
-                  Compose in Mail Client
-                </button>
-              </form>
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-6 text-xs font-semibold uppercase tracking-wider text-primary-foreground shadow-md transition-all hover:bg-primary/90 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === "sending" ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="h-4 w-4" />
+                        Send Message
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
             </div>
           </div>
 
@@ -232,126 +289,85 @@ export function Contact() {
 }
 
 /* =====================================================================
-   PARAMETERIZED VQE QUANTUM CIRCUIT (STATIC & CLEAN)
-   Solid background masks on boxes prevent wire lines from showing through
+   PARAMETERIZED VQE QUANTUM CIRCUIT
+   Panel background + consistent stroke weights tie the gates to the wires
+   so the whole thing reads as one circuit instead of floating boxes.
 ===================================================================== */
 function VQECircuit() {
-  const rowY = [28, 68];
+  const rowY = [30, 70];
   const wireStart = 40;
   const wireEnd = 300;
 
   return (
-    <div className="flex w-full flex-col items-center justify-center opacity-95">
-      <svg viewBox="0 0 320 100" className="w-full max-w-[310px] text-foreground" fill="none">
+    <div className="flex w-full flex-col items-center justify-center">
+      <svg viewBox="0 0 320 104" className="w-full max-w-[310px] text-foreground" fill="none">
+        <defs>
+          <linearGradient id="wireFade" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0.35" />
+            <stop offset="8%" stopColor="currentColor" stopOpacity="0.85" />
+            <stop offset="92%" stopColor="currentColor" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.35" />
+          </linearGradient>
+        </defs>
+
+        {/* Panel backdrop unifies the circuit as one component */}
+        <rect
+          x={2}
+          y={4}
+          width={316}
+          height={96}
+          rx={10}
+          className="fill-background/40 stroke-border/60"
+          strokeWidth={1}
+        />
+
         {/* Continuous Qubit Wires */}
         {rowY.map((y, i) => (
           <g key={`wire-${i}`}>
-            <text x={8} y={y + 4} fill="currentColor" className="font-serif italic text-xs">
+            <text x={12} y={y + 4} fill="currentColor" className="font-serif italic text-xs">
               |0⟩
             </text>
-            <line
-              x1={wireStart}
-              y1={y}
-              x2={wireEnd}
-              y2={y}
-              stroke="currentColor"
-              strokeWidth={1.2}
-              className="stroke-foreground/75"
-            />
+            <line x1={wireStart} y1={y} x2={wireEnd} y2={y} stroke="url(#wireFade)" strokeWidth={1.4} />
           </g>
         ))}
 
         {/* CNOT between q0 and q1 */}
-        <line
-          x1={140}
-          y1={rowY[0]}
-          x2={140}
-          y2={rowY[1]}
-          stroke="currentColor"
-          strokeWidth={1.2}
-          className="stroke-foreground/75"
-        />
+        <line x1={140} y1={rowY[0]} x2={140} y2={rowY[1]} stroke="currentColor" strokeWidth={1.4} className="stroke-foreground/80" />
         <circle cx={140} cy={rowY[0]} r={3.5} fill="currentColor" />
-        <circle
-          cx={140}
-          cy={rowY[1]}
-          r={7.5}
-          className="fill-background stroke-foreground/80"
-          strokeWidth={1.2}
-        />
-        <line x1={140} y1={rowY[1] - 5} x2={140} y2={rowY[1] + 5} stroke="currentColor" strokeWidth={1.2} />
-        <line x1={135} y1={rowY[1]} x2={145} y2={rowY[1]} stroke="currentColor" strokeWidth={1.2} />
+        <circle cx={140} cy={rowY[1]} r={7.5} className="fill-background stroke-foreground/85" strokeWidth={1.4} />
+        <line x1={140} y1={rowY[1] - 5} x2={140} y2={rowY[1] + 5} stroke="currentColor" strokeWidth={1.4} />
+        <line x1={135} y1={rowY[1]} x2={145} y2={rowY[1]} stroke="currentColor" strokeWidth={1.4} />
 
         {/* First Rotation Layer R_y(θ₁) and R_y(θ₂) */}
-        <rect
-          x={65}
-          y={rowY[0] - 12}
-          width={45}
-          height={24}
-          rx={2}
-          className="fill-background stroke-foreground/80"
-          strokeWidth={1.2}
-        />
+        <rect x={65} y={rowY[0] - 13} width={45} height={26} rx={3} className="fill-background stroke-primary/70" strokeWidth={1.4} />
         <text x={87} y={rowY[0] + 4} textAnchor="middle" fill="currentColor" className="font-serif text-[11px]">
           R<sub>y</sub>(θ₁)
         </text>
 
-        <rect
-          x={65}
-          y={rowY[1] - 12}
-          width={45}
-          height={24}
-          rx={2}
-          className="fill-background stroke-foreground/80"
-          strokeWidth={1.2}
-        />
+        <rect x={65} y={rowY[1] - 13} width={45} height={26} rx={3} className="fill-background stroke-primary/70" strokeWidth={1.4} />
         <text x={87} y={rowY[1] + 4} textAnchor="middle" fill="currentColor" className="font-serif text-[11px]">
           R<sub>y</sub>(θ₂)
         </text>
 
         {/* Second Rotation Layer R_z(θ₃) */}
-        <rect
-          x={165}
-          y={rowY[1] - 12}
-          width={45}
-          height={24}
-          rx={2}
-          className="fill-background stroke-foreground/80"
-          strokeWidth={1.2}
-        />
+        <rect x={165} y={rowY[1] - 13} width={45} height={26} rx={3} className="fill-background stroke-primary/70" strokeWidth={1.4} />
         <text x={187} y={rowY[1] + 4} textAnchor="middle" fill="currentColor" className="font-serif text-[11px]">
           R<sub>z</sub>(θ₃)
         </text>
 
         {/* Pauli Measurement Detectors */}
-        <rect
-          x={235}
-          y={rowY[0] - 13}
-          width={28}
-          height={26}
-          rx={2}
-          className="fill-background stroke-foreground/80"
-          strokeWidth={1.2}
-        />
-        <path d="M 241 33 A 8 8 0 0 1 257 33" stroke="currentColor" strokeWidth={1} />
-        <line x1={249} y1={33} x2={255} y2={21} stroke="currentColor" strokeWidth={1.2} />
+        <rect x={235} y={rowY[0] - 14} width={28} height={28} rx={3} className="fill-background stroke-foreground/85" strokeWidth={1.4} />
+        <path d={`M 241 ${rowY[0] + 5} A 8 8 0 0 1 257 ${rowY[0] + 5}`} stroke="currentColor" strokeWidth={1.1} />
+        <line x1={249} y1={rowY[0] + 5} x2={255} y2={rowY[0] - 7} stroke="currentColor" strokeWidth={1.4} />
 
-        <rect
-          x={235}
-          y={rowY[1] - 13}
-          width={28}
-          height={26}
-          rx={2}
-          className="fill-background stroke-foreground/80"
-          strokeWidth={1.2}
-        />
-        <path d="M 241 73 A 8 8 0 0 1 257 73" stroke="currentColor" strokeWidth={1} />
-        <line x1={249} y1={73} x2={255} y2={61} stroke="currentColor" strokeWidth={1.2} />
+        <rect x={235} y={rowY[1] - 14} width={28} height={28} rx={3} className="fill-background stroke-foreground/85" strokeWidth={1.4} />
+        <path d={`M 241 ${rowY[1] + 5} A 8 8 0 0 1 257 ${rowY[1] + 5}`} stroke="currentColor" strokeWidth={1.1} />
+        <line x1={249} y1={rowY[1] + 5} x2={255} y2={rowY[1] - 7} stroke="currentColor" strokeWidth={1.4} />
 
-        <text x={275} y={rowY[0] + 4} fill="currentColor" className="font-serif italic text-xs">
+        <text x={278} y={rowY[0] + 4} fill="currentColor" className="font-serif italic text-xs">
           Z₁
         </text>
-        <text x={275} y={rowY[1] + 4} fill="currentColor" className="font-serif italic text-xs">
+        <text x={278} y={rowY[1] + 4} fill="currentColor" className="font-serif italic text-xs">
           Z₂
         </text>
       </svg>
@@ -361,93 +377,102 @@ function VQECircuit() {
 
 /* =====================================================================
    FERROCENE Fe(C5H5)2 3D ISOMETRIC SANDWICH MODEL
-   Features coordinate bonding, cyclopentadienyl rings, and Fe center
+   Solid gradient bonds + a soft radial backdrop bind the two rings and
+   the iron center into a single connected object instead of scattered shapes.
 ===================================================================== */
 function Ferrocene3D() {
+  const feCenter = { x: 160, y: 100 };
+  const lowerRing = [
+    [160, 135],
+    [120, 148],
+    [145, 168],
+    [185, 168],
+    [200, 148],
+  ];
+  const upperRing = [
+    [160, 65],
+    [125, 52],
+    [140, 32],
+    [180, 32],
+    [195, 52],
+  ];
+
   return (
     <div className="w-full flex justify-center py-2">
-      <svg
-        viewBox="0 0 320 200"
-        className="w-full max-w-[280px] overflow-visible"
-        fill="none"
-      >
+      <svg viewBox="0 0 320 200" className="w-full max-w-[280px] overflow-visible" fill="none">
         <defs>
           <radialGradient id="feGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#f59e0b" stopOpacity="1" />
-            <stop offset="60%" stopColor="#d97706" stopOpacity="0.9" />
+            <stop offset="0%" stopColor="#fbbf24" stopOpacity="1" />
+            <stop offset="60%" stopColor="#d97706" stopOpacity="0.95" />
             <stop offset="100%" stopColor="#78350f" stopOpacity="1" />
           </radialGradient>
+          <radialGradient id="moleculeBackdrop" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0" />
+          </radialGradient>
           <linearGradient id="ringTop" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#0284c7" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="#0284c7" stopOpacity="0.85" />
           </linearGradient>
           <linearGradient id="ringBottom" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#0284c7" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#0369a1" stopOpacity="0.8" />
+            <stop offset="0%" stopColor="#0284c7" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="#0369a1" stopOpacity="0.85" />
           </linearGradient>
+          <linearGradient id="bondGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.35" />
+          </linearGradient>
+          <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+            <feDropShadow dx="0" dy="1.5" stdDeviation="1.6" floodColor="#0f172a" floodOpacity="0.35" />
+          </filter>
         </defs>
 
-        {/* Coordinate Bonds from Fe(II) center to Lower Ring */}
-        <line x1="160" y1="100" x2="120" y2="148" stroke="#f59e0b" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />
-        <line x1="160" y1="100" x2="145" y2="168" stroke="#f59e0b" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />
-        <line x1="160" y1="100" x2="185" y2="168" stroke="#f59e0b" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />
-        <line x1="160" y1="100" x2="200" y2="148" stroke="#f59e0b" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />
-        <line x1="160" y1="100" x2="160" y2="135" stroke="#f59e0b" strokeWidth="1" strokeDasharray="3 3" opacity="0.6" />
+        {/* Soft backdrop disc ties the whole sandwich together visually */}
+        <ellipse cx="160" cy="100" rx="130" ry="95" fill="url(#moleculeBackdrop)" />
 
-        {/* Lower Cyclopentadienyl Ring (C5H5) - Staggered */}
+        {/* Coordinate Bonds: Fe -> Lower Ring (solid gradient, not dashed) */}
+        {lowerRing.map(([x, y], i) => (
+          <line key={`bond-bot-${i}`} x1={feCenter.x} y1={feCenter.y} x2={x} y2={y} stroke="url(#bondGlow)" strokeWidth={1.6} strokeLinecap="round" opacity={0.75} />
+        ))}
+
+        {/* Lower Cyclopentadienyl Ring (C5H5) */}
         <polygon
-          points="160,135 120,148 145,168 185,168 200,148"
+          points={lowerRing.map(([x, y]) => `${x},${y}`).join(" ")}
           fill="url(#ringBottom)"
           stroke="#0284c7"
           strokeWidth="1.8"
-          fillOpacity="0.25"
+          fillOpacity="0.28"
+          filter="url(#softShadow)"
         />
-        {/* Carbon Atoms (Lower) */}
-        {[
-          [160, 135],
-          [120, 148],
-          [145, 168],
-          [185, 168],
-          [200, 148],
-        ].map(([cx, cy], i) => (
-          <circle key={`c-bot-${i}`} cx={cx} cy={cy} r="4" fill="#38bdf8" stroke="#0c4a6e" strokeWidth="1.2" />
+        {lowerRing.map(([cx, cy], i) => (
+          <circle key={`c-bot-${i}`} cx={cx} cy={cy} r="4.5" fill="#38bdf8" stroke="#0c4a6e" strokeWidth="1.3" filter="url(#softShadow)" />
         ))}
-        {/* Ring Delocalized Circle (Lower) */}
-        <ellipse cx="162" cy="154" rx="24" ry="10" stroke="#38bdf8" strokeWidth="1" strokeDasharray="2 2" fill="none" opacity="0.7" />
+        <ellipse cx="162" cy="154" rx="24" ry="10" stroke="#38bdf8" strokeWidth="1" strokeDasharray="2 2" fill="none" opacity="0.75" />
 
-        {/* Coordinate Bonds from Fe(II) center to Upper Ring */}
-        <line x1="160" y1="100" x2="160" y2="65" stroke="#f59e0b" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.9" />
-        <line x1="160" y1="100" x2="125" y2="52" stroke="#f59e0b" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.9" />
-        <line x1="160" y1="100" x2="140" y2="32" stroke="#f59e0b" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.9" />
-        <line x1="160" y1="100" x2="180" y2="32" stroke="#f59e0b" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.9" />
-        <line x1="160" y1="100" x2="195" y2="52" stroke="#f59e0b" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.9" />
+        {/* Coordinate Bonds: Fe -> Upper Ring */}
+        {upperRing.map(([x, y], i) => (
+          <line key={`bond-top-${i}`} x1={feCenter.x} y1={feCenter.y} x2={x} y2={y} stroke="url(#bondGlow)" strokeWidth={1.8} strokeLinecap="round" opacity={0.9} />
+        ))}
 
-        {/* Central Iron Atom Fe(II) with Realistic Core */}
-        <circle cx="160" cy="100" r="13" fill="url(#feGlow)" stroke="#78350f" strokeWidth="1.5" />
-        <text x="160" y="104" textAnchor="middle" fill="#ffffff" className="font-sans font-bold text-[10px]">
+        {/* Central Iron Atom Fe(II) */}
+        <circle cx={feCenter.x} cy={feCenter.y} r="13.5" fill="url(#feGlow)" stroke="#78350f" strokeWidth="1.5" filter="url(#softShadow)" />
+        <text x={feCenter.x} y={feCenter.y + 4} textAnchor="middle" fill="#fff" className="font-sans font-bold text-[10px]">
           Fe²⁺
         </text>
 
         {/* Upper Cyclopentadienyl Ring (C5H5) */}
         <polygon
-          points="160,65 125,52 140,32 180,32 195,52"
+          points={upperRing.map(([x, y]) => `${x},${y}`).join(" ")}
           fill="url(#ringTop)"
           stroke="#38bdf8"
           strokeWidth="1.8"
-          fillOpacity="0.3"
+          fillOpacity="0.32"
+          filter="url(#softShadow)"
         />
-        {/* Carbon Atoms (Upper) */}
-        {[
-          [160, 65],
-          [125, 52],
-          [140, 32],
-          [180, 32],
-          [195, 52],
-        ].map(([cx, cy], i) => (
-          <circle key={`c-top-${i}`} cx={cx} cy={cy} r="4" fill="#7dd3fc" stroke="#0369a1" strokeWidth="1.2" />
+        {upperRing.map(([cx, cy], i) => (
+          <circle key={`c-top-${i}`} cx={cx} cy={cy} r="4.5" fill="#7dd3fc" stroke="#0369a1" strokeWidth="1.3" filter="url(#softShadow)" />
         ))}
-        {/* Ring Delocalized Circle (Upper) */}
-        <ellipse cx="160" cy="46" rx="24" ry="10" stroke="#7dd3fc" strokeWidth="1" strokeDasharray="2 2" fill="none" opacity="0.8" />
+        <ellipse cx="160" cy="46" rx="24" ry="10" stroke="#7dd3fc" strokeWidth="1" strokeDasharray="2 2" fill="none" opacity="0.85" />
 
         {/* Molecular Axis Notation */}
         <line x1="240" y1="40" x2="240" y2="160" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" className="text-muted-foreground/60" />
