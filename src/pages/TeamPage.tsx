@@ -33,11 +33,10 @@ const facultyAdvisors = [
 
 const organizers = [
   {
-    name: "Naman Agarwal",
-    role: "5th Year BS-MS (Physics)",
-    image: namanPhoto,
-    linkedin:
-      "https://www.linkedin.com/in/naman-agarwal-2849b6247/",
+    name: "Aman Vijay Tallur",
+    role: "4th Year BS-MS (Physics)",
+    initial: "A",
+    linkedin: "https://www.linkedin.com/in/aman-tallur-215673317/",
   },
   {
     name: "Debashis Saikia",
@@ -68,10 +67,11 @@ const organizers = [
       "https://www.linkedin.com/in/leyana-k-p-301812307/",
   },
   {
-    name: "Aman Vijay Tallur",
-    role: "4th Year BS-MS (Physics)",
-    initial: "A",
-    linkedin: "#",
+    name: "Naman Agarwal",
+    role: "5th Year BS-MS (Physics)",
+    image: namanPhoto,
+    linkedin:
+      "https://www.linkedin.com/in/naman-agarwal-2849b6247/",
   },
 ];
 
