@@ -4,6 +4,9 @@ import ashokKumarPhoto from "@/ashok_kumar.jpg";
 import gayathreePhoto from "@/gayathree.jpg";
 import shreenathPhoto from "@/shreenath.jpg";
 import umaDivakaranPhoto from "@/Uma Divakaran.jpg";
+import amarendraPhoto from "@/amarendra.jpg";
+import prasantaPanigrahiPhoto from "@/prasanta_k_panigrahi.jpg";
+import shreekuttanPhoto from "@/shreekuttan.jpg";
 
 type Event = {
   time: string;
@@ -224,8 +227,8 @@ function SpeakerAvatar({
   name: string;
 }) {
   const initials = name
-    .replace(/^(Prof\\.?|Dr\\.?)\\s+/i, "")
-    .split(/\\s+/)
+    .replace(/^(Prof\.?|Dr\.?)\s+/i, "")
+    .split(/\s+/)
     .filter(Boolean)
     .map((part) => part[0])
     .slice(0, 2)
