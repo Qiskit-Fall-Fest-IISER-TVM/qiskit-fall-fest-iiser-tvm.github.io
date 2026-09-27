@@ -34,7 +34,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Professor, Centre for High Energy Physics, Indian Institute of Science, Bengaluru",
         mode: "OFFLINE",
-        photo: "src/adp-2024.jpg",
+        photo: "prism-uploads/adp-2024.jpg",
       },
       {
         time: "06:30 PM - 07:30 PM",
@@ -44,7 +44,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Associate Professor, Department of Physics, IIST Thiruvananthapuram",
         mode: "OFFLINE",
-        photo: "src/ashok_kumar.jpg",
+        photo: "prism-uploads/ashok_kumar.jpg",
       },
       {
         time: "08:30 PM - 10:30 PM",
@@ -69,7 +69,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Assistant Professor of Physics, Chennai Mathematical Institute",
         mode: "ONLINE",
-        photo: "src/bijita-sarma.jpeg",
+        photo: "prism-uploads/bijita-sarma.jpeg",
       },
       {
         time: "11:00 AM - 12:30 PM",
@@ -79,7 +79,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Postdoctoral Researcher, IIT Madras, IISER TVM Alumnus",
         mode: "ONLINE",
-        photo: "src/gayathree.jpg",
+        photo: "prism-uploads/gayathree.jpg",
       },
       {
         time: "02:00 PM - 03:00 PM",
@@ -89,7 +89,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Reader, Tata Institute of Fundamental Research Hyderabad, IISER TVM Alumnus",
         mode: "OFFLINE",
-        photo: "src/shreenath.jpg",
+        photo: "prism-uploads/shreenath.jpg",
       },
       {
         time: "03:00 PM - 04:00 PM",
@@ -99,7 +99,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Associate Professor and Head, Department of Physics, IIT Palakkad",
         mode: "OFFLINE",
-        photo: "src/Uma Divakaran.jpg",
+        photo: "prism-uploads/Uma Divakaran.jpg",
       },
       {
         time: "04:00 PM - 04:30 PM",
@@ -116,7 +116,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Assistant Professor (Physics), IISER Thiruvananthapuram",
         mode: "OFFLINE",
-        photo: "src/soumik.jpg",
+        photo: "prism-uploads/soumik.jpg",
       },
       {
         time: "08:30 PM - 10:30 PM",
@@ -140,7 +140,7 @@ const scheduleData: ScheduleDay[] = [
         speaker: "Prof. Amarendra Kumar Sarma",
         affiliation: "Professor, Department of Physics, IIT Guwahati",
         mode: "ONLINE",
-        photo: "src/amarendra.jpg",
+        photo: "prism-uploads/amarendra.jpg",
       },
       {
         time: "11:00 AM - 12:00 PM",
@@ -150,7 +150,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Former Director and Emeritus Professor, IISER Kolkata and Director, Centre for Quantum Science and Technology, Siksha 'O' Anusandhan, Bhubaneswar",
         mode: "ONLINE",
-        photo: "src/prasanta_k_panigrahi.jpg",
+        photo: "prism-uploads/prasanta_k_panigrahi.jpg",
       },
       {
         time: "02:00 PM - 03:00 PM",
@@ -159,7 +159,7 @@ const scheduleData: ScheduleDay[] = [
         speaker: "Sreekuttan L. S.",
         affiliation: "Co-Founder and CEO, Bloq Quantum",
         mode: "OFFLINE",
-        photo: "src/shreekuttan.jpg",
+        photo: "prism-uploads/shreekuttan.jpg",
       },
       {
         time: "03:00 PM - 04:00 PM",
@@ -169,6 +169,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Scientist E and Head, Quantum Cloud and Edge Computing, C-DAC Chennai",
         mode: "OFFLINE",
+        // No portrait available for Kailash S.
       },
       {
         time: "04:00 PM - 04:30 PM",
@@ -185,7 +186,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Associate Professor of Physics, IISER Thiruvananthapuram",
         mode: "OFFLINE",
-        photo: "src/ravi pant.jpg",
+        photo: "prism-uploads/ravi pant.jpg",
       },
       {
         time: "08:30 PM - 10:30 PM",
@@ -210,7 +211,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Associate Professor, Department of Electrical Engineering, IIT Bombay",
         mode: "ONLINE",
-        photo: "src/kasturi_saha.jpg",
+        photo: "prism-uploads/kasturi_saha.jpg",
       },
       {
         time: "06:00 PM - 07:00 PM",
@@ -219,7 +220,7 @@ const scheduleData: ScheduleDay[] = [
         speaker: "Prof. Anil Shaji",
         affiliation: "Professor of Physics, IISER Thiruvananthapuram",
         mode: "OFFLINE",
-        photo: "src/anil_shaji.jpg",
+        photo: "prism-uploads/anil_shaji.jpg",
       },
     ],
   },
