@@ -1,4 +1,9 @@
 import bgImage from "@/assets/Hero_1_without_title.png";
+import adpPhoto from "@/adp-2024.jpg";
+import ashokKumarPhoto from "@/ashok_kumar.jpg";
+import gayathreePhoto from "@/gayathree.jpg";
+import shreenathPhoto from "@/shreenath.jpg";
+import umaDivakaranPhoto from "@/Uma Divakaran.jpg";
 
 type Event = {
   time: string;
@@ -34,7 +39,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Professor, Centre for High Energy Physics, Indian Institute of Science, Bengaluru",
         mode: "OFFLINE",
-        photo: "prism-uploads/adp-2024.jpg",
+        photo: adpPhoto,
       },
       {
         time: "06:30 PM - 07:30 PM",
@@ -44,7 +49,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Associate Professor, Department of Physics, IIST Thiruvananthapuram",
         mode: "OFFLINE",
-        photo: "prism-uploads/ashok_kumar.jpg",
+        photo: ashokKumarPhoto,
       },
       {
         time: "08:30 PM - 10:30 PM",
@@ -63,13 +68,10 @@ const scheduleData: ScheduleDay[] = [
     events: [
       {
         time: "10:00 AM - 11:00 AM",
-        title: "Dr. Bijita Sarma",
+        title: "TBA",
         type: "LECTURE",
-        speaker: "Dr. Bijita Sarma",
-        affiliation:
-          "Assistant Professor of Physics, Chennai Mathematical Institute",
+        description: "TBA",
         mode: "ONLINE",
-        photo: "prism-uploads/bijita-sarma.jpeg",
       },
       {
         time: "11:00 AM - 12:30 PM",
@@ -79,7 +81,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Postdoctoral Researcher, IIT Madras, IISER TVM Alumnus",
         mode: "ONLINE",
-        photo: "prism-uploads/gayathree.jpg",
+        photo: gayathreePhoto,
       },
       {
         time: "02:00 PM - 03:00 PM",
@@ -89,7 +91,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Reader, Tata Institute of Fundamental Research Hyderabad, IISER TVM Alumnus",
         mode: "OFFLINE",
-        photo: "prism-uploads/shreenath.jpg",
+        photo: shreenathPhoto,
       },
       {
         time: "03:00 PM - 04:00 PM",
@@ -99,7 +101,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Associate Professor and Head, Department of Physics, IIT Palakkad",
         mode: "OFFLINE",
-        photo: "prism-uploads/Uma Divakaran.jpg",
+        photo: umaDivakaranPhoto,
       },
       {
         time: "04:00 PM - 04:30 PM",
@@ -110,13 +112,10 @@ const scheduleData: ScheduleDay[] = [
       },
       {
         time: "04:30 PM - 05:30 PM",
-        title: "Dr. Soumik Bandyopadhyay",
+        title: "TBA",
         type: "LECTURE",
-        speaker: "Dr. Soumik Bandyopadhyay",
-        affiliation:
-          "Assistant Professor (Physics), IISER Thiruvananthapuram",
+        description: "TBA",
         mode: "OFFLINE",
-        photo: "prism-uploads/soumik.jpg",
       },
       {
         time: "08:30 PM - 10:30 PM",
@@ -140,7 +139,7 @@ const scheduleData: ScheduleDay[] = [
         speaker: "Prof. Amarendra Kumar Sarma",
         affiliation: "Professor, Department of Physics, IIT Guwahati",
         mode: "ONLINE",
-        photo: "prism-uploads/amarendra.jpg",
+        photo: amarendraPhoto,
       },
       {
         time: "11:00 AM - 12:00 PM",
@@ -150,7 +149,7 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Former Director and Emeritus Professor, IISER Kolkata and Director, Centre for Quantum Science and Technology, Siksha 'O' Anusandhan, Bhubaneswar",
         mode: "ONLINE",
-        photo: "prism-uploads/prasanta_k_panigrahi.jpg",
+        photo: prasantaPanigrahiPhoto,
       },
       {
         time: "02:00 PM - 03:00 PM",
@@ -159,7 +158,7 @@ const scheduleData: ScheduleDay[] = [
         speaker: "Sreekuttan L. S.",
         affiliation: "Co-Founder and CEO, Bloq Quantum",
         mode: "OFFLINE",
-        photo: "prism-uploads/shreekuttan.jpg",
+        photo: shreekuttanPhoto,
       },
       {
         time: "03:00 PM - 04:00 PM",
@@ -169,7 +168,6 @@ const scheduleData: ScheduleDay[] = [
         affiliation:
           "Scientist E and Head, Quantum Cloud and Edge Computing, C-DAC Chennai",
         mode: "OFFLINE",
-        // No portrait available for Kailash S.
       },
       {
         time: "04:00 PM - 04:30 PM",
@@ -180,13 +178,10 @@ const scheduleData: ScheduleDay[] = [
       },
       {
         time: "04:30 PM - 05:30 PM",
-        title: "Dr. Ravi Pant",
+        title: "TBA",
         type: "LECTURE",
-        speaker: "Dr. Ravi Pant",
-        affiliation:
-          "Associate Professor of Physics, IISER Thiruvananthapuram",
+        description: "TBA",
         mode: "OFFLINE",
-        photo: "prism-uploads/ravi pant.jpg",
       },
       {
         time: "08:30 PM - 10:30 PM",
@@ -205,26 +200,54 @@ const scheduleData: ScheduleDay[] = [
     events: [
       {
         time: "05:00 PM - 06:00 PM",
-        title: "Dr. Kasturi Saha",
+        title: "TBA",
         type: "LECTURE",
-        speaker: "Dr. Kasturi Saha",
-        affiliation:
-          "Associate Professor, Department of Electrical Engineering, IIT Bombay",
+        description: "TBA",
         mode: "ONLINE",
-        photo: "prism-uploads/kasturi_saha.jpg",
       },
       {
         time: "06:00 PM - 07:00 PM",
-        title: "Concluding Talk · Prof. Anil Shaji",
+        title: "TBA",
         type: "CONCLUSION",
-        speaker: "Prof. Anil Shaji",
-        affiliation: "Professor of Physics, IISER Thiruvananthapuram",
+        description: "TBA",
         mode: "OFFLINE",
-        photo: "prism-uploads/anil_shaji.jpg",
       },
     ],
   },
 ];
+
+function SpeakerAvatar({
+  photo,
+  name,
+}: {
+  photo?: string;
+  name: string;
+}) {
+  const initials = name
+    .replace(/^(Prof\\.?|Dr\\.?)\\s+/i, "")
+    .split(/\\s+/)
+    .filter(Boolean)
+    .map((part) => part[0])
+    .slice(0, 2)
+    .join("")
+    .toUpperCase();
+
+  return photo ? (
+    <img
+      src={photo}
+      alt={name}
+      className="h-14 w-14 shrink-0 rounded-full border border-primary/30 object-cover"
+      loading="lazy"
+    />
+  ) : (
+    <div
+      aria-label={`${name} portrait unavailable`}
+      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/5 font-mono text-xs font-semibold text-primary"
+    >
+      {initials}
+    </div>
+  );
+}
 
 function EventBadge({ type }: { type: string }) {
   const isHighlight =
@@ -1090,7 +1113,7 @@ export function Schedule() {
                 Event Schedule
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                Four days of workshops, keynote lectures, and panel discussions.
+                Four days of workshops, invited talks, and quantum technology sessions.
               </p>
             </div>
 
@@ -1145,21 +1168,12 @@ export function Schedule() {
                           className="flex flex-col justify-between gap-3 py-4 sm:flex-row sm:items-center sm:gap-6"
                         >
                           <div className="flex min-w-0 items-center gap-4 sm:max-w-[82%]">
-                            {event.photo ? (
-                              <img
-                                src={event.photo}
-                                alt={event.speaker ?? event.title}
-                                className="h-14 w-14 shrink-0 rounded-full border border-primary/30 object-cover"
+                            {(event.photo || event.speaker) && (
+                              <SpeakerAvatar
+                                photo={event.photo}
+                                name={event.speaker ?? event.title}
                               />
-                            ) : event.speaker ? (
-                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/5 font-mono text-xs font-semibold text-primary">
-                                {event.speaker
-                                  .split(/\s+/)
-                                  .map((part) => part[0])
-                                  .slice(0, 2)
-                                  .join("")}
-                              </div>
-                            ) : null}
+                            )}
 
                             <div className="min-w-0 space-y-1">
                               <div className="font-mono text-xs text-muted-foreground">
