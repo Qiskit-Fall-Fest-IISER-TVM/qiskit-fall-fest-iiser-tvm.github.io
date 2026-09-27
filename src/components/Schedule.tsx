@@ -4,6 +4,11 @@ type Event = {
   time: string;
   title: string;
   type: string;
+  speaker?: string;
+  affiliation?: string;
+  description?: string;
+  mode?: "ONLINE" | "OFFLINE" | "BREAK";
+  photo?: string;
 };
 
 type ScheduleDay = {
@@ -22,19 +27,31 @@ const scheduleData: ScheduleDay[] = [
     visual: "bloch",
     events: [
       {
-        time: "05:15 PM - 05:45 PM",
-        title: "Inauguration",
+        time: "05:30 PM - 06:30 PM",
+        title: "Inaugural Talk · Prof. Apoorva D. Patel",
         type: "INAUGURATION",
+        speaker: "Prof. Apoorva D. Patel",
+        affiliation:
+          "Professor, Centre for High Energy Physics, Indian Institute of Science, Bengaluru",
+        mode: "OFFLINE",
+        photo: "src/adp-2024.jpg",
       },
       {
-        time: "06:00 PM - 07:00 PM",
-        title: "Inaugural Lecture",
+        time: "06:30 PM - 07:30 PM",
+        title: "Dr. Ashok Kumar",
         type: "LECTURE",
+        speaker: "Dr. Ashok Kumar",
+        affiliation:
+          "Associate Professor, Department of Physics, IIST Thiruvananthapuram",
+        mode: "OFFLINE",
+        photo: "src/ashok_kumar.jpg",
       },
       {
-        time: "08:00 PM - 09:00 PM",
-        title: "Keynote Lecture",
-        type: "KEYNOTE",
+        time: "08:30 PM - 10:30 PM",
+        title: "Hands-on Workshop",
+        type: "WORKSHOP",
+        description: "Evening guided workshop session",
+        mode: "ONLINE",
       },
     ],
   },
@@ -45,14 +62,68 @@ const scheduleData: ScheduleDay[] = [
     visual: "circuit",
     events: [
       {
-        time: "10:00 AM - 12:00 PM",
-        title: "Workshop",
-        type: "WORKSHOP",
+        time: "10:00 AM - 11:00 AM",
+        title: "Dr. Bijita Sarma",
+        type: "LECTURE",
+        speaker: "Dr. Bijita Sarma",
+        affiliation:
+          "Assistant Professor of Physics, Chennai Mathematical Institute",
+        mode: "ONLINE",
+        photo: "src/bijita-sarma.jpeg",
       },
       {
-        time: "02:00 PM - 05:00 PM",
-        title: "Keynote Lectures",
-        type: "KEYNOTE",
+        time: "11:00 AM - 12:30 PM",
+        title: "Dr. Gayathree M. Vinod",
+        type: "LECTURE",
+        speaker: "Dr. Gayathree M. Vinod",
+        affiliation:
+          "Postdoctoral Researcher, IIT Madras, IISER TVM Alumnus",
+        mode: "ONLINE",
+        photo: "src/gayathree.jpg",
+      },
+      {
+        time: "02:00 PM - 03:00 PM",
+        title: "Dr. Sreenath K. Manikandan",
+        type: "LECTURE",
+        speaker: "Dr. Sreenath K. Manikandan",
+        affiliation:
+          "Reader, Tata Institute of Fundamental Research Hyderabad, IISER TVM Alumnus",
+        mode: "OFFLINE",
+        photo: "src/shreenath.jpg",
+      },
+      {
+        time: "03:00 PM - 04:00 PM",
+        title: "Dr. Uma Divakaran",
+        type: "LECTURE",
+        speaker: "Dr. Uma Divakaran",
+        affiliation:
+          "Associate Professor and Head, Department of Physics, IIT Palakkad",
+        mode: "OFFLINE",
+        photo: "src/Uma Divakaran.jpg",
+      },
+      {
+        time: "04:00 PM - 04:30 PM",
+        title: "Tea Break",
+        type: "BREAK",
+        description: "Refreshments and informal discussion",
+        mode: "BREAK",
+      },
+      {
+        time: "04:30 PM - 05:30 PM",
+        title: "Dr. Soumik Bandyopadhyay",
+        type: "LECTURE",
+        speaker: "Dr. Soumik Bandyopadhyay",
+        affiliation:
+          "Assistant Professor (Physics), IISER Thiruvananthapuram",
+        mode: "OFFLINE",
+        photo: "src/soumik.jpg",
+      },
+      {
+        time: "08:30 PM - 10:30 PM",
+        title: "Hands-on Workshop",
+        type: "WORKSHOP",
+        description: "Evening guided workshop session",
+        mode: "ONLINE",
       },
     ],
   },
@@ -63,19 +134,65 @@ const scheduleData: ScheduleDay[] = [
     visual: "state",
     events: [
       {
-        time: "10:00 AM - 12:00 PM",
-        title: "Workshop",
+        time: "10:00 AM - 11:00 AM",
+        title: "Prof. Amarendra Kumar Sarma",
+        type: "LECTURE",
+        speaker: "Prof. Amarendra Kumar Sarma",
+        affiliation: "Professor, Department of Physics, IIT Guwahati",
+        mode: "ONLINE",
+        photo: "src/amarendra.jpg",
+      },
+      {
+        time: "11:00 AM - 12:00 PM",
+        title: "Prof. Prasanta Kumar Panigrahi",
+        type: "LECTURE",
+        speaker: "Prof. Prasanta Kumar Panigrahi",
+        affiliation:
+          "Former Director and Emeritus Professor, IISER Kolkata and Director, Centre for Quantum Science and Technology, Siksha 'O' Anusandhan, Bhubaneswar",
+        mode: "ONLINE",
+        photo: "src/prasanta_k_panigrahi.jpg",
+      },
+      {
+        time: "02:00 PM - 03:00 PM",
+        title: "Sreekuttan L. S.",
+        type: "LECTURE",
+        speaker: "Sreekuttan L. S.",
+        affiliation: "Co-Founder and CEO, Bloq Quantum",
+        mode: "OFFLINE",
+        photo: "src/shreekuttan.jpg",
+      },
+      {
+        time: "03:00 PM - 04:00 PM",
+        title: "Dr. Kailash S.",
+        type: "LECTURE",
+        speaker: "Dr. Kailash S.",
+        affiliation:
+          "Scientist E and Head, Quantum Cloud and Edge Computing, C-DAC Chennai",
+        mode: "OFFLINE",
+      },
+      {
+        time: "04:00 PM - 04:30 PM",
+        title: "Tea Break",
+        type: "BREAK",
+        description: "Refreshments and informal discussion",
+        mode: "BREAK",
+      },
+      {
+        time: "04:30 PM - 05:30 PM",
+        title: "Dr. Ravi Pant",
+        type: "LECTURE",
+        speaker: "Dr. Ravi Pant",
+        affiliation:
+          "Associate Professor of Physics, IISER Thiruvananthapuram",
+        mode: "OFFLINE",
+        photo: "src/ravi pant.jpg",
+      },
+      {
+        time: "08:30 PM - 10:30 PM",
+        title: "Hands-on Workshop",
         type: "WORKSHOP",
-      },
-      {
-        time: "02:00 PM - 04:00 PM",
-        title: "Keynote Lecture",
-        type: "KEYNOTE",
-      },
-      {
-        time: "04:00 PM - 05:00 PM",
-        title: "Panel Discussion on Career in Quantum",
-        type: "PANEL",
+        description: "Evening guided workshop session",
+        mode: "ONLINE",
       },
     ],
   },
@@ -87,13 +204,22 @@ const scheduleData: ScheduleDay[] = [
     events: [
       {
         time: "05:00 PM - 06:00 PM",
-        title: "Keynote Lecture",
-        type: "KEYNOTE",
+        title: "Dr. Kasturi Saha",
+        type: "LECTURE",
+        speaker: "Dr. Kasturi Saha",
+        affiliation:
+          "Associate Professor, Department of Electrical Engineering, IIT Bombay",
+        mode: "ONLINE",
+        photo: "src/kasturi_saha.jpg",
       },
       {
-        time: "06:00 PM - 06:30 PM",
-        title: "Concluding Session",
+        time: "06:00 PM - 07:00 PM",
+        title: "Concluding Talk · Prof. Anil Shaji",
         type: "CONCLUSION",
+        speaker: "Prof. Anil Shaji",
+        affiliation: "Professor of Physics, IISER Thiruvananthapuram",
+        mode: "OFFLINE",
+        photo: "src/anil_shaji.jpg",
       },
     ],
   },
@@ -104,7 +230,8 @@ function EventBadge({ type }: { type: string }) {
     type === "INAUGURATION" ||
     type === "WORKSHOP" ||
     type === "PANEL" ||
-    type === "KEYNOTE";
+    type === "KEYNOTE" ||
+    type === "BREAK";
 
   return (
     <span
@@ -1016,17 +1143,50 @@ export function Schedule() {
                           key={event.title}
                           className="flex flex-col justify-between gap-3 py-4 sm:flex-row sm:items-center sm:gap-6"
                         >
-                          <div className="space-y-1 sm:max-w-[78%]">
-                            <div className="font-mono text-xs text-muted-foreground">
-                              {event.time}
-                            </div>
-                            <div className="text-base font-semibold text-foreground md:text-lg">
-                              {event.title}
+                          <div className="flex min-w-0 items-center gap-4 sm:max-w-[82%]">
+                            {event.photo ? (
+                              <img
+                                src={event.photo}
+                                alt={event.speaker ?? event.title}
+                                className="h-14 w-14 shrink-0 rounded-full border border-primary/30 object-cover"
+                              />
+                            ) : event.speaker ? (
+                              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/5 font-mono text-xs font-semibold text-primary">
+                                {event.speaker
+                                  .split(/\s+/)
+                                  .map((part) => part[0])
+                                  .slice(0, 2)
+                                  .join("")}
+                              </div>
+                            ) : null}
+
+                            <div className="min-w-0 space-y-1">
+                              <div className="font-mono text-xs text-muted-foreground">
+                                {event.time}
+                              </div>
+                              <div className="text-base font-semibold text-foreground md:text-lg">
+                                {event.title}
+                              </div>
+                              {event.affiliation && (
+                                <div className="text-sm leading-relaxed text-muted-foreground">
+                                  {event.affiliation}
+                                </div>
+                              )}
+                              {event.description && (
+                                <div className="text-sm leading-relaxed text-muted-foreground">
+                                  {event.description}
+                                </div>
+                              )}
                             </div>
                           </div>
 
-                          <div className="shrink-0">
+                          <div className="flex shrink-0 flex-col items-end gap-2">
                             <EventBadge type={event.type} />
+                            {event.mode && event.mode !== "BREAK" && (
+                              <span className="font-mono text-[10px] tracking-wider text-muted-foreground">
+                                {event.mode}
+                              </span>
+                            )}
                           </div>
                         </div>
                       ))}
